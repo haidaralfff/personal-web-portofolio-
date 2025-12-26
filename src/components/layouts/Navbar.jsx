@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { Home, User } from "lucide-react";
+import { Home, User , Folder } from "lucide-react";
+
 
 export default function Navbar() {
   const linkClass = ({ isActive }) =>
@@ -15,12 +16,12 @@ export default function Navbar() {
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
 
         {/* Logo */}
-        <div className="text-lg font-bold text-white">
+        <div className="text-2xl font-bold text-white">
           Darz<span className="text-blue-500">.</span>
         </div>
 
         {/* Links */}
-        <div className="flex gap-2">
+        <div className="flex gap-4">
           <NavLink to="/" className={linkClass}>
             <Home size={18} />
             Home
@@ -29,6 +30,11 @@ export default function Navbar() {
           <NavLink to="/about" className={linkClass}>
             <User size={18} />
             About
+          </NavLink>
+
+          <NavLink to="/project" className={linkClass}>
+            <Folder size={18} />
+            Project
           </NavLink>
         </div>
       </div>
