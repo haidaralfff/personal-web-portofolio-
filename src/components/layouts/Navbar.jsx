@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
-import { Home, User , Folder } from "lucide-react";
-
+import { Home, User, Folder, Briefcase, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
   const linkClass = ({ isActive }) =>
     `flex items-center gap-2 px-4 py-2 rounded-lg transition
      ${
@@ -16,12 +18,12 @@ export default function Navbar() {
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
 
         {/* Logo */}
-        <div className="text-2xl font-bold text-white">
-          Darz<span className="text-blue-500">.</span>
+        <div className="text-2xl font-bold text-white transition hover:text-blue-600">
+          Haidar<span className="text-blue-500">.</span>
         </div>
 
-        {/* Links */}
-        <div className="flex gap-4">
+        {/* Desktop Menu */}
+        <div className="hidden md:flex gap-4">
           <NavLink to="/" className={linkClass}>
             <Home size={18} />
             Home
@@ -36,8 +38,50 @@ export default function Navbar() {
             <Folder size={18} />
             Project
           </NavLink>
+
+          <NavLink to="/experience" className={linkClass}>
+            <Briefcase size={18} />
+            Experience
+          </NavLink>
         </div>
+
+        {/* Mobile Button */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="md:hidden text-white"
+        >
+          {open ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      {open && (
+        <div className="md:hidden px-6 pb-4 flex flex-col gap-2 bg-zinc-950 border-t border-zinc-800">
+          <NavLink onClick={() => setOpen(false)} to="/" className={linkClass}>
+            <Home size={18} />
+            Home
+          </NavLink>
+
+          <NavLink onClick={() => setOpen(false)} to="/about" className={linkClass}>
+            <User size={18} />
+            About
+          </NavLink>
+
+          <NavLink onClick={() => setOpen(false)} to="/project" className={linkClass}>
+            <Folder size={18} />
+            Project
+          </NavLink>
+
+          <NavLink
+            onClick={() => setOpen(false)}
+            to="/experience"
+            className={linkClass}
+          >
+            <Briefcase size={18} />
+            Experience
+          </NavLink>
+        </div>
+      )}
     </nav>
   );
 }

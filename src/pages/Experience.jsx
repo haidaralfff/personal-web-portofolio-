@@ -1,0 +1,131 @@
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import Card from "../components/Card";
+
+const item = {
+  hidden: { opacity: 0, y: 40 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+export default function Experience() {
+  const ref = useRef(null);
+
+  // 🔄 scroll progress
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  // garis memanjang sesuai scroll
+  const height = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  return (
+    <section
+      ref={ref}
+      className="min-h-screen bg-zinc-950 text-white pt-24 px-6"
+    >
+      <div className="max-w-6xl mx-auto">
+
+        {/* Title */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl font-bold mb-20 text-center md:text-left"
+        >
+          Experience<span className="text-blue-500">.</span>
+        </motion.h1>
+
+        {/* Timeline Wrapper */}
+        <div className="relative">
+
+          {/* CENTER LINE */}
+          <div className="absolute left-4 md:left-1/2 top-0 -translate-x-1/2 h-full w-[2px] bg-zinc-800">
+            <motion.div
+              style={{ height }}
+              className="w-full bg-blue-500 origin-top"
+            />
+          </div>
+
+          {/* ITEMS */}
+          <div className="space-y-16">
+
+            {/* ITEM 1 */}
+            <motion.div
+              variants={item}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="
+                relative flex
+                md:justify-start
+              "
+            >
+              <span className="absolute left-4 md:left-1/2 top-6 -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full" />
+              <div className="ml-10 md:ml-0 md:w-1/2 md:pr-12">
+                <Card
+                  title="Frontend Developer"
+                  subtitle="Personal Project • 2024 - Sekarang"
+                >
+                  Membangun website portfolio, dashboard, dan landing page
+                  menggunakan React, Tailwind CSS, Framer Motion, dan React Router.
+                </Card>
+              </div>
+            </motion.div>
+
+            {/* ITEM 2 */}
+            <motion.div
+              variants={item}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="
+                relative flex
+                md:justify-end
+              "
+            >
+              <span className="absolute left-4 md:left-1/2 top-6 -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full" />
+              <div className="ml-10 md:ml-0 md:w-1/2 md:pl-12">
+                <Card
+                  title="Mahasiswa Informatika"
+                  subtitle="Universitas Putra Bangsa • Semester 3"
+                >
+                  Fokus mempelajari frontend development, UI/UX, struktur data,
+                  basis data, dan pengembangan aplikasi web modern.
+                </Card>
+              </div>
+            </motion.div>
+
+            {/* ITEM 3 */}
+            <motion.div
+              variants={item}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="
+                relative flex
+                md:justify-start
+              "
+            >
+              <span className="absolute left-4 md:left-1/2 top-6 -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full" />
+              <div className="ml-10 md:ml-0 md:w-1/2 md:pr-12">
+                <Card
+                  title="Freelance Web Developer"
+                  subtitle="Self Project • 2023"
+                >
+                  Membuat website sederhana dan landing page untuk kebutuhan
+                  personal dan UMKM.
+                </Card>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
