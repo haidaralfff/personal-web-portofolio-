@@ -1,24 +1,32 @@
-import Home from './pages/Home'
-import About from './pages/About'
-import Navbar from './components/layouts/Navbar'
-import Project from './pages/Project'
-import Experience from './pages/Experience'
+import Navbar from "./components/layouts/Navbar";
 
-import { Routes, Route } from 'react-router-dom'
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Project from "./pages/Project";
+import Experience from "./pages/Experience";
 
 function App() {
   return (
     <>
       <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/project" element={<Project />} />
-        <Route path="/experience" element={<Experience />} />
-      </Routes>
+      <section id="home">
+        <Home />
+      </section>
+
+      <section id="about">
+        <About />
+      </section>
+
+      <section id="experience">
+        <Experience />
+      </section>
+
+      <section id="projects">
+        <Project />
+      </section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

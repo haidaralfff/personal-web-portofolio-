@@ -1,12 +1,13 @@
 import { Home, User, Folder, Briefcase, Menu, X } from "lucide-react";
 import { useState } from "react";
-import About from "../../pages/About";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   const linkClass =
     "flex items-center gap-2 px-4 py-2 rounded-lg transition text-zinc-300 hover:bg-zinc-800 hover:text-white";
+
+  const handleClick = () => setOpen(false);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur border-b border-zinc-800">
@@ -26,19 +27,20 @@ export default function Navbar() {
             <Home size={18} />
             Home
           </a>
+
           <a href="#about" className={linkClass}>
             <User size={18} />
             About
           </a>
 
+          <a href="#experience" className={linkClass}>
+            <Briefcase size={18} />
+            Experience
+          </a>
+
           <a href="#projects" className={linkClass}>
             <Folder size={18} />
             Projects
-          </a>
-
-          <a href="#contact" className={linkClass}>
-            <Briefcase size={18} />
-            Contact
           </a>
         </div>
 
@@ -54,32 +56,24 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {open && (
         <div className="md:hidden px-6 pb-4 flex flex-col gap-2 bg-zinc-950 border-t border-zinc-800">
-          <a onClick={() => setOpen(false)} href="#home" className={linkClass}>
+          <a onClick={handleClick} href="#home" className={linkClass}>
             <Home size={18} />
             Home
           </a>
 
-          <a onClick={() => setOpen(false)} href="#tech" className={linkClass}>
+          <a onClick={handleClick} href="#about" className={linkClass}>
             <User size={18} />
-            Tech
+            About
           </a>
 
-          <a
-            onClick={() => setOpen(false)}
-            href="#projects"
-            className={linkClass}
-          >
+          <a onClick={handleClick} href="#experience" className={linkClass}>
+            <Briefcase size={18} />
+            Experience
+          </a>
+
+          <a onClick={handleClick} href="#projects" className={linkClass}>
             <Folder size={18} />
             Projects
-          </a>
-
-          <a
-            onClick={() => setOpen(false)}
-            href="#contact"
-            className={linkClass}
-          >
-            <Briefcase size={18} />
-            Contact
           </a>
         </div>
       )}

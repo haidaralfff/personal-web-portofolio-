@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Code2, Target } from "lucide-react";
 
-
 const container = {
   hidden: { opacity: 0 },
   show: {
