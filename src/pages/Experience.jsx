@@ -14,36 +14,33 @@ const item = {
 export default function Experience() {
   const ref = useRef(null);
 
-  // 🔄 scroll progress
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    offset: ["start 80%", "end 20%"],
   });
 
-  // garis memanjang sesuai scroll
   const height = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <section
+      id="experience"
       ref={ref}
       className="min-h-screen bg-zinc-950 text-white pt-24 px-6"
     >
       <div className="max-w-6xl mx-auto">
 
-        {/* Title */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl font-bold mb-20 text-center md:text-left"
+          className="text-4xl font-bold mb-20"
         >
           Experience<span className="text-blue-500">.</span>
         </motion.h1>
 
-        {/* Timeline Wrapper */}
         <div className="relative">
 
-          {/* CENTER LINE */}
+          {/* Center Line */}
           <div className="absolute left-4 md:left-1/2 top-0 -translate-x-1/2 h-full w-[2px] bg-zinc-800">
             <motion.div
               style={{ height }}
@@ -51,7 +48,6 @@ export default function Experience() {
             />
           </div>
 
-          {/* ITEMS */}
           <div className="space-y-16">
 
             {/* ITEM 1 */}
@@ -60,10 +56,7 @@ export default function Experience() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="
-                relative flex
-                md:justify-start
-              "
+              className="relative flex md:justify-start"
             >
               <span className="absolute left-4 md:left-1/2 top-6 -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full" />
               <div className="ml-10 md:ml-0 md:w-1/2 md:pr-12">
@@ -83,10 +76,7 @@ export default function Experience() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="
-                relative flex
-                md:justify-end
-              "
+              className="relative flex md:justify-end"
             >
               <span className="absolute left-4 md:left-1/2 top-6 -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full" />
               <div className="ml-10 md:ml-0 md:w-1/2 md:pl-12">
@@ -106,10 +96,7 @@ export default function Experience() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="
-                relative flex
-                md:justify-start
-              "
+              className="relative flex md:justify-start"
             >
               <span className="absolute left-4 md:left-1/2 top-6 -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full" />
               <div className="ml-10 md:ml-0 md:w-1/2 md:pr-12">

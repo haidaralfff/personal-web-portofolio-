@@ -33,7 +33,7 @@ export default function Project() {
           transition={{ delay: 0.35, duration: 0.6 }}
           className="mt-4 text-zinc-400 text-lg"
         >
-          This section is currently under development.
+          Projek Masi Dalam Pencarian
         </motion.p>
 
         {/* Message Card */}
@@ -47,7 +47,7 @@ export default function Project() {
             I’m currently working on several frontend projects to sharpen my
             skills in <span className="text-white font-medium">React</span>,
             <span className="text-white font-medium"> Tailwind CSS</span>, and
-            <span className="text-white font-medium"> animation</span>.
+            <span className="text-white font-medium"> Javascript</span>.
             <br />
             <br />
             This page will be updated soon with real projects and case studies.

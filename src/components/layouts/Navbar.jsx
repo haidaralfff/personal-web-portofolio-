@@ -1,48 +1,45 @@
-import { NavLink } from "react-router-dom";
 import { Home, User, Folder, Briefcase, Menu, X } from "lucide-react";
 import { useState } from "react";
+import About from "../../pages/About";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  const linkClass = ({ isActive }) =>
-    `flex items-center gap-2 px-4 py-2 rounded-lg transition
-     ${
-       isActive
-         ? "bg-blue-600 text-white"
-         : "text-zinc-300 hover:bg-zinc-800 hover:text-white"
-     }`;
+  const linkClass =
+    "flex items-center gap-2 px-4 py-2 rounded-lg transition text-zinc-300 hover:bg-zinc-800 hover:text-white";
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur border-b border-zinc-800">
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
 
         {/* Logo */}
-        <div className="text-2xl font-bold text-white transition hover:text-blue-600">
+        <a
+          href="#home"
+          className="text-2xl font-bold text-white hover:text-blue-500 transition"
+        >
           Haidar<span className="text-blue-500">.</span>
-        </div>
+        </a>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex gap-4">
-          <NavLink to="/" className={linkClass}>
+        <div className="hidden md:flex gap-2">
+          <a href="#home" className={linkClass}>
             <Home size={18} />
             Home
-          </NavLink>
-
-          <NavLink to="/about" className={linkClass}>
+          </a>
+          <a href="#about" className={linkClass}>
             <User size={18} />
             About
-          </NavLink>
+          </a>
 
-          <NavLink to="/project" className={linkClass}>
+          <a href="#projects" className={linkClass}>
             <Folder size={18} />
-            Project
-          </NavLink>
+            Projects
+          </a>
 
-          <NavLink to="/experience" className={linkClass}>
+          <a href="#contact" className={linkClass}>
             <Briefcase size={18} />
-            Experience
-          </NavLink>
+            Contact
+          </a>
         </div>
 
         {/* Mobile Button */}
@@ -57,29 +54,33 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {open && (
         <div className="md:hidden px-6 pb-4 flex flex-col gap-2 bg-zinc-950 border-t border-zinc-800">
-          <NavLink onClick={() => setOpen(false)} to="/" className={linkClass}>
+          <a onClick={() => setOpen(false)} href="#home" className={linkClass}>
             <Home size={18} />
             Home
-          </NavLink>
+          </a>
 
-          <NavLink onClick={() => setOpen(false)} to="/about" className={linkClass}>
+          <a onClick={() => setOpen(false)} href="#tech" className={linkClass}>
             <User size={18} />
-            About
-          </NavLink>
+            Tech
+          </a>
 
-          <NavLink onClick={() => setOpen(false)} to="/project" className={linkClass}>
-            <Folder size={18} />
-            Project
-          </NavLink>
-
-          <NavLink
+          <a
             onClick={() => setOpen(false)}
-            to="/experience"
+            href="#projects"
+            className={linkClass}
+          >
+            <Folder size={18} />
+            Projects
+          </a>
+
+          <a
+            onClick={() => setOpen(false)}
+            href="#contact"
             className={linkClass}
           >
             <Briefcase size={18} />
-            Experience
-          </NavLink>
+            Contact
+          </a>
         </div>
       )}
     </nav>
