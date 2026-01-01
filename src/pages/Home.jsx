@@ -2,7 +2,7 @@ import { ArrowRight, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import Profile from "../assets/profile.jpeg";
 import { Link } from "react-router-dom";
-import Techstack from "../components/Techstack";
+
 
 
 export default function Home() {

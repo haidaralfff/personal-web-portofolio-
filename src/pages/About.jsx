@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { GraduationCap, Code2, Target } from "lucide-react";
+import Techstack from "../components/Techstack";
 
 const container = {
   hidden: { opacity: 0 },
@@ -114,6 +115,8 @@ export default function About() {
             </p>
           </motion.div>
 
+          {/* Techstack */}
+          <Techstack />
         </div>
       </motion.div>
     </main>
