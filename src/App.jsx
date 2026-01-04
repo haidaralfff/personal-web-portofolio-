@@ -5,7 +5,7 @@ import About from "./pages/About";
 import Project from "./pages/Project";
 import Experience from "./pages/Experience";
 import Contact from "./pages/Contact";
-import Footer from "./components/layouts/Footer";
+
 
 function App() {
   return (

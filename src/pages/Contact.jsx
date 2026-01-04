@@ -1,21 +1,21 @@
 import { motion } from "framer-motion";
-import Footer from "../components/layouts/Footer";
+
 
 const contacts = [
   {
     label: "Email",
-    value: "youremail@gmail.com",
+    value: "haidarhabibi178@gmail.com",
     href: "mailto:youremail@gmail.com",
   },
   {
     label: "GitHub",
-    value: "github.com/username",
-    href: "https://github.com/username",
+    value: "github.com/haidaralfff",
+    href: "https://github.com/haidaralfff",
   },
   {
     label: "LinkedIn",
-    value: "linkedin.com/in/username",
-    href: "https://linkedin.com/in/username",
+    value: "linkedin.com/in/haidar-habibi",
+    href: "https://www.linkedin.com/in/haidar-habibi-109a41372/",
   },
   {
     label: "Instagram",

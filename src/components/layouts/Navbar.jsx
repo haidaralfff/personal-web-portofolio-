@@ -42,6 +42,11 @@ export default function Navbar() {
             <Folder size={18} />
             Projects
           </a>
+          <a href="#contact" className={linkClass}>
+            <Folder size={18} />
+            Contact
+          </a>
+
         </div>
 
         {/* Mobile Button */}
@@ -75,6 +80,8 @@ export default function Navbar() {
             <Folder size={18} />
             Projects
           </a>
+          <a href=""></a>
+
         </div>
       )}
     </nav>
