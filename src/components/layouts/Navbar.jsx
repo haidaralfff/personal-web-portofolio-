@@ -1,4 +1,4 @@
-import { Home, User, Folder, Briefcase, Menu, X } from "lucide-react";
+import { Home, User, Folder, Briefcase, Menu, X, Phone } from "lucide-react";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -43,7 +43,7 @@ export default function Navbar() {
             Projects
           </a>
           <a href="#contact" className={linkClass}>
-            <Folder size={18} />
+            <Phone size={18} />
             Contact
           </a>
 
@@ -80,7 +80,11 @@ export default function Navbar() {
             <Folder size={18} />
             Projects
           </a>
-          <a href=""></a>
+
+          <a onClick={handleClick} href="#contact" className={linkClass}>
+            <Folder size={18} />
+            Contact
+          </a>
 
         </div>
       )}
