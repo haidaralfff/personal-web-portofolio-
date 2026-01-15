@@ -1,11 +1,11 @@
 import Navbar from "./components/layouts/Navbar";
+import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Project from "./pages/Project";
 import Experience from "./pages/Experience";
 import Contact from "./pages/Contact";
-
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
       <section id="about">
         <About />
       </section>
+
       <section id="experience">
         <Experience />
       </section>
@@ -27,9 +28,12 @@ function App() {
         <Project />
       </section>
 
-      <section id= "contact">
+      <section id="contact">
         <Contact />
       </section>
+
+      {/* FOOTER */}
+      <Footer />
     </>
   );
 }
