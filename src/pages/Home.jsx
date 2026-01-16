@@ -10,19 +10,17 @@ export default function Home() {
       {/* 🔵 BACKGROUND DECORATION */}
       <div className="pointer-events-none absolute inset-0">
         <motion.div
-          className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-blue-600/20 blur-3xl"
+          className="pointer-events-none absolute -top-32 -left-32 h-96 w-96 rounded-full bg-blue-600/20 blur-3xl"
           animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
         />
-
         <motion.div
-          className="absolute top-1/3 -right-32 h-96 w-96 rounded-full bg-purple-600/10 blur-3xl"
+          className="pointer-events-none absolute top-1/3 -right-32 h-96 w-96 rounded-full bg-purple-600/10 blur-3xl"
           animate={{ x: [0, -40, 0], y: [0, -30, 0] }}
           transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
         />
-
         <motion.div
-          className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl"
+          className="pointer-events-none absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl"
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -36,10 +34,7 @@ export default function Home() {
           animate="visible"
           variants={{
             hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: { staggerChildren: 0.2 },
-            },
+            visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
           }}
         >
           {/* PROFILE IMAGE */}
@@ -92,11 +87,12 @@ export default function Home() {
               Informatics Student at Universitas Putra Bangsa
             </p>
 
-            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+            {/* 🔴 BUTTONS (FINAL FIX) */}
+            <div className="relative z-20 mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   to="mailto:haidarhabibi178@gmail.com"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm sm:text-base font-semibold hover:bg-blue-500 transition"
+                  className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm sm:text-base font-semibold hover:bg-blue-500 transition"
                 >
                   Hire Me
                   <Mail size={18} />
@@ -107,7 +103,7 @@ export default function Home() {
                 href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-700 px-6 py-3 text-sm sm:text-base font-semibold text-zinc-300 hover:bg-zinc-800 transition"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-zinc-700 px-6 py-3 text-sm sm:text-base font-semibold text-zinc-300 hover:bg-zinc-800 transition"
               >
                 Contact Me
                 <Mail size={18} />
@@ -117,9 +113,9 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* ⬇️ SCROLL DOWN */}
+      {/* ⬇️ SCROLL DOWN  ARROW*/}
       <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center text-zinc-400"
+        className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center text-zinc-400"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
       >
