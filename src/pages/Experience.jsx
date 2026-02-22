@@ -1,15 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import Card from "../components/Card";
-
-const item = {
-  hidden: { opacity: 0, y: 40 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-};
+import TimelineItem from "../components/TimelineItem";
+import { GraduationCap, Code, Wrench } from "lucide-react";
 
 export default function Experience() {
   const ref = useRef(null);
@@ -33,6 +25,7 @@ export default function Experience() {
     >
       <div className="max-w-6xl mx-auto">
 
+        {/* TITLE */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -42,12 +35,7 @@ export default function Experience() {
           Experience<span className="text-blue-500">.</span>
         </motion.h1>
 
-        {/* Mobile hint */}
-        <p className="md:hidden mb-12 text-xs text-zinc-400 text-center">
-          Scroll down to explore experience
-        </p>
-
-        {/* Desktop progress */}
+        {/* SCROLL PROGRESS */}
         <motion.div className="fixed right-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-2 text-xs text-zinc-400">
           <span>Scroll</span>
           <motion.span className="text-blue-500 font-medium">
@@ -57,7 +45,7 @@ export default function Experience() {
 
         <div className="relative">
 
-          {/* Timeline line */}
+          {/* TIMELINE LINE */}
           <div className="absolute left-3 md:left-1/2 top-0 -translate-x-1/2 h-full w-[2px] bg-zinc-800 overflow-hidden">
             <motion.div
               style={{ height }}
@@ -67,104 +55,36 @@ export default function Experience() {
 
           <div className="space-y-16">
 
-            {/* ITEM 1 */}
-            <motion.div
-              variants={item}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="relative flex md:justify-start"
-            >
-              <span
-                className="
-                  absolute left-3 md:left-1/2 top-6 -translate-x-1/2
-                  w-4 h-4
-                  bg-blue-500 rounded-full
-                  ring-4 ring-blue-500/20
-                  animate-pulse
-                "
-              />
+            {/* SMK */}
+            <TimelineItem
+              align="left"
+              icon={<Wrench />}
+              title="SMK Maarif 9 Kebumen"
+              subtitle="Teknik Kendaraan Ringan • 2021 – 2024"
+              description="Mempelajari sistem kendaraan, mekanika, kelistrikan otomotif, serta troubleshooting mesin."
+              skills={["Mechanical", "Engine","Diagnostics"]}
+            />
 
-              <motion.div
-                whileHover={{ y: -6 }}
-                transition={{ type: "spring", stiffness: 200 }}
-                className="ml-8 md:ml-0 w-full md:w-1/2 md:pr-12"
-              >
-                <Card
-                  title="Frontend Developer"
-                  subtitle="Personal Project • 2024 - Sekarang"
-                >
-                  Membangun website portfolio, dashboard, dan landing page
-                  menggunakan React, Tailwind CSS, Framer Motion, dan React Router.
-                </Card>
-              </motion.div>
-            </motion.div>
+            {/* KULIAH */}
+            <TimelineItem
+              align="right"
+              icon={<GraduationCap />}
+              title="Mahasiswa Ilmu Komputer"
+              subtitle="Universitas Putra Bangsa • Semester 4"
+              description="Mempelajari pengembangan web, struktur data, database, serta membangun aplikasi modern."
+              skills={["Pemrograman Web", "Database", "UI/UX"]}
+              current
+            />
 
-            {/* ITEM 2 */}
-            <motion.div
-              variants={item}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="relative flex md:justify-end"
-            >
-              <span
-                className="
-                  absolute left-3 md:left-1/2 top-6 -translate-x-1/2
-                  w-4 h-4
-                  bg-blue-500 rounded-full
-                  ring-4 ring-blue-500/20
-                  animate-pulse
-                "
-              />
-
-              <motion.div
-                whileHover={{ y: -6 }}
-                transition={{ type: "spring", stiffness: 200 }}
-                className="ml-8 md:ml-0 w-full md:w-1/2 md:pl-12"
-              >
-                <Card
-                  title="Mahasiswa Informatika"
-                  subtitle="Universitas Putra Bangsa • Semester 3"
-                >
-                  Fokus mempelajari frontend development, UI/UX, struktur data,
-                  basis data, dan pengembangan aplikasi web modern.
-                </Card>
-              </motion.div>
-            </motion.div>
-
-            {/* ITEM 3 */}
-            <motion.div
-              variants={item}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="relative flex md:justify-start"
-            >
-              <span
-                className="
-                  absolute left-3 md:left-1/2 top-6 -translate-x-1/2
-                  w-4 h-4
-                  bg-blue-500 rounded-full
-                  ring-4 ring-blue-500/20
-                  animate-pulse
-                "
-              />
-
-              <motion.div
-                whileHover={{ y: -6 }}
-                transition={{ type: "spring", stiffness: 200 }}
-                className="ml-8 md:ml-0 w-full md:w-1/2 md:pr-12"
-              >
-                <Card
-                  title="Freelance Web Developer"
-                  subtitle="Self Project • 2023"
-                >
-                  Membuat website sederhana dan landing page untuk kebutuhan
-                  personal dan UMKM.
-                </Card>
-              </motion.div>
-            </motion.div>
+            {/* FREELANCE */}
+            <TimelineItem
+              align="left"
+              icon={<Code />}
+              title="Web Developer"
+              subtitle="2028"
+              description="Membangun website modern dan Implementasi Sistem"
+              skills={["FullstackDeveloper"]}
+            />
 
           </div>
         </div>

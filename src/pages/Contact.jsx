@@ -22,8 +22,8 @@ const contacts = [
   },
   {
     label: "Instagram",
-    value: "@username",
-    href: "https://instagram.com/username",
+    value: "@dryoshen",
+    href: "https://www.instagram.com/dryoshen/",
     icon: Instagram,
   },
 ]
