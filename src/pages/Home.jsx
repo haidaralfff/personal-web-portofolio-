@@ -79,11 +79,11 @@ export default function Home() {
               Hi, I'm <span className="text-blue-500">Haidar</span> 👋
             </h1>
 
-            <p className="mt-3 sm:mt-4 text-lg sm:text-xl md:text-2xl text-zinc-300 font-medium">
-              Junior Frontend Developer
+            <p className="mt-3 sm:mt-4 text-lg sm:text-xl md:text-2xl text-zinc-300 font-bold">
+              Frontend Developer. 
             </p>
 
-            <p className="mt-4 sm:mt-6 max-w-xl mx-auto md:mx-0 text-sm sm:text-base md:text-lg text-zinc-400 leading-relaxed">
+            <p className="mt-2 sm:mt-6 max-w-xl mx-auto md:mx-0 text-sm sm:text-base md:text-lg text-zinc-400 leading-relaxed">
               Informatics Student at Universitas Putra Bangsa
             </p>
 
