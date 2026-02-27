@@ -1,4 +1,4 @@
-# Dashboard Project Backend
+# SETUP Project Backend
 
 Backend untuk aplikasi Dashboard Project menggunakan Express.js dan PostgreSQL.
 
@@ -120,3 +120,9 @@ CREATE TABLE projects (
 - Password belum di-hash (gunakan bcrypt untuk production)
 - Belum ada JWT authentication (akan ditambahkan)
 - CORS sudah enabled untuk semua origin
+-fix API
+-DATA BELUM MASUK KE DB 
+- DOCS POSTMAN
+- END POINT MASIH AMBURADUL
+
+--- masi mengumpulkan niat buat progres---
