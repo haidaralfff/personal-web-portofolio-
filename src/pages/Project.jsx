@@ -17,7 +17,7 @@ const projects = [
   {
     id: 2,
     title: "SMART POS Dashboard",
-    description: "SMART POSdashboard with CRUD feature (static for now).",
+    description: "SMART POS dashboard with CRUD feature (static for now).",
     tech: ["React", "REST API", "Supabase"],
     image: dashboardImg,
     link: "#",

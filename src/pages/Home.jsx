@@ -1,26 +1,30 @@
-import { Mail, ChevronDown } from "lucide-react";
+
+import { Mail, ChevronDown, GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
 import Profile from "../assets/profile.jpeg";
 import { Link } from "react-router-dom";
+import Navbar from "../components/layouts/Navbar";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-black text-white">
+    <>
+      <Navbar />
+      <main className="relative min-h-screen overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-black text-white">
 
       {/* 🔵 BACKGROUND DECORATION */}
       <div className="pointer-events-none absolute inset-0">
         <motion.div
-          className="pointer-events-none absolute -top-32 -left-32 h-96 w-96 rounded-full bg-blue-600/20 blur-3xl"
+          className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-blue-600/20 blur-3xl"
           animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="pointer-events-none absolute top-1/3 -right-32 h-96 w-96 rounded-full bg-purple-600/10 blur-3xl"
+          className="absolute top-1/3 -right-32 h-96 w-96 rounded-full bg-purple-600/10 blur-3xl"
           animate={{ x: [0, -40, 0], y: [0, -30, 0] }}
           transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="pointer-events-none absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl"
+          className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl"
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -37,6 +41,7 @@ export default function Home() {
             visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
           }}
         >
+
           {/* PROFILE IMAGE */}
           <motion.div
             variants={{
@@ -80,14 +85,26 @@ export default function Home() {
             </h1>
 
             <p className="mt-3 sm:mt-4 text-lg sm:text-xl md:text-2xl text-zinc-300 font-bold">
-              Frontend Developer. 
+              Frontend Developer.
             </p>
 
-            <p className="mt-2 sm:mt-6 max-w-xl mx-auto md:mx-0 text-sm sm:text-base md:text-lg text-zinc-400 leading-relaxed">
-              Informatics Student at Universitas Putra Bangsa
+            {/* 🔥 UPDATED SECTION */}
+            <p className="mt-2 sm:mt-6 max-w-xl mx-auto md:mx-0 
+                          text-sm sm:text-base md:text-lg 
+                          text-zinc-400 leading-relaxed 
+                          flex items-center justify-center md:justify-start gap-2">
+
+              <GraduationCap size={18} className="text-blue-500" />
+
+              <span>
+                Informatics Student at{" "}
+                <span className="text-white font-medium">
+                  Universitas Putra Bangsa
+                </span>
+              </span>
             </p>
 
-            {/* 🔴 BUTTONS (FINAL FIX) */}
+            {/* 🔴 BUTTONS */}
             <div className="relative z-20 mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
@@ -113,9 +130,9 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* ⬇️ SCROLL DOWN  ARROW*/}
+      {/* ⬇️ SCROLL DOWN */}
       <motion.div
-        className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center text-zinc-400"
+        className="pointer-events-none absolute bottom-6 inset-x-0 z-20 flex flex-col items-center justify-center text-zinc-400"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
       >
@@ -125,6 +142,7 @@ export default function Home() {
         <ChevronDown size={24} />
       </motion.div>
 
-    </main>
+      </main>
+    </>
   );
 }

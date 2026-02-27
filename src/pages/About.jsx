@@ -1,123 +1,81 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import { GraduationCap, Code2, Target } from "lucide-react";
 import Techstack from "../components/Techstack";
 
 const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.25,
-    },
+    transition: { staggerChildren: 0.3 },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 60 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.8, ease: "easeOut" },
   },
 };
 
 export default function About() {
   return (
-    <main className="min-h-screen bg-zinc-950 text-white px-6 py-24">
+    <main className="min-h-screen bg-zinc-950 text-white px-6 py-28 relative overflow-hidden">
       <motion.div
-        className="mx-auto max-w-4xl"
+        className="mx-auto max-w-3xl relative z-10"
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.3 }}
         variants={container}
       >
-
         {/* Title */}
         <motion.h1
           variants={item}
-          className="text-3xl md:text-4xl font-bold mb-12 text-center"
+          className="text-3xl md:text-5xl font-bold mb-16"
         >
           About <span className="text-blue-500">Me</span>
         </motion.h1>
 
-        {/* Content */}
-        <div className="space-y-8">
+        {/* Interactive Paragraph */}
+        <motion.div
+          variants={item}
+          whileHover={{ y: -6 }}
+          transition={{ type: "spring", stiffness: 200 }}
+          className="group relative"
+        >
+          {/* Glow background */}
+          <div className="absolute -inset-4 bg-blue-500/5 blur-2xl opacity-0 group-hover:opacity-100 transition duration-500" />
 
-          {/* Profile */}
-          <motion.div
-            variants={item}
-            whileHover={{ y: -4 }}
-            className="flex items-start gap-4 rounded-xl border border-zinc-800 p-6 hover:border-blue-500/50 transition"
-          >
-            <motion.div
-              animate={{ y: [0, -4, 0] }}
-              transition={{ repeat: Infinity, duration: 2 }}
-            >
-              <GraduationCap className="text-blue-500" />
-            </motion.div>
+          {/* Animated accent line */}
+          <div className="w-12 h-1 bg-blue-500 mb-8 transition-all duration-500 group-hover:w-24" />
 
-            <p className="text-zinc-300 leading-relaxed">
-              I am a third-semester student at{" "}
-              <span className="text-white font-medium">
-                Universitas Putra Bangsa
-              </span>
-              , currently focusing on developing my skills in frontend web
-              development. I have a strong interest in building modern,
-              responsive, and user-friendly web interfaces.
-            </p>
-          </motion.div>
+          <p className="text-zinc-400 leading-relaxed text-lg transition duration-300 group-hover:text-zinc-200">
+            I am a third-semester Information Technology student with a strong
+            passion for software development and digital creativity. I focus on
+            building modern web applications using{" "}
+            <span className="text-white font-medium">React.js</span> and{" "}
+            <span className="text-white font-medium">Tailwind CSS</span>,
+            emphasizing clean, maintainable code and user-friendly design. I am
+            highly interested in understanding system logic, software
+            architecture, and how technology works behind the scenes to create
+            efficient and scalable solutions. Beyond programming, I also enjoy
+            video editing and digital content creation, where I combine
+            creativity and technical skills to produce engaging visual stories.
+            I am continuously learning, building real-world projects, and
+            seeking opportunities to grow as a{" "}
+            <span className="text-white font-medium">
+              Software Developer
+            </span>{" "}
+            who can bridge logic and creativity to build impactful digital
+            solutions.
+          </p>
+        </motion.div>
 
-          {/* Skills Focus */}
-          <motion.div
-            variants={item}
-            whileHover={{ y: -4 }}
-            className="flex items-start gap-4 rounded-xl border border-zinc-800 p-6 hover:border-blue-500/50 transition"
-          >
-            <motion.div
-              animate={{ y: [0, -4, 0] }}
-              transition={{ repeat: Infinity, duration: 2.2 }}
-            >
-              <Code2 className="text-blue-500" />
-            </motion.div>
-
-            <p className="text-zinc-300 leading-relaxed">
-              I mainly work with{" "}
-              <span className="text-white font-medium">React.js</span> and{" "}
-              <span className="text-white font-medium">Tailwind CSS</span> to
-              create clean and maintainable UI components. I enjoy turning
-              designs into functional web experiences while paying attention to
-              detail and usability.
-            </p>
-          </motion.div>
-
-          {/* Goal */}
-          <motion.div
-            variants={item}
-            whileHover={{ y: -4 }}
-            className="flex items-start gap-4 rounded-xl border border-zinc-800 p-6 hover:border-blue-500/50 transition"
-          >
-            <motion.div
-              animate={{ y: [0, -4, 0] }}
-              transition={{ repeat: Infinity, duration: 2.4 }}
-            >
-              <Target className="text-blue-500" />
-            </motion.div>
-
-            <p className="text-zinc-300 leading-relaxed">
-              My goal is to grow as a{" "}
-              <span className="text-white font-medium">
-                Junior Frontend Developer
-              </span>{" "}
-              and gain real-world experience by working on meaningful projects,
-              collaborating with teams, and continuously learning new
-              technologies in the frontend ecosystem.
-            </p>
-          </motion.div>
-
-          {/* Techstack */}
+        {/* Techstack */}
+        <motion.div variants={item} className="mt-24">
           <Techstack />
-        </div>
+        </motion.div>
       </motion.div>
     </main>
   );
