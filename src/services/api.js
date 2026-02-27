@@ -1,5 +1,5 @@
 // API Service untuk semua request ke backend
-const API_BASE_URL = "http://localhost:4000/api";
+const API_BASE_URL = "http://localhost:3001/api";
 
 // ===== AUTH ENDPOINTS =====
 
@@ -69,32 +69,36 @@ export const projectService = {
   },
 
   // Create project
-  create: async (title, tech, status) => {
+  create: async (title, tech, status, image) => {
     try {
       const response = await fetch(`${API_BASE_URL}/projects`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title, tech, status }),
+        body: JSON.stringify({ title, tech, status, image }),
       });
       const data = await response.json();
-      if (!response.ok) throw new Error(data.error);
+      if (!response.ok) {
+        console.error("Backend error:", data);
+        throw new Error(data.message || data.error || "Failed to create project");
+      }
       return data.data || data;
     } catch (error) {
+      console.error("Create project error:", error);
       throw new Error(error.message || "Failed to create project");
     }
   },
 
   // Update project
-  update: async (id, title, tech, status) => {
+  update: async (id, title, tech, status, image) => {
     try {
       const response = await fetch(`${API_BASE_URL}/projects/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title, tech, status }),
+        body: JSON.stringify({ title, tech, status, image }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error);

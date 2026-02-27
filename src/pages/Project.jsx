@@ -1,41 +1,39 @@
 import { motion } from "framer-motion";
 import { FolderOpen, ExternalLink, Github } from "lucide-react";
-import dashboardImg from "../assets/dashboard.jpeg";
-import coffeImg from "../assets/coffe.png";
-import DompetkuImg from "../assets/dompetku.png";
+import { useState, useEffect } from "react";
+import { projectService } from "../services/api";
 
-const projects = [
-  {
-    id: 1,
-    title: "Simple Coffeshop Landing Page",
-    description: "A responsive landing page for a coffee shop, showcasing menu and contact info.",
-    tech: ["HTML5", "AOS library", "Bootstrap"],
-    image: coffeImg,
-    link: "https://simple-coffeshop.vercel.app/",
-    github: "https://github.com/haidaralfff/simple-coffeshop-",
-  },
-  {
-    id: 2,
-    title: "SMART POS Dashboard",
-    description: "SMART POS dashboard with CRUD feature (static for now).",
-    tech: ["React", "REST API", "Supabase"],
-    image: dashboardImg,
-    link: "#",
-    status: "In Progress Project",
-    github: "https://github.com/haidaralfff/SMART-POS-",
-  },
-  {
-    id: 3,
-    title: "DOMPETKU Landing Page",
-    description: "Modern responsive landing page design.",
-    tech: ["HTML", "CSS", "JS"],
-    image: DompetkuImg,
-    link: "https://dompetku-project.netlify.app/",
-    github: "https://github.com/haidaralfff/DOMPETKU",
-  },
-];
+const getPlaceholderImage = (index) => {
+  const colors = [
+    "from-blue-600 to-blue-400",
+    "from-purple-600 to-purple-400",
+    "from-pink-600 to-pink-400",
+    "from-green-600 to-green-400",
+    "from-yellow-600 to-yellow-400",
+  ];
+  return colors[index % colors.length];
+};
 
 export default function Project() {
+  const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      const data = await projectService.getAll();
+      setProjects(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error("Failed to fetch projects:", error);
+      setProjects([]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <section className="min-h-screen bg-zinc-950 text-white pt-24 px-6">
       <div className="mx-auto max-w-6xl">
@@ -61,90 +59,90 @@ export default function Project() {
         </div>
 
         {/* GRID */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch"> {/* FIX */}
+        {isLoading ? (
+          <div className="flex items-center justify-center h-64">
+            <p className="text-zinc-400">Loading projects...</p>
+          </div>
+        ) : projects.length === 0 ? (
+          <div className="flex items-center justify-center h-64">
+            <p className="text-zinc-400">No projects yet. Check back soon!</p>
+          </div>
+        ) : (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.15, duration: 0.5 }}
+                whileHover={{ y: -5 }}
+                className="group flex flex-col h-full rounded-xl border border-zinc-800 bg-zinc-900/60 overflow-hidden hover:border-blue-500/50 transition"
+              >
+                {/* IMAGE */}
+                <div className="relative overflow-hidden h-48">
+                  {project.image ? (
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                  ) : (
+                    <div className={`w-full h-full bg-gradient-to-br ${getPlaceholderImage(index)} flex items-center justify-center`}>
+                      <div className="text-center opacity-80">
+                        <p className="text-white font-semibold">{project.title}</p>
+                      </div>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
 
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.15, duration: 0.5 }}
-              whileHover={{ y: -5 }}
-              className="group flex flex-col h-full rounded-xl border border-zinc-800 bg-zinc-900/60 overflow-hidden hover:border-blue-500/50 transition" // FIX
-            >
-              
-              {/* IMAGE */}
-              <div className="relative overflow-hidden h-48">
-                <motion.img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
+                {/* CONTENT */}
+                <div className="p-6 flex flex-col flex-grow">
+                  <h3 className="text-xl font-semibold mb-2">
+                    {project.title}
+                  </h3>
 
-              {/* CONTENT */}
-              <div className="p-6 flex flex-col flex-grow"> {/* FIX */}
+                  <p className="text-sm text-zinc-400 mb-4 leading-relaxed">
+                    {project.tech}
+                  </p>
 
-                <h3 className="text-xl font-semibold mb-2">
-                  {project.title}
-                </h3>
-
-                <p className="text-sm text-zinc-400 mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-
-                {/* TECH */}
-                <div className="mb-4 flex flex-wrap gap-2">
-                  {project.tech.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="rounded-md bg-zinc-800 px-2 py-1 text-xs text-zinc-300"
+                  {/* STATUS */}
+                  {project.status && (
+                    <motion.div
+                      animate={{ opacity: [0.5, 1, 0.5] }}
+                      transition={{ repeat: Infinity, duration: 2 }}
+                      className="mb-4 text-xs text-yellow-400"
                     >
-                      {tech}
-                    </span>
-                  ))}
+                      {project.status}
+                    </motion.div>
+                  )}
+
+                  {/* BUTTON */}
+                  <div className="flex gap-3 mt-auto">
+                    <motion.a
+                      href="#"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex-1 flex items-center justify-center gap-2 rounded-lg bg-blue-600 hover:bg-blue-700 px-4 py-2 text-sm font-medium transition"
+                    >
+                      <ExternalLink size={16} />
+                      View
+                    </motion.a>
+
+                    <motion.a
+                      href="#"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center justify-center rounded-lg border border-zinc-700 hover:border-blue-500 hover:bg-blue-500/10 px-4 py-2 text-sm font-medium transition"
+                    >
+                      <Github size={16} />
+                    </motion.a>
+                  </div>
                 </div>
-
-                {/* STATUS */}
-                {project.status && (
-                  <motion.div
-                    animate={{ opacity: [0.5, 1, 0.5] }}
-                    transition={{ repeat: Infinity, duration: 2 }}
-                    className="mb-4 text-xs text-yellow-400"
-                  >
-                    {project.status}
-                  </motion.div>
-                )}
-
-                {/* BUTTON */}
-                <div className="flex gap-3 mt-auto"> {/* FIX */}
-                  <motion.a
-                    href={project.link}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex-1 flex items-center justify-center gap-2 rounded-lg bg-blue-600 hover:bg-blue-700 px-4 py-2 text-sm font-medium transition"
-                  >
-                    <ExternalLink size={16} />
-                    View
-                  </motion.a>
-
-                  <motion.a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center justify-center rounded-lg border border-zinc-700 hover:border-blue-500 hover:bg-blue-500/10 px-4 py-2 text-sm font-medium transition"
-                  >
-                    <Github size={16} />
-                  </motion.a>
-                </div>
-
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

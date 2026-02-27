@@ -230,17 +230,31 @@ export default function Navbar() {
                 >
                   {isLoading ? "Loading..." : "Login"}
                 </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setShowLoginModal(false);
-                    setLoginForm({ username: "", password: "" });
-                    setLoginError("");
-                  }}
-                  className="flex-1 px-4 py-3 rounded-lg bg-zinc-700 text-white font-semibold hover:bg-zinc-600 transition"
-                >
-                  Cancel
-                </button>
+<button
+  type="button"
+  onClick={() => {
+    setShowLoginModal(false);
+    setLoginForm({ username: "", password: "" });
+    setLoginError("");
+  }}
+  className="
+    w-full sm:flex-1
+    px-4 sm:px-6
+    py-3 sm:py-2.5
+    text-sm sm:text-base
+    rounded-xl
+    bg-zinc-700
+    text-white
+    font-semibold
+    transition-all duration-200
+    active:scale-95
+    sm:hover:bg-zinc-600
+    focus:outline-none
+    focus:ring-2 focus:ring-zinc-500
+  "
+>
+  Cancel
+</button>
               </div>
             </form>
           </div>

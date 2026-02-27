@@ -13,7 +13,8 @@ export default function DashboardProject() {
   const [form, setForm] = useState({
     title: "",
     tech: "",
-    status: "Active"
+    status: "Active",
+    image: ""
   });
 
   // Fetch projects on component mount
@@ -35,18 +36,42 @@ export default function DashboardProject() {
     }
   };
 
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setForm({ ...form, image: event.target.result });
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleAdd = async () => {
-    if (!form.title || !form.tech) {
+    const trimmedTitle = form.title.trim();
+    const trimmedTech = form.tech.trim();
+    
+    if (!trimmedTitle || !trimmedTech) {
       setError("Title and tech are required");
+      return;
+    }
+
+    if (trimmedTitle.length < 3) {
+      setError("Title harus minimal 3 karakter");
+      return;
+    }
+
+    if (trimmedTech.length < 2) {
+      setError("Tech harus minimal 2 karakter");
       return;
     }
 
     setIsSubmitting(true);
     try {
-      const newProject = await projectService.create(form.title, form.tech, form.status);
+      const newProject = await projectService.create(trimmedTitle, trimmedTech, form.status, form.image);
       setProjects([newProject, ...projects]);
       setShowModal(false);
-      setForm({ title: "", tech: "", status: "Active" });
+      setForm({ title: "", tech: "", status: "Active", image: "" });
       setError("");
     } catch (err) {
       setError(err.message || "Failed to add project");
@@ -182,6 +207,22 @@ export default function DashboardProject() {
                 <option>Active</option>
                 <option>Draft</option>
               </select>
+
+              <div className="space-y-2">
+                <label className="block text-sm text-zinc-300">Project Image (optional)</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="w-full p-2 bg-zinc-800 rounded text-sm text-zinc-400"
+                />
+                {form.image && (
+                  <div className="flex items-center gap-2">
+                    <img src={form.image} alt="preview" className="w-12 h-12 rounded object-cover" />
+                    <span className="text-xs text-zinc-400">Image uploaded</span>
+                  </div>
+                )}
+              </div>
 
               <div className="flex justify-end gap-3 pt-2">
                 <button
