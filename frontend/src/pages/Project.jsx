@@ -24,8 +24,11 @@ export default function Project() {
 
   const fetchProjects = async () => {
     try {
-      const data = await projectService.getAll();
-      setProjects(Array.isArray(data) ? data : []);
+      const result = await projectService.getAll();
+      const projectList = Array.isArray(result)
+        ? result
+        : (result && Array.isArray(result.projects) ? result.projects : []);
+      setProjects(projectList);
     } catch (error) {
       console.error("Failed to fetch projects:", error);
       setProjects([]);

@@ -26,8 +26,11 @@ export default function DashboardProject() {
     setIsLoading(true);
     setError("");
     try {
-      const data = await projectService.getAll();
-      setProjects(Array.isArray(data) ? data : []);
+      const result = await projectService.getAll();
+      const projectList = Array.isArray(result)
+        ? result
+        : (result && Array.isArray(result.projects) ? result.projects : []);
+      setProjects(projectList);
     } catch (err) {
       setError("Failed to load projects");
       console.error(err);

@@ -1,102 +1,52 @@
-// Entry point backend Express.js
+// Entry point backend Express.js - Decoupled & Optimized
 import express from "express";
-import cors from "cors";
 import dotenv from "dotenv";
-import pool from "./db.js";
-import authRoutes from "./routes/auth.js";
-import projectRoutes from "./routes/projects.js";
+import apiRoutes from "./routes/index.js";
+import { securityHeaders, corsMiddleware } from "./middlewares/security.js";
 import { errorHandler, notFoundHandler } from "./middlewares/errorHandler.js";
+import { createRateLimiter } from "./middlewares/auth.js";
 
 dotenv.config();
 
 const app = express();
+const NODE_ENV = process.env.NODE_ENV || "development";
 
-// ===== MIDDLEWARES =====
-// CORS configuration
-app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:3000", "http://localhost:5174"],
-  credentials: true,
-}));
+// ===== 1. SECURITY & POLICY LAYER =====
+app.use(securityHeaders);
+app.use(corsMiddleware);
 
-// Body parser with larger limit for images
-app.use(express.json({ limit: "50mb" }));
-app.use(express.urlencoded({ limit: "50mb", extended: true }));
+// ===== 2. GLOBAL RATE LIMITER (100 reqs / 15 mins) =====
+const apiLimiter = createRateLimiter(100, 15 * 60 * 1000);
+app.use("/api/", apiLimiter);
 
-// ===== ROUTES =====
+// ===== 3. BODY PARSERS =====
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
-// Test connection
-app.get("/api/test", async (req, res, next) => {
-  try {
-    const result = await pool.query("SELECT NOW()");
-    res.json({
-      success: true,
-      message: "Database connection successful",
-      timestamp: result.rows[0].now,
+// ===== 4. REQUEST LOGGER (DEV ONLY) =====
+if (NODE_ENV === "development") {
+  app.use((req, res, next) => {
+    const timeStart = Date.now();
+    res.on("finish", () => {
+      const duration = Date.now() - timeStart;
+      console.log(`[${req.method}] ${req.originalUrl} - ${res.statusCode} (${duration}ms)`);
     });
-  } catch (error) {
-    next(error);
-  }
-});
-
-// API Routes
-app.use("/api/auth", authRoutes);
-app.use("/api/projects", projectRoutes);
-
-// Seed endpoint untuk development only
-if (process.env.NODE_ENV === "development") {
-  app.post("/api/seed", async (req, res, next) => {
-    try {
-      // Clear existing data
-      await pool.query("TRUNCATE TABLE projects CASCADE");
-
-      // Insert dummy data
-      const projects = [
-        { title: "Portfolio Web", tech: "React", status: "Active" },
-        { title: "POS Dashboard", tech: "Node.js", status: "Draft" },
-        { title: "Mobile App", tech: "React Native", status: "In Progress" },
-      ];
-
-      for (const project of projects) {
-        await pool.query(
-          "INSERT INTO projects (title, tech, status) VALUES ($1, $2, $3)",
-          [project.title, project.tech, project.status]
-        );
-      }
-
-      res.json({
-        success: true,
-        message: "Database seeded successfully",
-        count: projects.length,
-      });
-    } catch (error) {
-      next(error);
-    }
+    next();
   });
 }
 
-// ===== ERROR HANDLERS =====
+// ===== 5. CENTRALIZED API ROUTING =====
+app.use("/api", apiRoutes);
+
+// ===== 6. GLOBAL ERROR HANDLING =====
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-// ===== SERVER =====
+// ===== 7. SERVER INITIALIZATION =====
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`✅ Server running on port ${PORT}`);
-  console.log(`📝 API Test: http://localhost:${PORT}/api/test`);
-  console.log(`📝 Documentation: http://localhost:${PORT}/api/docs (if added)`);
-  console.log(`\n📚 Routes:`);
-  console.log(`   AUTH:`);
-  console.log(`   - POST /api/auth/login`);
-  console.log(`   - POST /api/auth/register`);
-  console.log(`   - POST /api/auth/logout`);
-  console.log(`\n   PROJECTS:`);
-  console.log(`   - GET /api/projects`);
-  console.log(`   - GET /api/projects/:id`);
-  console.log(`   - POST /api/projects`);
-  console.log(`   - PUT /api/projects/:id`);
-  console.log(`   - DELETE /api/projects/:id`);
-  if (process.env.NODE_ENV === "development") {
-    console.log(`\n   DEVELOPMENT:`);
-    console.log(`   - POST /api/seed (insert dummy data)`);
-  }
+  console.log(`\n🚀 DailyPorto API Server is live!`);
+  console.log(`⚙️  Environment : ${NODE_ENV}`);
+  console.log(`🔗 Access Link  : http://localhost:${PORT}/api`);
+  console.log(`🏥 Health Check : http://localhost:${PORT}/api/health\n`);
 });
