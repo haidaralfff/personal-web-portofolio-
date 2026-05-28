@@ -21,7 +21,7 @@ const item = {
 
 export default function About() {
   return (
-    <main className="min-h-screen bg-zinc-950 text-white px-6 py-28 relative overflow-hidden">
+    <main className="min-h-screen text-white px-6 py-28 relative overflow-hidden">
       <motion.div
         className="mx-auto max-w-3xl relative z-10"
         initial="hidden"
@@ -34,7 +34,7 @@ export default function About() {
           variants={item}
           className="text-3xl md:text-5xl font-bold mb-16"
         >
-          About <span className="text-blue-500">Me</span>
+          About <span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">Me</span>
         </motion.h1>
 
         {/* Interactive Paragraph */}
@@ -42,15 +42,12 @@ export default function About() {
           variants={item}
           whileHover={{ y: -6 }}
           transition={{ type: "spring", stiffness: 200 }}
-          className="group relative"
+          className="group relative bg-white/5 p-8 rounded-3xl backdrop-blur-md border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_40px_rgba(59,130,246,0.3)] transition-all duration-300"
         >
-          {/* Glow background */}
-          <div className="absolute -inset-4 bg-blue-500/5 blur-2xl opacity-0 group-hover:opacity-100 transition duration-500" />
-
           {/* Animated accent line */}
-          <div className="w-12 h-1 bg-blue-500 mb-8 transition-all duration-500 group-hover:w-24" />
+          <div className="w-12 h-1 bg-blue-500 mb-8 transition-all duration-500 group-hover:w-24 group-hover:shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
 
-          <p className="text-zinc-400 leading-relaxed text-lg transition duration-300 group-hover:text-zinc-200">
+          <p className="text-zinc-300 leading-relaxed text-lg transition duration-300 group-hover:text-white">
             I am a third-semester Information Technology student with a strong
             passion for software development and digital creativity. I focus on
             building modern web applications using{" "}

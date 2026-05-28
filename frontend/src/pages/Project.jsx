@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { FolderOpen, ExternalLink, Github } from "lucide-react";
 import { useState, useEffect } from "react";
-import { projectService } from "../services/api";
 
 const getPlaceholderImage = (index) => {
   const colors = [
@@ -19,27 +18,38 @@ export default function Project() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchProjects();
+    // Static projects data
+    const staticProjects = [
+      {
+        id: 1,
+        title: "Personal Portfolio",
+        tech: "React, Tailwind CSS, Framer Motion",
+        status: "Completed",
+        image: ""
+      },
+      {
+        id: 2,
+        title: "E-Commerce Platform",
+        tech: "Next.js, Node.js, MongoDB",
+        status: "In Progress",
+        image: ""
+      },
+      {
+        id: 3,
+        title: "Task Management App",
+        tech: "React, Firebase",
+        status: "Planning",
+        image: ""
+      }
+    ];
+    setProjects(staticProjects);
+    setIsLoading(false);
   }, []);
 
-  const fetchProjects = async () => {
-    try {
-      const result = await projectService.getAll();
-      const projectList = Array.isArray(result)
-        ? result
-        : (result && Array.isArray(result.projects) ? result.projects : []);
-      setProjects(projectList);
-    } catch (error) {
-      console.error("Failed to fetch projects:", error);
-      setProjects([]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   return (
-    <section className="min-h-screen bg-zinc-950 text-white pt-24 px-6">
-      <div className="mx-auto max-w-6xl">
+    <section className="min-h-screen text-white pt-24 px-6 relative">
+      <div className="mx-auto max-w-6xl relative z-10">
 
         {/* HEADER */}
         <div className="mb-14 text-center">
@@ -47,16 +57,16 @@ export default function Project() {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-blue-500/10"
+            className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-blue-500/10 border border-blue-500/20 backdrop-blur-md shadow-[0_0_20px_rgba(59,130,246,0.2)]"
           >
-            <FolderOpen className="text-blue-500" size={36} />
+            <FolderOpen className="text-blue-400 drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]" size={36} />
           </motion.div>
 
           <h1 className="text-4xl font-bold">
-            Projects<span className="text-blue-500">.</span>
+            Projects<span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">.</span>
           </h1>
 
-          <p className="mt-3 text-zinc-400">
+          <p className="mt-3 text-zinc-300">
             Projects I have worked on
           </p>
         </div>
@@ -64,11 +74,11 @@ export default function Project() {
         {/* GRID */}
         {isLoading ? (
           <div className="flex items-center justify-center h-64">
-            <p className="text-zinc-400">Loading projects...</p>
+            <p className="text-zinc-300">Loading projects...</p>
           </div>
         ) : projects.length === 0 ? (
           <div className="flex items-center justify-center h-64">
-            <p className="text-zinc-400">No projects yet. Check back soon!</p>
+            <p className="text-zinc-300">No projects yet. Check back soon!</p>
           </div>
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
@@ -78,43 +88,43 @@ export default function Project() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.15, duration: 0.5 }}
-                whileHover={{ y: -5 }}
-                className="group flex flex-col h-full rounded-xl border border-zinc-800 bg-zinc-900/60 overflow-hidden hover:border-blue-500/50 transition"
+                whileHover={{ y: -8 }}
+                className="group flex flex-col h-full rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-lg overflow-hidden hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:bg-white/10 transition-all duration-300"
               >
                 {/* IMAGE */}
-                <div className="relative overflow-hidden h-48">
+                <div className="relative overflow-hidden h-48 border-b border-white/10">
                   {project.image ? (
                     <img 
                       src={project.image} 
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   ) : (
-                    <div className={`w-full h-full bg-gradient-to-br ${getPlaceholderImage(index)} flex items-center justify-center`}>
-                      <div className="text-center opacity-80">
-                        <p className="text-white font-semibold">{project.title}</p>
+                    <div className={`w-full h-full bg-gradient-to-br ${getPlaceholderImage(index)} opacity-80 flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}>
+                      <div className="text-center opacity-90 drop-shadow-md">
+                        <p className="text-white font-semibold text-lg">{project.title}</p>
                       </div>
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
                 {/* CONTENT */}
                 <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-semibold mb-2">
+                  <h3 className="text-xl font-bold mb-2 text-white">
                     {project.title}
                   </h3>
 
-                  <p className="text-sm text-zinc-400 mb-4 leading-relaxed">
+                  <p className="text-sm text-zinc-300 mb-4 leading-relaxed">
                     {project.tech}
                   </p>
 
                   {/* STATUS */}
                   {project.status && (
                     <motion.div
-                      animate={{ opacity: [0.5, 1, 0.5] }}
+                      animate={{ opacity: [0.7, 1, 0.7] }}
                       transition={{ repeat: Infinity, duration: 2 }}
-                      className="mb-4 text-xs text-yellow-400"
+                      className="mb-4 text-xs font-medium text-blue-300 bg-blue-500/10 w-fit px-3 py-1 rounded-full border border-blue-500/20"
                     >
                       {project.status}
                     </motion.div>
@@ -126,7 +136,7 @@ export default function Project() {
                       href="#"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center gap-2 rounded-lg bg-blue-600 hover:bg-blue-700 px-4 py-2 text-sm font-medium transition"
+                      className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-blue-600/80 backdrop-blur-md px-4 py-2 text-sm font-semibold hover:bg-blue-500 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-300"
                     >
                       <ExternalLink size={16} />
                       View
@@ -136,7 +146,7 @@ export default function Project() {
                       href="#"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center justify-center rounded-lg border border-zinc-700 hover:border-blue-500 hover:bg-blue-500/10 px-4 py-2 text-sm font-medium transition"
+                      className="flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] px-4 py-2 text-sm font-medium transition-all duration-300"
                     >
                       <Github size={16} />
                     </motion.a>

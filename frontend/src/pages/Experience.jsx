@@ -21,7 +21,7 @@ export default function Experience() {
     <section
       id="experience"
       ref={ref}
-      className="min-h-screen bg-zinc-950 text-white pt-24 px-6"
+      className="min-h-screen text-white pt-24 px-6 relative"
     >
       <div className="max-w-6xl mx-auto">
 

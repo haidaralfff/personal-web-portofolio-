@@ -8,6 +8,7 @@ import {
   Figma,
   Cloud,
 } from "lucide-react";
+import LogoLoop from "./reactbits/Logo Loop";
 
 const stacks = [
   { name: "React", icon: Code2 },
@@ -17,8 +18,10 @@ const stacks = [
   { name: "Express", icon: Server },
   { name: "PostgreSQL", icon: Database },
   { name: "Supabase", icon: Cloud },
+  { name: "XAMPP", icon: Database },
   { name: "Git", icon: GitBranch },
   { name: "Figma", icon: Figma },
+ 
 ];
 
 // container animation
@@ -42,9 +45,24 @@ const item = {
   },
 };
 
+const renderTechItem = (tech) => {
+  const Icon = tech.icon;
+  return (
+    <div className="flex flex-col items-center gap-2 sm:gap-3">
+      <Icon
+        size={40}
+        className="text-blue-300 hover:text-blue-400 transition-colors"
+      />
+      <span className="text-xs sm:text-sm text-white font-medium">
+        {tech.name}
+      </span>
+    </div>
+  );
+};
+
 export default function Techstack() {
   return (
-    <section className="min-h-screen bg-zinc-950 text-white pt-24 px-4 sm:px-6 flex items-center">
+    <section className="min-h-screen text-white pt-24 px-4 sm:px-6 flex items-center">
       <div className="mx-auto max-w-5xl w-full text-center">
         {/* Title */}
         <motion.h1
@@ -65,43 +83,24 @@ export default function Techstack() {
           Technologies I have worked with
         </motion.p>
 
-        {/* Grid */}
+        {/* Logo Loop Carousel */}
         <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="
-            mt-10
-            grid grid-cols-2
-            sm:grid-cols-3
-            md:grid-cols-4
-            gap-3 sm:gap-4
-          "
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="mt-10"
         >
-          {stacks.map(({ name, icon: Icon }) => (
-            <motion.div
-              key={name}
-              variants={item}
-              whileHover={{ y: -6, scale: 1.03 }}
-              className="
-                group rounded-xl
-                border border-zinc-800
-                bg-zinc-900/60
-                p-4 sm:p-5
-                flex flex-col items-center gap-2 sm:gap-3
-                transition-colors
-                hover:border-blue-500
-              "
-            >
-              <Icon
-                size={26}
-                className="text-zinc-400 group-hover:text-blue-500 transition-colors"
-              />
-              <span className="text-xs sm:text-sm text-zinc-200 group-hover:text-white">
-                {name}
-              </span>
-            </motion.div>
-          ))}
+          <LogoLoop
+            logos={stacks}
+            speed={80}
+            direction="left"
+            logoHeight={80}
+            gap={56}
+            pauseOnHover={true}
+            scaleOnHover={true}
+            renderItem={renderTechItem}
+            ariaLabel="Technology stack carousel"
+          />
         </motion.div>
       </div>
     </section>
