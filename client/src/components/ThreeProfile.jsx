@@ -91,6 +91,8 @@ export default function ThreeProfile() {
              alt="Haidar Profile Loading" 
              className="w-full h-full object-cover"
              fetchPriority="high"
+             loading="eager"
+             decoding="sync"
            />
            <div className="absolute inset-0 bg-blue-600/20 mix-blend-overlay" />
            <div className="absolute inset-0 border border-blue-500/30 rounded-[1.5rem]" />
