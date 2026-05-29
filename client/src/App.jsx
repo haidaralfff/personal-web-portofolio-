@@ -1,3 +1,4 @@
+import React, { Suspense, lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import AuroraBackground from "./components/reactbits/AuroraBackground";
 import CustomCursor from "./components/CustomCursor";
@@ -6,15 +7,17 @@ import SplashScreen from "./components/SplashScreen";
 import Navbar from "./components/layouts/Navbar";
 import Footer from "./components/Footer";
 
+// Eager load Home since it's above the fold
 import Home from "./pages/Home";
-import About from "./pages/About";
-import Project from "./pages/Project";
-import Experience from "./pages/Experience";
-import Contact from "./pages/Contact";
-import Services from "./pages/Services";
-import Certifications from "./pages/Certifications";
 
-import Contributions from "./pages/Contributions";
+// Lazy load sections below the fold to reduce initial bundle size
+const About = lazy(() => import("./pages/About"));
+const Project = lazy(() => import("./pages/Project"));
+const Experience = lazy(() => import("./pages/Experience"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Services = lazy(() => import("./pages/Services"));
+const Certifications = lazy(() => import("./pages/Certifications"));
+const Contributions = lazy(() => import("./pages/Contributions"));
 
 function LandingPage() {
   return (
@@ -22,13 +25,17 @@ function LandingPage() {
       <Navbar />
 
       <section id="home"><Home /></section>
-      <section id="about"><About /></section>
-      <section id="services"><Services /></section>
-      <section id="experience"><Experience /></section>
-      <section id="certifications"><Certifications /></section>
-      <section id="projects"><Project /></section>
-      <section id="contributions"><Contributions /></section>
-      <section id="contact"><Contact /></section>
+      
+      {/* Fallback blocks space while JS chunks download in background */}
+      <Suspense fallback={<div className="min-h-screen bg-transparent" />}>
+        <section id="about"><About /></section>
+        <section id="services"><Services /></section>
+        <section id="experience"><Experience /></section>
+        <section id="certifications"><Certifications /></section>
+        <section id="projects"><Project /></section>
+        <section id="contributions"><Contributions /></section>
+        <section id="contact"><Contact /></section>
+      </Suspense>
 
       <Footer />
     </>

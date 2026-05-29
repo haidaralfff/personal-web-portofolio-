@@ -1,11 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, Suspense, lazy } from "react";
 import { Mail, GraduationCap, Download } from "lucide-react";
 import { motion } from "framer-motion";
-import Profile from "../assets/profil.jpeg";
 import { Link } from "react-router-dom";
 import TextPressure from "../components/reactbits/TextPressure.jsx";
 import gsap from "gsap";
-import ThreeProfile from "../components/ThreeProfile.jsx";
+
+// Lazy load the massive 3D library so the text renders instantly
+const ThreeProfile = lazy(() => import("../components/ThreeProfile.jsx"));
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -56,7 +57,11 @@ export default function Home() {
 
             {/* CREATIVE 3D VISUAL SECTION */}
             <div className="hero-profile order-1 md:order-2 flex justify-center items-center relative w-full h-[400px] sm:h-[500px] md:h-[600px] z-20">
-              <ThreeProfile />
+              <Suspense fallback={
+                <div className="w-56 h-72 sm:w-72 sm:h-96 md:w-80 md:h-[28rem] rounded-[1.5rem] bg-blue-900/10 border border-blue-500/20 animate-pulse shadow-2xl" />
+              }>
+                <ThreeProfile />
+              </Suspense>
             </div>
 
             {/* TEXT */}
