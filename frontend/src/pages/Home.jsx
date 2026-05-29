@@ -1,6 +1,6 @@
 import { Mail, ChevronDown, GraduationCap } from "lucide-react";
 import {motion } from "framer-motion";
-// import Profile from "../assets/profile.jpeg";
+import Profile from "../portofolio/profile.jpeg";
 import { Link } from "react-router-dom";
 import TextPressure from "../components/reactbits/TextPressure.jsx";
 
@@ -39,10 +39,11 @@ export default function Home() {
                 className="relative p-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_0_40px_rgba(59,130,246,0.3)]"
               >
                 <div className="absolute inset-0 rounded-full bg-blue-500/20 blur-2xl" />
-                {/* Placeholder untuk profile image - tambahkan file ke src/assets/profile.jpeg */}
-                <div className="relative z-10 h-48 w-48 sm:h-56 sm:w-56 md:h-72 md:w-72 rounded-full object-cover border-2 border-white/20 bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center">
-                  <span className="text-white/40">Your Photo</span>
-                </div>
+                <img
+                  src={Profile}
+                  alt="Haidar Profile"
+                  className="relative z-10 h-48 w-48 sm:h-56 sm:w-56 md:h-72 md:w-72 rounded-full object-cover border-2 border-white/20"
+                />
               </motion.div>
             </motion.div>
 
