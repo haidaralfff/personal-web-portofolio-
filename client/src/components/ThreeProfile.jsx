@@ -107,13 +107,20 @@ export default function ThreeProfile() {
         className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
       >
         <Suspense fallback={null}>
-          {/* Lighting setup */}
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[10, 10, 5]} intensity={2} color="#ffffff" />
-          <directionalLight position={[-10, -10, -5]} intensity={1} color="#60a5fa" />
-          <pointLight position={[0, 0, 2]} intensity={0.5} color="#3b82f6" />
+          {/* Enhanced Manual Lighting Setup (Replaces Environment map to avoid CDN blocks) */}
+          <ambientLight intensity={0.8} />
           
-          <Environment preset="city" />
+          {/* Main Key Light */}
+          <directionalLight position={[5, 10, 8]} intensity={2.5} color="#ffffff" castShadow />
+          
+          {/* Fill Light (Blueish) */}
+          <directionalLight position={[-10, -5, -5]} intensity={1.5} color="#3b82f6" />
+          
+          {/* Backlight / Rim Light */}
+          <spotLight position={[0, 10, -10]} intensity={4} color="#60a5fa" penumbra={1} angle={0.5} />
+          
+          {/* Front Highlight */}
+          <pointLight position={[0, 0, 5]} intensity={1.5} color="#93c5fd" distance={20} />
 
           {/* The Card */}
           <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
