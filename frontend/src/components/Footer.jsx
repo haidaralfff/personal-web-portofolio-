@@ -13,7 +13,7 @@ export default function Footer() {
               Haidar<span className="text-blue-500">.</span>
             </h3>
             <p className="mt-2 max-w-sm text-sm leading-relaxed">
-              Building clean, modern, and interactive web experiences.
+              Frontend Developer | Informatics Student at Universitas Putra Bangsa
             </p>
           </div>
 

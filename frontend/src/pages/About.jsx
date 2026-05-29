@@ -47,25 +47,22 @@ export default function About() {
           {/* Animated accent line */}
           <div className="w-12 h-1 bg-blue-500 mb-8 transition-all duration-500 group-hover:w-24 group-hover:shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
 
-          <p className="text-zinc-300 leading-relaxed text-lg transition duration-300 group-hover:text-white">
-            I am a third-semester Information Technology student with a strong
-            passion for software development and digital creativity. I focus on
-            building modern web applications using{" "}
-            <span className="text-white font-medium">React.js</span> and{" "}
-            <span className="text-white font-medium">Tailwind CSS</span>,
-            emphasizing clean, maintainable code and user-friendly design. I am
-            highly interested in understanding system logic, software
-            architecture, and how technology works behind the scenes to create
-            efficient and scalable solutions. Beyond programming, I also enjoy
-            video editing and digital content creation, where I combine
-            creativity and technical skills to produce engaging visual stories.
-            I am continuously learning, building real-world projects, and
-            seeking opportunities to grow as a{" "}
-            <span className="text-white font-medium">
-              Software Developer
-            </span>{" "}
-            who can bridge logic and creativity to build impactful digital
-            solutions.
+              <p className="text-zinc-300 leading-relaxed text-lg transition duration-300 group-hover:text-white">
+              Saya adalah mahasiswa Ilmu Komputer semester empat yang memiliki 
+              passion kuat dalam pengembangan perangkat lunak dan kreativitas digital. Saya 
+            fokus membangun aplikasi web modern menggunakan{" "}
+            <span className="text-white font-medium">React.js</span> dan{" "}
+            <span className="text-white font-medium">Tailwind CSS</span>, dengan menekankan 
+            pada kode yang bersih, mudah dipelihara, serta desain yang ramah pengguna. 
+            Saya sangat tertarik untuk memahami logika sistem, arsitektur perangkat lunak, 
+            dan bagaimana teknologi bekerja di balik layar demi menciptakan solusi yang 
+            efisien dan terukur. Di luar pemrograman, saya juga menikmati penyuntingan 
+            video dan pembuatan konten digital, di mana saya menggabungkan kreativitas dan 
+            keterampilan teknis untuk menghasilkan cerita visual yang menarik. Saya terus 
+            belajar, membangun proyek nyata, dan mencari peluang untuk berkembang sebagai 
+            seorang{" "}
+            <span className="text-white font-medium">Web Developer</span> yang mampu 
+            menjembatani logika dan kreativitas untuk menciptakan solusi digital yang berdampak.
           </p>
         </motion.div>
 
