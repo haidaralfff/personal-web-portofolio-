@@ -64,7 +64,7 @@ export default function About() {
             <span className="text-white font-medium">Web Developer</span> yang mampu 
             menjembatani logika dan kreativitas untuk menciptakan solusi digital yang berdampak.
           </p>
-        </motion.div>
+        </div>
 
         {/* Techstack */}
         <div className="about-item mt-24">
