@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import { Mail, Github, Linkedin, Instagram, Send, AlertCircle, CheckCircle2 } from "lucide-react";
- 
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const contacts = [
   {
@@ -30,23 +34,52 @@ const contacts = [
   },
 ];
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 15 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-};
-
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState({ type: "", message: "" });
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      tl.from(".contact-header", {
+        opacity: 0,
+        y: -20,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out"
+      })
+      .from(".contact-left", {
+        opacity: 0,
+        x: -30,
+        duration: 0.6,
+        ease: "power3.out"
+      }, "-=0.3")
+      .from(".contact-item", {
+        opacity: 0,
+        x: -20,
+        duration: 0.4,
+        stagger: 0.1,
+        ease: "power2.out"
+      }, "-=0.4")
+      .from(".contact-right", {
+        opacity: 0,
+        x: 30,
+        duration: 0.6,
+        ease: "power3.out"
+      }, "-=0.6");
+    }, containerRef);
+    
+    return () => ctx.revert();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,17 +97,30 @@ export default function Contact() {
 
     setIsSubmitting(true);
     try {
-      // Simulate API call for static site
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // ⚠️ IMPORTANT: Replace these strings with your actual EmailJS credentials
+      await emailjs.send(
+        "YOUR_SERVICE_ID", // Example: "service_1234abc"
+        "YOUR_TEMPLATE_ID", // Example: "template_xyz789"
+        {
+          from_name: form.name,
+          to_name: "Haidar",
+          from_email: form.email,
+          subject: form.subject,
+          message: form.message,
+        },
+        "YOUR_PUBLIC_KEY" // Example: "public_key_abc123"
+      );
+      
       setStatus({
         type: "success",
         message: "Thank you! Your message has been sent successfully.",
       });
       setForm({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
+      console.error("EmailJS Error:", error);
       setStatus({
         type: "error",
-        message: "Failed to send message. Please try again.",
+        message: "Failed to send message. Please try again or email me directly.",
       });
     } finally {
       setIsSubmitting(false);
@@ -82,20 +128,15 @@ export default function Contact() {
   };
 
   return (
-    <section className="min-h-screen text-white pt-28 pb-32 px-6 flex items-center relative">
+    <section ref={containerRef} className="min-h-screen text-white pt-28 pb-32 px-6 flex items-center relative">
       <div className="mx-auto w-full max-w-5xl relative z-10">
         
         {/* Header */}
         <div className="text-center mb-16">
-          <motion.h1
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl font-bold md:text-5xl"
-          >
+          <h1 className="contact-header text-4xl font-bold md:text-5xl">
             Contact<span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">.</span>
-          </motion.h1>
-          <p className="mt-4 text-zinc-300 text-base max-w-md mx-auto">
+          </h1>
+          <p className="contact-header mt-4 text-zinc-300 text-base max-w-md mx-auto">
             Have a project in mind, want to collaborate, or just say hello? Drop me a message!
           </p>
         </div>
@@ -104,13 +145,8 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
           {/* Left Column: Social Links */}
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate="show"
-            className="lg:col-span-5 space-y-6"
-          >
-            <motion.div variants={item} className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-6 shadow-lg">
+          <div className="contact-left lg:col-span-5 space-y-6">
+            <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-6 shadow-lg">
               <h2 className="text-xl font-bold mb-4 text-white">Get in touch</h2>
               <p className="text-zinc-300 text-sm mb-6 leading-relaxed">
                 Connect with me on social platforms or send an email directly. I usually respond within 24 hours.
@@ -123,9 +159,8 @@ export default function Contact() {
                     href={href}
                     target="_blank"
                     rel="noreferrer"
-                    variants={item}
                     whileHover={{ x: 6 }}
-                    className="flex items-center justify-between rounded-xl border border-white/5 bg-white/5 px-4 py-3 hover:border-white/20 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300"
+                    className="contact-item flex items-center justify-between rounded-xl border border-white/5 bg-white/5 px-4 py-3 hover:border-white/20 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300"
                   >
                     <div className="flex items-center gap-3">
                       <Icon size={18} className="text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
@@ -135,16 +170,11 @@ export default function Contact() {
                   </motion.a>
                 ))}
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Right Column: Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:col-span-7"
-          >
+          <div className="contact-right lg:col-span-7">
             <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 md:p-8 shadow-[0_0_40px_rgba(0,0,0,0.3)]">
               <h2 className="text-xl font-bold mb-6 text-white">Send Message</h2>
               
@@ -250,7 +280,7 @@ export default function Contact() {
                 </button>
               </form>
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>

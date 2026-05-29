@@ -1,55 +1,57 @@
-// eslint-disable-next-line no-unused-vars
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Techstack from "../components/Techstack";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.3 },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 60 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: "easeOut" },
-  },
-};
+gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      tl.from(".about-item", {
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power3.out"
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <main className="min-h-screen text-white px-6 py-28 relative overflow-hidden">
-      <motion.div
-        className="mx-auto max-w-3xl relative z-10"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={container}
-      >
+    <main id="about" ref={containerRef} className="min-h-screen text-white px-6 py-28 relative overflow-hidden">
+      <div className="mx-auto max-w-3xl relative z-10">
+        
         {/* Title */}
-        <motion.h1
-          variants={item}
-          className="text-3xl md:text-5xl font-bold mb-16"
-        >
+        <h1 className="about-item text-3xl md:text-5xl font-bold mb-16">
           About <span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">Me</span>
-        </motion.h1>
+        </h1>
 
         {/* Interactive Paragraph */}
         <motion.div
-          variants={item}
           whileHover={{ y: -6 }}
           transition={{ type: "spring", stiffness: 200 }}
-          className="group relative bg-white/5 p-8 rounded-3xl backdrop-blur-md border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_40px_rgba(59,130,246,0.3)] transition-all duration-300"
+          className="about-item group relative bg-white/5 p-8 rounded-3xl backdrop-blur-md border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_40px_rgba(59,130,246,0.3)] transition-all duration-300"
         >
           {/* Animated accent line */}
           <div className="w-12 h-1 bg-blue-500 mb-8 transition-all duration-500 group-hover:w-24 group-hover:shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
 
-              <p className="text-zinc-300 leading-relaxed text-lg transition duration-300 group-hover:text-white">
-              Saya adalah mahasiswa Ilmu Komputer semester empat yang memiliki 
-              passion kuat dalam pengembangan perangkat lunak dan kreativitas digital. Saya 
+          <p className="text-zinc-300 leading-relaxed text-lg transition duration-300 group-hover:text-white">
+            Saya adalah mahasiswa Ilmu Komputer semester empat yang memiliki 
+            passion kuat dalam pengembangan perangkat lunak dan kreativitas digital. Saya 
             fokus membangun aplikasi web modern menggunakan{" "}
             <span className="text-white font-medium">React.js</span> dan{" "}
             <span className="text-white font-medium">Tailwind CSS</span>, dengan menekankan 
@@ -67,10 +69,10 @@ export default function About() {
         </motion.div>
 
         {/* Techstack */}
-        <motion.div variants={item} className="mt-24">
+        <div className="about-item mt-24">
           <Techstack />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </main>
   );
 }

@@ -13,12 +13,7 @@ export default function TimelineItem({
   const isLeft = align === "left";
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className={`relative flex ${isLeft ? "md:justify-start" : "md:justify-end"}`}
-    >
+    <div className={`timeline-item relative flex ${isLeft ? "md:justify-start" : "md:justify-end"}`}>
       {/* DOT */}
       <span className="absolute left-3 md:left-1/2 top-6 -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full ring-4 ring-blue-500/20 animate-pulse" />
 
@@ -78,6 +73,6 @@ export default function TimelineItem({
           )}
         </div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 }

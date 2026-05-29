@@ -188,7 +188,7 @@ const TextPressure = ({
   }, [fontFamily, fontUrl, textColor, strokeColor, strokeWidth]);
 
   return (
-    <div ref={containerRef} className="relative w-full h-full overflow-hidden bg-transparent">
+    <div ref={containerRef} className="relative w-full h-full overflow-visible bg-transparent">
       {styleElement}
       <h1
         ref={titleRef}
