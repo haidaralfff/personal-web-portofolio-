@@ -41,10 +41,8 @@ export default function About() {
         </h1>
 
         {/* Interactive Paragraph */}
-        <motion.div
-          whileHover={{ y: -6 }}
-          transition={{ type: "spring", stiffness: 200 }}
-          className="about-item group relative bg-white/5 p-8 rounded-3xl backdrop-blur-md border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_40px_rgba(59,130,246,0.3)] transition-all duration-300"
+        <div
+          className="about-item group relative bg-white/5 p-8 rounded-3xl backdrop-blur-md border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_40px_rgba(59,130,246,0.3)] hover:-translate-y-1.5 transition-all duration-300"
         >
           {/* Animated accent line */}
           <div className="w-12 h-1 bg-blue-500 mb-8 transition-all duration-500 group-hover:w-24 group-hover:shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
