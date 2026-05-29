@@ -9,14 +9,14 @@ export default function SplashScreen({ onComplete }) {
     // Hide scrollbar while loading
     document.body.style.overflow = "hidden";
 
-    // Show splash for 2 seconds
+    // Show splash for only 800ms (drastically improved for LCP)
     const timer = setTimeout(() => {
       setIsVisible(false);
       setTimeout(() => {
         document.body.style.overflow = "unset";
         if (onComplete) onComplete();
-      }, 800); // Wait for the exit animation to finish
-    }, 2200);
+      }, 500); // Wait for the exit animation to finish
+    }, 800);
 
     return () => {
       clearTimeout(timer);
@@ -30,13 +30,13 @@ export default function SplashScreen({ onComplete }) {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, y: "-100%" }}
-          transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+          transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
           className="fixed inset-0 z-[10000] bg-[#0d1117] flex flex-col items-center justify-center"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0, filter: "blur(10px)" }}
             animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="flex flex-col items-center relative z-10"
           >
             {/* Ambient Background Glow */}
