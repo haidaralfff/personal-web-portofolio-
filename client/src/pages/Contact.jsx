@@ -90,6 +90,17 @@ export default function Contact() {
     e.preventDefault();
     setStatus({ type: "", message: "" });
 
+    // Rate limiting (60 minutes) to prevent spam
+    const lastSent = localStorage.getItem("lastEmailSent");
+    if (lastSent) {
+      const now = new Date().getTime();
+      const diffInMinutes = (now - parseInt(lastSent)) / (1000 * 60);
+      if (diffInMinutes < 60) {
+        setStatus({ type: "error", message: `Please wait ${Math.ceil(60 - diffInMinutes)} minutes before sending another message.` });
+        return;
+      }
+    }
+
     if (!form.name || !form.email || !form.message) {
       setStatus({ type: "error", message: "Please fill in all required fields." });
       return;
@@ -116,6 +127,7 @@ export default function Contact() {
         message: "Thank you! Your message has been sent successfully.",
       });
       setForm({ name: "", email: "", subject: "", message: "" });
+      localStorage.setItem("lastEmailSent", new Date().getTime().toString());
     } catch (error) {
       console.error("EmailJS Error:", error);
       setStatus({

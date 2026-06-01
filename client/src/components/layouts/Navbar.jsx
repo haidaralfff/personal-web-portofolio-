@@ -1,10 +1,10 @@
-import { User, Briefcase, Folder, Phone, Github, Layout, Award, Home, Menu, X } from "lucide-react";
+import { User, Briefcase, Folder, Phone, HelpCircle, Layout, Award, Home, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const navItems = [
     { icon: Home, label: "Home", href: "#home" },
@@ -13,7 +13,7 @@ export default function Navbar() {
     { icon: Briefcase, label: "Experience", href: "#experience" },
     { icon: Award, label: "Certifications", href: "#certifications" },
     { icon: Folder, label: "Projects", href: "#projects" },
-    { icon: Github, label: "Contributions", href: "#contributions" },
+    { icon: HelpCircle, label: "F.A.Q", href: "#faq" },
     { icon: Phone, label: "Contact", href: "#contact" },
   ];
 
@@ -22,7 +22,7 @@ export default function Navbar() {
       {/* Minimal Top Logo */}
       <div className="fixed top-6 left-6 z-40 pointer-events-none hidden sm:block">
         <span className="font-black text-2xl tracking-tighter bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">
-          Darz.
+          DARZ
         </span>
       </div>
 
@@ -44,7 +44,7 @@ export default function Navbar() {
           ) : (
             <>
               <Menu size={18} className="text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
-              <span className="text-white">Navigation</span>
+              <span className="text-white">Menu</span>
             </>
           )}
         </motion.button>
