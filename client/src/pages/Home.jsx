@@ -6,7 +6,7 @@ import TextPressure from "../components/reactbits/TextPressure.jsx";
 import gsap from "gsap";
 
 // Lazy load the massive 3D library so the text renders instantly
-const ThreeProfile = lazy(() => import("../components/ThreeProfile.jsx"));
+const Lanyard = lazy(() => import("../components/reactbits/LanyardCard.jsx"));
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -51,7 +51,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="relative min-h-screen overflow-hidden text-white">
+      <main className="relative min-h-screen overflow-hidden text-slate-900">
         <section ref={containerRef} className="relative z-10 flex min-h-[100svh] items-center px-4 sm:px-6">
           <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
 
@@ -60,7 +60,7 @@ export default function Home() {
               <Suspense fallback={
                 <div className="w-56 h-72 sm:w-72 sm:h-96 md:w-80 md:h-[28rem] rounded-[1.5rem] bg-blue-900/10 border border-blue-500/20 animate-pulse shadow-2xl" />
               }>
-                <ThreeProfile />
+                <Lanyard position={[0, 0, 13]} fov={25} />
               </Suspense>
             </div>
 
@@ -69,7 +69,7 @@ export default function Home() {
               <div className="flex flex-col items-center md:items-start mb-4 gap-1">
                 <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight flex py-1">
                   {"Hi, I'm".split("").map((char, index) => (
-                    <span key={index} className="hero-char inline-block text-zinc-200">
+                    <span key={index} className="hero-char inline-block text-slate-800">
                       {char === " " ? "\u00A0" : char}
                     </span>
                   ))}
@@ -80,16 +80,16 @@ export default function Home() {
               </div>
 
               <div className="hero-text mt-2 sm:mt-3 relative h-8 sm:h-10 md:h-12 w-full max-w-sm mx-auto md:mx-0">
-                <TextPressure text="Frontend Developer." flex={true} stroke={false} textColor="#e4e4e7" minFontSize={24} />
+                <TextPressure text="Frontend Developer." flex={true} stroke={false} textColor="#64748b" minFontSize={24} />
               </div>
 
               {/* INFO BADGE */}
               <div className="hero-text mt-6 sm:mt-8 flex items-center justify-center md:justify-start gap-3">
-                <div className="flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-xs sm:text-sm md:text-base text-zinc-300 shadow-[0_0_15px_rgba(59,130,246,0.1)] hover:bg-white/10 transition-colors duration-300">
-                  <GraduationCap size={18} className="text-blue-400" />
+                <div className="flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white border border-slate-200 backdrop-blur-md text-xs sm:text-sm md:text-base text-slate-600 shadow-[0_4px_15px_rgba(0,0,0,0.05)] hover:bg-slate-50 transition-colors duration-300">
+                  <GraduationCap size={18} className="text-blue-500" />
                   <span>
                     Informatics Student at{" "}
-                    <span className="text-white font-semibold tracking-wide">
+                    <span className="text-slate-900 font-semibold tracking-wide">
                       Universitas Putra Bangsa
                     </span>
                   </span>
@@ -112,7 +112,7 @@ export default function Home() {
                   href="#contact"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="hero-btn inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 backdrop-blur-md px-6 py-3 text-sm sm:text-base font-semibold text-zinc-200 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all duration-300"
+                  className="hero-btn inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white backdrop-blur-md px-6 py-3 text-sm sm:text-base font-semibold text-slate-700 hover:bg-slate-50 hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] transition-all duration-300"
                 >
                   Contact Me
                   <Mail size={18} />
@@ -124,7 +124,7 @@ export default function Home() {
                   target="_blank"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="hero-btn inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-blue-500/30 bg-blue-500/10 backdrop-blur-md px-6 py-3 text-sm sm:text-base font-semibold text-blue-400 hover:bg-blue-500/20 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all duration-300"
+                  className="hero-btn inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 backdrop-blur-md px-6 py-3 text-sm sm:text-base font-semibold text-blue-600 hover:bg-blue-100 hover:shadow-[0_4px_15px_rgba(59,130,246,0.15)] transition-all duration-300"
                 >
                   Download CV
                   <Download size={18} />

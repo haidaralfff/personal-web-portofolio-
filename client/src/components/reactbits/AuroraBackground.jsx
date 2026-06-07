@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 
 export default function AuroraBackground({ children }) {
   return (
-    <main className="relative min-h-screen bg-zinc-950 text-slate-200 selection:bg-blue-500/30">
+    <main className="relative min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-500/30">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -inset-[10px] opacity-50">
+        <div className="absolute -inset-[10px] opacity-80">
           <motion.div
             animate={{
               transform: [
@@ -19,7 +19,7 @@ export default function AuroraBackground({ children }) {
               duration: 15,
               ease: "linear",
             }}
-            className="absolute top-[20%] left-[20%] w-[40vw] h-[40vw] mix-blend-screen bg-blue-600/30 rounded-full blur-[100px]"
+            className="absolute top-[20%] left-[20%] w-[40vw] h-[40vw] mix-blend-multiply bg-blue-300/60 rounded-full blur-[100px]"
           />
           <motion.div
             animate={{
@@ -35,7 +35,7 @@ export default function AuroraBackground({ children }) {
               duration: 18,
               ease: "linear",
             }}
-            className="absolute top-[40%] right-[20%] w-[35vw] h-[35vw] mix-blend-screen bg-purple-600/30 rounded-full blur-[120px]"
+            className="absolute top-[40%] right-[20%] w-[35vw] h-[35vw] mix-blend-multiply bg-purple-300/60 rounded-full blur-[120px]"
           />
           <motion.div
             animate={{
@@ -51,7 +51,7 @@ export default function AuroraBackground({ children }) {
               duration: 20,
               ease: "linear",
             }}
-            className="absolute bottom-[10%] left-[40%] w-[30vw] h-[30vw] mix-blend-screen bg-pink-600/20 rounded-full blur-[100px]"
+            className="absolute bottom-[10%] left-[40%] w-[30vw] h-[30vw] mix-blend-multiply bg-pink-300/50 rounded-full blur-[100px]"
           />
         </div>
         {/* Subtle noise texture */}

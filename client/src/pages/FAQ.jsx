@@ -46,7 +46,7 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="min-h-screen text-white pt-28 pb-32 px-6 flex items-center relative">
+    <section id="faq" className="min-h-screen text-slate-900 pt-28 pb-32 px-6 flex items-center relative">
       <motion.div 
         className="mx-auto w-full max-w-3xl relative z-10"
         variants={containerVariants}
@@ -60,7 +60,7 @@ export default function FAQ() {
           <h1 className="text-4xl font-bold md:text-5xl">
             F.A.Q<span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">.</span>
           </h1>
-          <p className="mt-4 text-zinc-300 text-base max-w-md mx-auto">
+          <p className="mt-4 text-slate-600 text-base max-w-md mx-auto">
             Frequently Asked Questions
           </p>
         </motion.div>
@@ -74,14 +74,14 @@ export default function FAQ() {
                 variants={itemVariants}
                 key={index} 
                 className={`rounded-2xl border transition-all duration-300 ${
-                  isActive ? 'bg-white/10 border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.05)]' : 'bg-white/5 border-white/5 hover:bg-white/10'
+                  isActive ? 'bg-white border-blue-200 shadow-sm' : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
                 } backdrop-blur-md overflow-hidden`}
               >
                 <button
                   onClick={() => setActiveIndex(isActive ? null : index)}
                   className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
                 >
-                  <span className="text-lg font-semibold text-zinc-200">{faq.question}</span>
+                  <span className="text-lg font-semibold text-slate-800">{faq.question}</span>
                   <motion.div
                     animate={{ rotate: isActive ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
@@ -99,7 +99,7 @@ export default function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <div className="px-6 pb-6 text-zinc-400 leading-relaxed font-light">
+                      <div className="px-6 pb-6 text-slate-600 leading-relaxed font-light">
                         {faq.answer}
                       </div>
                     </motion.div>

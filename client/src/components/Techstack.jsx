@@ -18,7 +18,7 @@ const stacks = [
   { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
   { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
   { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
-  { name: "Express", icon: SiExpress, color: "#FFFFFF" },
+  { name: "Express", icon: SiExpress, color: "#000000" },
   { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
   { name: "Supabase", icon: SiSupabase, color: "#3ECF8E" },
   { name: "XAMPP", icon: SiXampp, color: "#FB7A24" },
@@ -56,7 +56,7 @@ const renderTechItem = (tech) => {
         style={{ color: tech.color }}
         className="opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 drop-shadow-[0_0_8px_rgba(255,255,255,0.1)] group-hover:drop-shadow-[0_0_12px_currentColor]"
       />
-      <span className="text-xs sm:text-sm text-zinc-400 group-hover:text-white font-medium transition-colors">
+      <span className="text-xs sm:text-sm text-slate-500 group-hover:text-slate-900 font-medium transition-colors">
         {tech.name}
       </span>
     </div>
@@ -65,7 +65,7 @@ const renderTechItem = (tech) => {
 
 export default function Techstack() {
   return (
-    <section className="min-h-screen text-white pt-24 px-4 sm:px-6 flex items-center">
+    <section className="min-h-screen text-slate-900 pt-24 px-4 sm:px-6 flex items-center">
       <div className="mx-auto max-w-5xl w-full text-center">
         {/* Title */}
         <motion.h1
@@ -81,7 +81,7 @@ export default function Techstack() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="mt-4 text-xs sm:text-sm text-zinc-400"
+          className="mt-4 text-xs sm:text-sm text-slate-600"
         >
           Technologies I have worked with
         </motion.p>

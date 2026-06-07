@@ -16,8 +16,7 @@ const ScrollRevealParagraph = ({ children }) => {
   return (
     <motion.div
       ref={ref}
-      style={{ opacity, textShadow }}
-      className="leading-relaxed text-lg sm:text-xl text-zinc-300 font-light"
+      className="leading-relaxed text-lg sm:text-xl text-slate-700 font-light"
     >
       {children}
     </motion.div>
@@ -47,7 +46,7 @@ export default function About() {
   };
 
   return (
-    <main id="about" className="min-h-screen text-white px-6 py-28 relative overflow-hidden flex flex-col justify-center">
+    <main id="about" className="min-h-screen text-slate-900 px-6 py-28 relative overflow-hidden flex flex-col justify-center">
       <motion.div 
         className="mx-auto max-w-4xl w-full relative z-10"
         variants={containerVariants}
@@ -67,10 +66,10 @@ export default function About() {
         {/* Elegant Typography Section with Font Weight Reveal */}
         <motion.div
           variants={itemVariants}
-          className="relative pl-6 md:pl-8 border-l-2 border-white/10"
+          className="relative pl-6 md:pl-8 border-l-2 border-slate-200"
         >
           {/* Subtle glowing line overlaid on the border */}
-          <div className="absolute left-[-2px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-blue-500 via-blue-500/30 to-transparent shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
+          <div className="absolute left-[-2px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-blue-500 via-blue-400/30 to-transparent shadow-[0_0_10px_rgba(59,130,246,0.3)]" />
 
           <div className="space-y-10">
             <ScrollRevealParagraph>

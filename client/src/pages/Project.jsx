@@ -117,7 +117,7 @@ export default function Project() {
 
 
   return (
-    <section ref={containerRef} className="min-h-screen text-white pt-32 pb-32 px-4 sm:px-6 relative overflow-hidden">
+    <section ref={containerRef} className="min-h-screen text-slate-900 pt-32 pb-32 px-4 sm:px-6 relative overflow-hidden">
       {/* Background glow elements */}
       <div className="absolute top-1/4 -right-64 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-0 -left-64 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[150px] pointer-events-none" />
@@ -132,7 +132,7 @@ export default function Project() {
           <h1 className="proj-header text-5xl md:text-7xl font-black uppercase tracking-tighter text-center leading-none mb-6">
             Selected<br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">Works.</span>
           </h1>
-          <p className="proj-header text-zinc-400 text-center max-w-xl text-lg">
+          <p className="proj-header text-slate-600 text-center max-w-xl text-lg">
             A curated collection of my most impactful and creative digital experiences.
           </p>
         </div>
@@ -157,22 +157,22 @@ export default function Project() {
                   
                   <div className="flex flex-wrap gap-2 mb-8">
                     {project.tech.map((t, i) => (
-                      <span key={i} className="text-xs md:text-sm font-medium bg-white/5 border border-white/10 px-4 py-2 rounded-lg text-zinc-300">
+                      <span key={i} className="text-xs md:text-sm font-medium bg-slate-100 border border-slate-200 px-4 py-2 rounded-lg text-slate-700">
                         {t}
                       </span>
                     ))}
                   </div>
 
-                  <p className="text-zinc-400 text-lg leading-relaxed mb-10 max-w-lg">
+                  <p className="text-slate-600 text-lg leading-relaxed mb-10 max-w-lg">
                     {project.description}
                   </p>
 
                   <button 
                     onClick={() => setSelectedProject(project)}
-                    className="group relative inline-flex items-center gap-3 px-8 py-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-full overflow-hidden hover:border-blue-500/50 transition-all duration-300"
+                    className="group relative inline-flex items-center gap-3 px-8 py-4 bg-white shadow-sm border border-slate-200 rounded-full overflow-hidden hover:border-blue-300 transition-all duration-300"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <span className="relative z-10 text-white font-semibold tracking-wide flex items-center gap-2">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-400 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+                    <span className="relative z-10 text-slate-800 font-semibold tracking-wide flex items-center gap-2 group-hover:text-blue-700">
                       Explore Case Study
                       <ExternalLink size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </span>
@@ -186,7 +186,7 @@ export default function Project() {
                     {index + 1}
                   </div>
                   
-                  <div className={`relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 group transform-gpu transition-all duration-700 hover:rotate-y-0 hover:rotate-x-0 ${isEven ? 'rotate-y-[-5deg] rotate-x-[2deg]' : 'rotate-y-[5deg] rotate-x-[2deg]'}`}>
+                  <div className={`relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-200 group transform-gpu transition-all duration-700 hover:rotate-y-0 hover:rotate-x-0 ${isEven ? 'rotate-y-[-5deg] rotate-x-[2deg]' : 'rotate-y-[5deg] rotate-x-[2deg]'}`}>
                     
                     {/* Glowing Aura */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-50 transition-opacity duration-700 blur-3xl`} />
@@ -236,12 +236,12 @@ export default function Project() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 30 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="relative w-full max-w-4xl overflow-hidden rounded-[2rem] border border-white/10 bg-[#0a0a0a] shadow-[0_0_50px_rgba(59,130,246,0.15)] flex flex-col max-h-[90vh]"
+              className="relative w-full max-w-4xl overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.15)] flex flex-col max-h-[90vh]"
             >
               {/* Floating Close Button */}
               <button 
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 z-50 p-3 bg-black/40 backdrop-blur-md hover:bg-red-500/80 border border-white/10 rounded-full text-white transition-colors group"
+                className="absolute top-6 right-6 z-50 p-3 bg-white/80 backdrop-blur-md hover:bg-red-50 hover:text-red-500 border border-slate-200 rounded-full text-slate-500 transition-colors group"
               >
                 <X size={20} className="group-hover:rotate-90 transition-transform duration-300" />
               </button>
@@ -249,14 +249,14 @@ export default function Project() {
               {/* Modal Banner */}
               <div className="relative h-64 sm:h-80 w-full flex-shrink-0">
                 <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent" />
                 
                 {/* Title overlaying banner */}
                 <div className="absolute bottom-8 left-8 right-8">
-                  <span className="inline-block mb-3 text-xs font-bold text-white bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+                  <span className="inline-block mb-3 text-xs font-bold text-slate-800 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full border border-slate-200">
                     {selectedProject.status}
                   </span>
-                  <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">{selectedProject.title}</h2>
+                  <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">{selectedProject.title}</h2>
                 </div>
               </div>
 
@@ -265,21 +265,21 @@ export default function Project() {
                 
                 {/* Left Col: Details */}
                 <div className="w-full md:w-2/3">
-                  <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                    <Info size={20} className="text-blue-400" />
+                  <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                    <Info size={20} className="text-blue-500" />
                     Overview
                   </h3>
-                  <p className="text-zinc-300 leading-relaxed mb-10 text-lg">
+                  <p className="text-slate-600 leading-relaxed mb-10 text-lg">
                     {selectedProject.description}
                   </p>
 
                   {selectedProject.features && (
                     <div className="mb-8">
-                      <h3 className="text-xl font-bold text-white mb-4">Key Features</h3>
+                      <h3 className="text-xl font-bold text-slate-900 mb-4">Key Features</h3>
                       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {selectedProject.features.map((feature, i) => (
-                          <li key={i} className="flex items-start gap-3 text-zinc-300 bg-white/5 p-4 rounded-xl border border-white/5">
-                            <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 shrink-0 shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
+                          <li key={i} className="flex items-start gap-3 text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 shrink-0 shadow-sm" />
                             {feature}
                           </li>
                         ))}
@@ -290,7 +290,7 @@ export default function Project() {
 
                 {/* Right Col: Tech & Links */}
                 <div className="w-full md:w-1/3 flex flex-col gap-8">
-                  <div className="p-6 bg-white/[0.02] border border-white/5 rounded-2xl">
+                  <div className="p-6 bg-slate-50 border border-slate-200 rounded-2xl">
                     <h3 className="text-sm font-bold text-zinc-500 uppercase tracking-widest mb-4">Technologies</h3>
                     <div className="flex flex-wrap gap-2">
                       {selectedProject.tech.map((t, i) => (
@@ -317,7 +317,7 @@ export default function Project() {
                       href={selectedProject.github}
                       target="_blank"
                       rel="noreferrer"
-                      className="group flex items-center justify-between p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md text-white font-medium hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                      className="group flex items-center justify-between p-4 rounded-xl border border-slate-200 bg-slate-50 backdrop-blur-md text-slate-800 font-medium hover:bg-slate-100 hover:border-slate-300 transition-all duration-300"
                     >
                       Source Code
                       <Github size={20} className="group-hover:scale-110 transition-transform" />

@@ -69,7 +69,7 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" ref={containerRef} className="min-h-screen text-white pt-24 pb-20 px-4 sm:px-6 flex flex-col justify-center relative">
+    <section id="services" ref={containerRef} className="min-h-screen text-slate-900 pt-24 pb-20 px-4 sm:px-6 flex flex-col justify-center relative">
       <div className="mx-auto w-full max-w-6xl relative z-10">
         
         {/* Header */}
@@ -93,10 +93,10 @@ export default function Services() {
                   onClick={() => setActiveIdx(idx)}
                   className="service-item group cursor-pointer flex items-center gap-6"
                 >
-                  <span className={`text-xl md:text-2xl font-mono font-bold transition-colors duration-300 ${isActive ? 'text-blue-500' : 'text-zinc-700 group-hover:text-zinc-500'}`}>
+                  <span className={`text-xl md:text-2xl font-mono font-bold transition-colors duration-300 ${isActive ? 'text-blue-500' : 'text-slate-300 group-hover:text-slate-400'}`}>
                     {service.id}
                   </span>
-                  <h2 className={`text-3xl md:text-5xl font-black uppercase tracking-tight transition-all duration-500 ${isActive ? 'text-white translate-x-6' : 'text-zinc-600 group-hover:text-zinc-400 group-hover:translate-x-2'}`}>
+                  <h2 className={`text-3xl md:text-5xl font-black uppercase tracking-tight transition-all duration-500 ${isActive ? 'text-slate-900 translate-x-6' : 'text-slate-400 group-hover:text-slate-500 group-hover:translate-x-2'}`}>
                     {service.title}
                   </h2>
                 </div>
@@ -130,17 +130,17 @@ export default function Services() {
 
                     <div className="relative z-10">
                       <div 
-                        className="mb-8 inline-flex p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl transition-all duration-500"
+                        className="mb-8 inline-flex p-5 rounded-2xl bg-white border border-slate-200 backdrop-blur-xl transition-all duration-500"
                         style={{ boxShadow: `0 0 40px ${service.color}40` }}
                       >
                         <Icon size={56} color={service.color} />
                       </div>
                       
-                      <h3 className="text-3xl font-bold text-white mb-4 tracking-wide">
+                      <h3 className="text-3xl font-bold text-slate-900 mb-4 tracking-wide">
                         {service.title}
                       </h3>
                       
-                      <p className="text-zinc-400 text-lg leading-relaxed max-w-lg">
+                      <p className="text-slate-600 text-lg leading-relaxed max-w-lg">
                         {service.description}
                       </p>
                     </div>

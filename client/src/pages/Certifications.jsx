@@ -63,8 +63,8 @@ export default function Certifications() {
   }, []);
 
   return (
-    <section id="certifications" ref={containerRef} className="min-h-screen text-white pt-24 pb-20 px-4 sm:px-6 relative overflow-hidden">
-      <div className="mx-auto w-full max-w-6xl relative z-10">
+    <section id="certifications" ref={containerRef} className="min-h-screen text-slate-900 pt-24 pb-20 px-4 sm:px-6 relative overflow-hidden">
+      <div className="mx-auto w-full max-w-5xl relative z-10">
 
         {/* Header */}
         <div className="mb-16 md:mb-24 flex flex-col items-center">
@@ -78,7 +78,7 @@ export default function Certifications() {
           >
             Certifications<span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">.</span>
           </h1>
-          <p className="cert-header mt-4 text-zinc-400 text-center max-w-lg">
+          <p className="cert-header mt-4 text-slate-600 text-center max-w-lg">
             Professional achievements and courses completed to enhance my technical skills.
           </p>
         </div>
@@ -89,14 +89,14 @@ export default function Certifications() {
             <motion.div
               key={cert.id}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="cert-card relative group flex flex-col rounded-3xl bg-[#0d1117] border border-white/10 shadow-2xl overflow-hidden"
+              className="cert-card relative group flex flex-col rounded-3xl bg-white border border-slate-200 shadow-xl overflow-hidden"
             >
               {/* Glowing Top Border */}
-              <div className={`h-2 w-full bg-gradient-to-r ${cert.color} opacity-80 group-hover:opacity-100 transition-opacity duration-300`} />
+              <div className={`h-1.5 w-full bg-gradient-to-r ${cert.color} opacity-80 group-hover:opacity-100 transition-opacity duration-300`} />
 
-              <div className="p-6 md:p-8 flex flex-col flex-grow relative z-10">
+              <div className="p-5 md:p-6 flex flex-col flex-grow relative z-10">
                 {/* PDF Viewer / Thumbnail container */}
-                <div className="w-full h-64 md:h-72 bg-white/5 rounded-2xl mb-6 overflow-hidden border border-white/10 relative group/pdf">
+                <div className="w-full h-48 md:h-56 bg-slate-50 rounded-xl mb-5 overflow-hidden border border-slate-200 relative group/pdf">
                   {cert.file ? (
                     <>
                       <iframe
@@ -112,37 +112,37 @@ export default function Certifications() {
                       </a>
                     </>
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-zinc-600">
+                    <div className="w-full h-full flex items-center justify-center text-slate-300">
                       <Award size={64} opacity={0.2} />
                     </div>
                   )}
                 </div>
 
-                <div className="flex items-center gap-2 text-sm text-zinc-400 font-mono mb-4">
-                  <span className="bg-white/5 px-2 py-1 rounded-md border border-white/10">{cert.date}</span>
+                <div className="flex items-center gap-2 text-sm text-slate-500 font-mono mb-4">
+                  <span className="bg-slate-100 px-2 py-1 rounded-md border border-slate-200">{cert.date}</span>
                 </div>
 
-                <h3 className="text-2xl font-bold text-white mb-2 leading-tight group-hover:text-blue-300 transition-colors duration-300">
+                <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2 leading-tight group-hover:text-blue-600 transition-colors duration-300">
                   {cert.title}
                 </h3>
 
-                <p className="text-zinc-400 font-medium mb-8">
+                <p className="text-sm text-slate-600 font-medium mb-6">
                   {cert.issuer}
                 </p>
 
-                <div className="mt-auto pt-6 border-t border-white/5 border-dashed flex items-center justify-between">
+                <div className="mt-auto pt-6 border-t border-slate-200 border-dashed flex items-center justify-between">
                   <div className="flex flex-col">
-                    <span className="text-[10px] uppercase tracking-wider text-zinc-500 font-semibold mb-1">Credential ID</span>
-                    <span className="text-xs text-zinc-300 font-mono">{cert.credentialId}</span>
+                    <span className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold mb-1">Credential ID</span>
+                    <span className="text-xs text-slate-700 font-mono">{cert.credentialId}</span>
                   </div>
 
                   <a
                     href={cert.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-center p-3 rounded-full bg-white/5 hover:bg-blue-500/20 hover:text-blue-400 border border-white/10 hover:border-blue-500/30 transition-all duration-300 group/btn z-30"
+                    className="flex items-center justify-center p-3 rounded-full bg-slate-50 hover:bg-blue-50 hover:text-blue-600 border border-slate-200 hover:border-blue-300 transition-all duration-300 group/btn z-30"
                   >
-                    <ExternalLink size={18} className="text-zinc-400 group-hover/btn:text-blue-400 transition-colors" />
+                    <ExternalLink size={18} className="text-slate-400 group-hover/btn:text-blue-600 transition-colors" />
                   </a>
                 </div>
               </div>

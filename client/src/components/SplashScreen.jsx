@@ -31,7 +31,7 @@ export default function SplashScreen({ onComplete }) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, y: "-100%" }}
           transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[10000] bg-[#0d1117] flex flex-col items-center justify-center"
+          className="fixed inset-0 z-[10000] bg-slate-50 flex flex-col items-center justify-center"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0, filter: "blur(10px)" }}
@@ -47,14 +47,14 @@ export default function SplashScreen({ onComplete }) {
             />
             
             <div className="relative h-20 w-48 sm:h-24 sm:w-64 md:h-32 md:w-80">
-              <TextPressure text="Darz." flex={false} stroke={false} textColor="#ffffff" />
+              <TextPressure text="Darz." flex={false} stroke={false} textColor="#0f172a" />
             </div>
 
             <motion.div 
               initial={{ width: 0 }}
               animate={{ width: "100%" }}
               transition={{ duration: 1.5, ease: "easeInOut", delay: 0.3 }}
-              className="h-[3px] bg-gradient-to-r from-blue-600 via-blue-400 to-cyan-400 rounded-full w-full max-w-[150px] mt-2 shadow-[0_0_15px_rgba(59,130,246,0.8)]"
+              className="h-[3px] bg-gradient-to-r from-blue-500 via-blue-400 to-cyan-400 rounded-full w-full max-w-[150px] mt-2 shadow-md"
             />
           </motion.div>
         </motion.div>

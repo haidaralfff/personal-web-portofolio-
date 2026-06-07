@@ -66,7 +66,7 @@ export default function Experience() {
     <section
       id="experience"
       ref={containerRef}
-      className="min-h-screen text-white pt-24 px-6 relative"
+      className="min-h-screen text-slate-900 pt-24 px-6 relative"
     >
       <div className="max-w-6xl mx-auto">
 
@@ -86,7 +86,7 @@ export default function Experience() {
         <div className="relative">
 
           {/* TIMELINE LINE */}
-          <div className="absolute left-3 md:left-1/2 top-0 -translate-x-1/2 h-full w-[2px] bg-zinc-800 overflow-hidden">
+          <div className="absolute left-3 md:left-1/2 top-0 -translate-x-1/2 h-full w-[2px] bg-slate-200 overflow-hidden">
             <div
               className="timeline-line-progress w-full h-full bg-blue-500 origin-top shadow-[0_0_10px_rgba(59,130,246,0.5)]"
             />

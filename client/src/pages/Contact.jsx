@@ -140,7 +140,7 @@ export default function Contact() {
   };
 
   return (
-    <section ref={containerRef} className="min-h-screen text-white pt-28 pb-32 px-6 flex items-center relative">
+    <section ref={containerRef} className="min-h-screen text-slate-900 pt-28 pb-32 px-6 flex items-center relative">
       <div className="mx-auto w-full max-w-5xl relative z-10">
         
         {/* Header */}
@@ -148,7 +148,7 @@ export default function Contact() {
           <h1 className="contact-header text-4xl font-bold md:text-5xl">
             Contact<span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">.</span>
           </h1>
-          <p className="contact-header mt-4 text-zinc-300 text-base max-w-md mx-auto">
+          <p className="contact-header mt-4 text-slate-600 text-base max-w-md mx-auto">
             Have a project in mind, want to collaborate, or just say hello? Drop me a message!
           </p>
         </div>
@@ -158,9 +158,9 @@ export default function Contact() {
           
           {/* Left Column: Social Links */}
           <div className="contact-left lg:col-span-5 space-y-6">
-            <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-6 shadow-lg">
-              <h2 className="text-xl font-bold mb-4 text-white">Get in touch</h2>
-              <p className="text-zinc-300 text-sm mb-6 leading-relaxed">
+            <div className="rounded-2xl border border-slate-200 bg-white backdrop-blur-md p-6 shadow-sm">
+              <h2 className="text-xl font-bold mb-4 text-slate-900">Get in touch</h2>
+              <p className="text-slate-600 text-sm mb-6 leading-relaxed">
                 Connect with me on social platforms or send an email directly. I usually respond within 24 hours.
               </p>
               
@@ -172,13 +172,13 @@ export default function Contact() {
                     target="_blank"
                     rel="noreferrer"
                     whileHover={{ x: 6 }}
-                    className="contact-item flex items-center justify-between rounded-xl border border-white/5 bg-white/5 px-4 py-3 hover:border-white/20 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300"
+                    className="contact-item flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 hover:border-blue-200 hover:bg-slate-100 hover:shadow-sm transition-all duration-300"
                   >
                     <div className="flex items-center gap-3">
-                      <Icon size={18} className="text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
-                      <span className="text-sm font-medium text-zinc-200">{label}</span>
+                      <Icon size={18} className="text-blue-500" />
+                      <span className="text-sm font-medium text-slate-800">{label}</span>
                     </div>
-                    <span className="text-xs text-zinc-400 font-mono">{value}</span>
+                    <span className="text-xs text-slate-500 font-mono">{value}</span>
                   </motion.a>
                 ))}
               </div>
@@ -187,8 +187,8 @@ export default function Contact() {
 
           {/* Right Column: Contact Form */}
           <div className="contact-right lg:col-span-7">
-            <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 md:p-8 shadow-[0_0_40px_rgba(0,0,0,0.3)]">
-              <h2 className="text-xl font-bold mb-6 text-white">Send Message</h2>
+            <div className="rounded-2xl border border-slate-200 bg-white backdrop-blur-xl p-6 md:p-8 shadow-lg">
+              <h2 className="text-xl font-bold mb-6 text-slate-900">Send Message</h2>
               
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Alert Status */}
@@ -212,8 +212,8 @@ export default function Contact() {
                 {/* Name & Email Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-2">
-                      Name <span className="text-blue-400">*</span>
+                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
+                      Name <span className="text-blue-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -221,13 +221,13 @@ export default function Contact() {
                       value={form.name}
                       onChange={handleChange}
                       placeholder="Your Name"
-                      className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 focus:bg-white/5 transition-all duration-300"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white transition-all duration-300"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-2">
-                      Email <span className="text-blue-400">*</span>
+                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
+                      Email <span className="text-blue-500">*</span>
                     </label>
                     <input
                       type="email"
@@ -235,7 +235,7 @@ export default function Contact() {
                       value={form.email}
                       onChange={handleChange}
                       placeholder="name@example.com"
-                      className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 focus:bg-white/5 transition-all duration-300"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white transition-all duration-300"
                       required
                     />
                   </div>
@@ -243,7 +243,7 @@ export default function Contact() {
 
                 {/* Subject */}
                 <div>
-                  <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-2">
+                  <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
                     Subject
                   </label>
                   <input
@@ -252,14 +252,14 @@ export default function Contact() {
                     value={form.subject}
                     onChange={handleChange}
                     placeholder="Feedback / Collaboration / Hello"
-                    className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 focus:bg-white/5 transition-all duration-300"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white transition-all duration-300"
                   />
                 </div>
 
                 {/* Message */}
                 <div>
-                  <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-2">
-                    Message <span className="text-blue-400">*</span>
+                  <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
+                    Message <span className="text-blue-500">*</span>
                   </label>
                   <textarea
                     name="message"
@@ -267,7 +267,7 @@ export default function Contact() {
                     onChange={handleChange}
                     rows="5"
                     placeholder="Tell me more about your thoughts..."
-                    className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 focus:bg-white/5 transition-all duration-300 resize-none"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white transition-all duration-300 resize-none"
                     required
                   />
                 </div>
