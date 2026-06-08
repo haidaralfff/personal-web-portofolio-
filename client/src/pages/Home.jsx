@@ -8,6 +8,8 @@ import gsap from "gsap";
 // Lazy load the massive 3D library so the text renders instantly
 const Lanyard = lazy(() => import("../components/reactbits/LanyardCard.jsx"));
 
+import DotGridBackground from "../components/DotGridBackground.jsx";
+
 export default function Home() {
   const containerRef = useRef(null);
 
@@ -51,7 +53,8 @@ export default function Home() {
 
   return (
     <>
-      <main className="relative min-h-screen overflow-hidden text-slate-900">
+      <main className="relative min-h-screen overflow-hidden text-slate-900 bg-slate-50/50">
+        <DotGridBackground />
         <section ref={containerRef} className="relative z-10 flex min-h-[100svh] items-center px-4 sm:px-6">
           <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
 
