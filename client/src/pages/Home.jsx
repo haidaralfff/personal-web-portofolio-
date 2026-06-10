@@ -120,18 +120,6 @@ export default function Home() {
                   Contact Me
                   <Mail size={18} />
                 </motion.a>
-
-                <motion.a
-                  href="/cv.pdf"
-                  download="CV_Haidar.pdf"
-                  target="_blank"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="hero-btn inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 backdrop-blur-md px-6 py-3 text-sm sm:text-base font-semibold text-blue-600 hover:bg-blue-100 hover:shadow-[0_4px_15px_rgba(59,130,246,0.15)] transition-all duration-300"
-                >
-                  Download CV
-                  <Download size={18} />
-                </motion.a>
               </div>
             </div>
           </div>
