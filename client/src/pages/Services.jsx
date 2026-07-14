@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaLaptopCode, FaPaintBrush, FaServer } from "react-icons/fa";
+import { FaLaptopCode, FaPaintBrush } from "react-icons/fa";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -20,13 +20,6 @@ const services = [
     description: "Designing intuitive, accessible, and stunning user interfaces. I bridge the gap between aesthetics and functionality to deliver exceptional user experiences that keep visitors engaged.",
     icon: FaPaintBrush,
     color: "#60a5fa", // blue-400
-  },
-  {
-    id: "03",
-    title: "Backend & API",
-    description: "Developing secure RESTful APIs and connecting frontend interfaces with robust database solutions. Ensuring your data flows seamlessly and securely behind the scenes.",
-    icon: FaServer,
-    color: "#93c5fd", // blue-300
   },
 ];
 
@@ -69,34 +62,37 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" ref={containerRef} className="min-h-screen text-slate-900 pt-24 pb-20 px-4 sm:px-6 flex flex-col justify-center relative">
+    <section ref={containerRef} className="min-h-screen bg-ivory-50 pt-24 pb-20 px-4 sm:px-6 flex flex-col justify-center relative">
       <div className="mx-auto w-full max-w-6xl relative z-10">
-        
+
         {/* Header */}
         <div className="service-header mb-16 md:mb-24 flex flex-col items-center md:items-start">
-          <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-tight">
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Expertise</span>.
+          <p className="font-mono text-xs tracking-mega uppercase text-blue-400 mb-4">
+            Services
+          </p>
+          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 leading-[0.95] tracking-tight">
+            My Expertise
           </h1>
-          <div className="h-1 w-24 bg-blue-500 mt-4 rounded-full" />
+          <div className="w-12 h-[2px] bg-blue-500 mt-6" />
         </div>
 
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
-          
+
           {/* Left: Interactive Typography List */}
           <div className="lg:w-1/2 flex flex-col gap-8 lg:gap-12 justify-center">
             {services.map((service, idx) => {
               const isActive = activeIdx === idx;
               return (
-                <div 
+                <div
                   key={service.id}
                   onMouseEnter={() => setActiveIdx(idx)}
                   onClick={() => setActiveIdx(idx)}
                   className="service-item group cursor-pointer flex items-center gap-6"
                 >
-                  <span className={`text-xl md:text-2xl font-mono font-bold transition-colors duration-300 ${isActive ? 'text-blue-500' : 'text-slate-300 group-hover:text-slate-400'}`}>
+                  <span className={`text-xl md:text-2xl font-mono font-bold transition-colors duration-300 ${isActive ? 'text-blue-500' : 'text-ivory-300 group-hover:text-ivory-400'}`}>
                     {service.id}
                   </span>
-                  <h2 className={`text-3xl md:text-5xl font-black uppercase tracking-tight transition-all duration-500 ${isActive ? 'text-slate-900 translate-x-6' : 'text-slate-400 group-hover:text-slate-500 group-hover:translate-x-2'}`}>
+                  <h2 className={`font-display text-3xl md:text-5xl font-normal tracking-tight transition-all duration-500 ${isActive ? 'text-ivory-800 translate-x-6' : 'text-ivory-300 group-hover:text-ivory-400 group-hover:translate-x-2'}`}>
                     {service.title}
                   </h2>
                 </div>
@@ -110,7 +106,7 @@ export default function Services() {
               {services.map((service, idx) => {
                 if (idx !== activeIdx) return null;
                 const Icon = service.icon;
-                
+
                 return (
                   <motion.div
                     key={service.id}
@@ -121,7 +117,7 @@ export default function Services() {
                     className="absolute inset-0 flex flex-col justify-center"
                   >
                     {/* Massive Background Icon */}
-                    <div 
+                    <div
                       className="absolute -top-10 right-0 md:-right-10 opacity-5 pointer-events-none transition-colors duration-500"
                       style={{ color: service.color }}
                     >
@@ -129,18 +125,18 @@ export default function Services() {
                     </div>
 
                     <div className="relative z-10">
-                      <div 
-                        className="mb-8 inline-flex p-5 rounded-2xl bg-white border border-slate-200 backdrop-blur-xl transition-all duration-500"
+                      <div
+                        className="mb-8 inline-flex p-5 rounded-2xl bg-white/60 border border-ivory-200 backdrop-blur-xl transition-all duration-500"
                         style={{ boxShadow: `0 0 40px ${service.color}40` }}
                       >
                         <Icon size={56} color={service.color} />
                       </div>
-                      
-                      <h3 className="text-3xl font-bold text-slate-900 mb-4 tracking-wide">
+
+                      <h3 className="font-display text-3xl font-normal text-ivory-800 mb-4 tracking-tight">
                         {service.title}
                       </h3>
-                      
-                      <p className="text-slate-600 text-lg leading-relaxed max-w-lg">
+
+                      <p className="text-ivory-500 text-lg leading-relaxed max-w-lg">
                         {service.description}
                       </p>
                     </div>

@@ -1,27 +1,12 @@
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Techstack from "../components/Techstack";
+import CVDownload from "../components/CVDownload";
 
-// Komponen untuk efek perubahan font Tipis ke Tebal saat di-scroll
-const ScrollRevealParagraph = ({ children }) => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 90%", "center 50%"], 
-  });
-
-  const textShadow = useTransform(scrollYProgress, [0, 1], ["0px 0px 0px rgba(212, 212, 216, 0)", "0px 0px 1.5px rgba(212, 212, 216, 1)"]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [0.3, 1]);
-
-  return (
-    <motion.div
-      ref={ref}
-      className="leading-relaxed text-lg sm:text-xl text-slate-700 font-light"
-    >
-      {children}
-    </motion.div>
-  );
-};
+const stats = [
+  { value: "4", label: "Semesters" },
+  { value: "2", label: "Shipped Projects" },
+  { value: "React +", label: "Tailwind" },
+];
 
 export default function About() {
   const containerVariants = {
@@ -46,46 +31,52 @@ export default function About() {
   };
 
   return (
-    <main id="about" className="min-h-screen text-slate-900 px-6 py-28 relative overflow-hidden flex flex-col justify-center">
-      <motion.div 
+    <main className="min-h-screen bg-ivory-50 px-6 py-28 relative overflow-hidden flex flex-col justify-center">
+      <motion.div
         className="mx-auto max-w-4xl w-full relative z-10"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
-        
+        {/* Overline */}
+        <motion.p
+          variants={itemVariants}
+          className="font-mono text-xs tracking-mega uppercase text-blue-400 mb-4"
+        >
+          About
+        </motion.p>
+
         {/* Title */}
         <motion.div variants={itemVariants} className="mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">Me</span>
+          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 leading-[0.95] tracking-tight">
+            About Me
           </h1>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-transparent mt-4 rounded-full" />
+          <div className="w-12 h-[2px] bg-blue-500 mt-6" />
         </motion.div>
 
-        {/* Elegant Typography Section with Font Weight Reveal */}
+        {/* Quick Stats */}
         <motion.div
           variants={itemVariants}
-          className="relative pl-6 md:pl-8 border-l-2 border-slate-200"
+          className="flex flex-wrap items-center justify-center md:justify-start gap-8 md:gap-12"
         >
-          {/* Subtle glowing line overlaid on the border */}
-          <div className="absolute left-[-2px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-blue-500 via-blue-400/30 to-transparent shadow-[0_0_10px_rgba(59,130,246,0.3)]" />
-
-          <div className="space-y-10">
-            <ScrollRevealParagraph>
-              I am a fourth-semester Computer Science student with a strong passion for software development and digital creativity. I focus on building modern web applications using React.js and Tailwind CSS, emphasizing clean, maintainable code and user-friendly design.
-            </ScrollRevealParagraph>
-            
-            <ScrollRevealParagraph>
-              I am deeply interested in understanding system logic, software architecture, and how technology works behind the scenes to create efficient and scalable solutions. Outside of programming, I also enjoy video editing and digital content creation, where I combine creativity and technical skills to produce engaging visual stories.
-            </ScrollRevealParagraph>
-            
-            <ScrollRevealParagraph>
-              I am continuously learning, building real-world projects, and seeking opportunities to grow as a Web Developer who can bridge logic and creativity to create impactful digital solutions.
-            </ScrollRevealParagraph>
-          </div>
+          {stats.map((stat, i) => (
+            <div key={i} className="flex items-baseline gap-2">
+              <span className="font-display text-4xl sm:text-5xl text-ivory-800">
+                {stat.value}
+              </span>
+              <span className="font-mono text-xs uppercase tracking-wider text-ivory-400">
+                {stat.label}
+              </span>
+            </div>
+          ))}
         </motion.div>
-        
+
+        {/* Download CV */}
+        <motion.div variants={itemVariants} className="mt-10">
+          <CVDownload />
+        </motion.div>
+
         {/* Techstack */}
         <motion.div variants={itemVariants} className="mt-20">
           <Techstack />

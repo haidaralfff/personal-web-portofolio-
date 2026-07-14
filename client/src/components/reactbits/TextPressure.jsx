@@ -1,5 +1,3 @@
-// Component ported from https://codepen.io/JuanFuentes/full/rgXKGQ
-
 import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 
 const dist = (a, b) => {
@@ -13,20 +11,29 @@ const getAttr = (distance, maxDist, minVal, maxVal) => {
   return Math.max(minVal, val + minVal);
 };
 
-const debounce = (func, delay) => {
-  let timeoutId;
-  return (...args) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      func.apply(this, args);
-    }, delay);
-  };
+const loadFont = (fontFamily, fontUrl) => {
+  return new Promise((resolve) => {
+    const existing = document.fonts.check(`12px "${fontFamily}"`);
+    if (existing) return resolve(true);
+
+    const fontFace = new FontFace(fontFamily, `url(${fontUrl})`, {
+      weight: '100 900',
+      style: 'normal',
+      display: 'swap'
+    });
+
+    fontFace.load().then((loaded) => {
+      document.fonts.add(loaded);
+      resolve(true);
+    }).catch(() => {
+      resolve(false);
+    });
+  });
 };
 
 const TextPressure = ({
   text = 'Compressa',
   fontFamily = 'Compressa VF',
-  // This font is just an example, you should not use it in commercial projects.
   fontUrl = 'https://res.cloudinary.com/dr6lvwubh/raw/upload/v1529908256/CompressaPRO-GX.woff2',
 
   width = true,
@@ -55,15 +62,22 @@ const TextPressure = ({
   const [fontSize, setFontSize] = useState(minFontSize);
   const [scaleY, setScaleY] = useState(1);
   const [lineHeight, setLineHeight] = useState(1);
+  const [fontLoaded, setFontLoaded] = useState(false);
 
-  const chars = text.split('');
+  const chars = useMemo(() => text.split(''), [text]);
 
   useEffect(() => {
-    const handleMouseMove = e => {
+    loadFont(fontFamily, fontUrl).then((loaded) => {
+      setFontLoaded(loaded);
+    });
+  }, [fontFamily, fontUrl]);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
       cursorRef.current.x = e.clientX;
       cursorRef.current.y = e.clientY;
     };
-    const handleTouchMove = e => {
+    const handleTouchMove = (e) => {
       const t = e.touches[0];
       cursorRef.current.x = t.clientX;
       cursorRef.current.y = t.clientY;
@@ -73,9 +87,9 @@ const TextPressure = ({
     window.addEventListener('touchmove', handleTouchMove, { passive: true });
 
     if (containerRef.current) {
-      const { left, top, width, height } = containerRef.current.getBoundingClientRect();
-      mouseRef.current.x = left + width / 2;
-      mouseRef.current.y = top + height / 2;
+      const rect = containerRef.current.getBoundingClientRect();
+      mouseRef.current.x = rect.left + rect.width / 2;
+      mouseRef.current.y = rect.top + rect.height / 2;
       cursorRef.current.x = mouseRef.current.x;
       cursorRef.current.y = mouseRef.current.y;
     }
@@ -104,20 +118,23 @@ const TextPressure = ({
 
       if (scale && textRect.height > 0) {
         const yRatio = containerH / textRect.height;
-        setScaleY(yRatio);
-        setLineHeight(yRatio);
+        const xRatio = containerW / textRect.width;
+        const ratio = Math.min(yRatio, xRatio, 1);
+        setScaleY(ratio);
+        setLineHeight(ratio);
       }
     });
   }, [chars.length, minFontSize, scale]);
 
   useEffect(() => {
-    const debouncedSetSize = debounce(setSize, 100);
-    debouncedSetSize();
-    window.addEventListener('resize', debouncedSetSize);
-    return () => window.removeEventListener('resize', debouncedSetSize);
+    setSize();
+    window.addEventListener('resize', setSize);
+    return () => window.removeEventListener('resize', setSize);
   }, [setSize]);
 
   useEffect(() => {
+    if (!fontLoaded) return;
+
     let rafId;
     const animate = () => {
       mouseRef.current.x += (cursorRef.current.x - mouseRef.current.x) / 15;
@@ -127,7 +144,7 @@ const TextPressure = ({
         const titleRect = titleRef.current.getBoundingClientRect();
         const maxDist = titleRect.width / 2;
 
-        spansRef.current.forEach(span => {
+        spansRef.current.forEach((span) => {
           if (!span) return;
 
           const rect = span.getBoundingClientRect();
@@ -143,10 +160,10 @@ const TextPressure = ({
           const italVal = italic ? getAttr(d, maxDist, 0, 1).toFixed(2) : 0;
           const alphaVal = alpha ? getAttr(d, maxDist, 0, 1).toFixed(2) : 1;
 
-          const newFontVariationSettings = `'wght' ${wght}, 'wdth' ${wdth}, 'ital' ${italVal}`;
+          const newSettings = `'wght' ${wght}, 'wdth' ${wdth}, 'ital' ${italVal}`;
 
-          if (span.style.fontVariationSettings !== newFontVariationSettings) {
-            span.style.fontVariationSettings = newFontVariationSettings;
+          if (span.style.fontVariationSettings !== newSettings) {
+            span.style.fontVariationSettings = newSettings;
           }
           if (alpha && span.style.opacity !== alphaVal) {
             span.style.opacity = alphaVal;
@@ -159,16 +176,11 @@ const TextPressure = ({
 
     animate();
     return () => cancelAnimationFrame(rafId);
-  }, [width, weight, italic, alpha]);
+  }, [fontLoaded, width, weight, italic, alpha]);
 
   const styleElement = useMemo(() => {
     return (
       <style>{`
-        @font-face {
-          font-family: '${fontFamily}';
-          src: url('${fontUrl}');
-          font-style: normal;
-        }
         .stroke span {
           position: relative;
           color: ${textColor};
@@ -185,7 +197,7 @@ const TextPressure = ({
         }
       `}</style>
     );
-  }, [fontFamily, fontUrl, textColor, strokeColor, strokeWidth]);
+  }, [textColor, strokeColor, strokeWidth]);
 
   return (
     <div ref={containerRef} className="relative w-full h-full overflow-visible bg-transparent">
@@ -196,10 +208,10 @@ const TextPressure = ({
           flex ? 'flex justify-between' : ''
         } ${stroke ? 'stroke' : ''} uppercase text-center`}
         style={{
-          fontFamily,
-          fontSize: fontSize,
+          fontFamily: fontLoaded ? fontFamily : 'inherit',
+          fontSize,
           lineHeight,
-          transform: `scale(1, ${scaleY})`,
+          transform: `scale(${scaleY}, ${scaleY})`,
           transformOrigin: 'center top',
           margin: 0,
           fontWeight: 100,
@@ -207,7 +219,12 @@ const TextPressure = ({
         }}
       >
         {chars.map((char, i) => (
-          <span key={i} ref={el => (spansRef.current[i] = el)} data-char={char} className="inline-block">
+          <span
+            key={i}
+            ref={(el) => { spansRef.current[i] = el; }}
+            data-char={char}
+            className="inline-block"
+          >
             {char}
           </span>
         ))}

@@ -56,7 +56,7 @@ const renderTechItem = (tech) => {
         style={{ color: tech.color }}
         className="opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 drop-shadow-[0_0_8px_rgba(255,255,255,0.1)] group-hover:drop-shadow-[0_0_12px_currentColor]"
       />
-      <span className="text-xs sm:text-sm text-slate-500 group-hover:text-slate-900 font-medium transition-colors">
+      <span className="text-xs sm:text-sm text-ivory-400 group-hover:text-ivory-800 font-medium transition-colors">
         {tech.name}
       </span>
     </div>
@@ -65,14 +65,14 @@ const renderTechItem = (tech) => {
 
 export default function Techstack() {
   return (
-    <section className="min-h-screen text-slate-900 pt-24 px-4 sm:px-6 flex items-center">
+    <section className="min-h-screen bg-ivory-50 pt-24 px-4 sm:px-6 flex items-center">
       <div className="mx-auto max-w-5xl w-full text-center">
         {/* Title */}
         <motion.h1
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl sm:text-4xl font-bold"
+          className="font-display text-4xl sm:text-5xl font-normal text-ivory-800"
         >
           Techstack<span className="text-blue-500">.</span>
         </motion.h1>
@@ -81,7 +81,7 @@ export default function Techstack() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="mt-4 text-xs sm:text-sm text-slate-600"
+          className="mt-4 font-mono text-xs sm:text-sm text-ivory-400"
         >
           Technologies I have worked with
         </motion.p>

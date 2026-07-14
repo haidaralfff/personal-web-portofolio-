@@ -64,19 +64,23 @@ export default function Experience() {
 
   return (
     <section
-      id="experience"
       ref={containerRef}
-      className="min-h-screen text-slate-900 pt-24 px-6 relative"
+      className="min-h-screen bg-ivory-50 pt-24 px-6 relative"
     >
       <div className="max-w-6xl mx-auto">
 
         {/* TITLE */}
-        <h1 className="exp-title text-4xl font-bold mb-10">
-          Experience<span className="text-blue-500 drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]">.</span>
-        </h1>
+        <div className="mb-10">
+          <p className="font-mono text-xs tracking-mega uppercase text-blue-400 mb-4">
+            Journey
+          </p>
+          <h1 className="exp-title font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 leading-[0.95] tracking-tight">
+            Experience<span className="text-blue-500">.</span>
+          </h1>
+        </div>
 
         {/* SCROLL PROGRESS */}
-        <div className="fixed right-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-2 text-xs text-zinc-400">
+        <div className="fixed right-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-2 text-xs text-ivory-300">
           <span>Scroll</span>
           <span className="text-blue-500 font-medium">
             {progressText}
@@ -86,9 +90,9 @@ export default function Experience() {
         <div className="relative">
 
           {/* TIMELINE LINE */}
-          <div className="absolute left-3 md:left-1/2 top-0 -translate-x-1/2 h-full w-[2px] bg-slate-200 overflow-hidden">
+          <div className="absolute left-3 md:left-1/2 top-0 -translate-x-1/2 h-full w-[2px] bg-ivory-200 overflow-hidden">
             <div
-              className="timeline-line-progress w-full h-full bg-blue-500 origin-top shadow-[0_0_10px_rgba(59,130,246,0.5)]"
+              className="timeline-line-progress w-full h-full bg-blue-500 origin-top"
             />
           </div>
 
@@ -99,8 +103,8 @@ export default function Experience() {
               align="left"
               icon={<Wrench />}
               title="SMK Maarif 9 Kebumen"
-              subtitle="Teknik Kendaraan Ringan • 2021 – 2024"
-              description="Mempelajari sistem kendaraan, mekanika, kelistrikan otomotif, serta troubleshooting mesin."
+              subtitle="Light Vehicle Engineering • 2021 – 2024"
+              description="Studied vehicle systems, mechanics, automotive electronics, and engine diagnostics."
               skills={["Mechanical", "Engine", "Diagnostics"]}
             />
 
@@ -108,10 +112,10 @@ export default function Experience() {
             <TimelineItem
               align="right"
               icon={<GraduationCap />}
-              title="Mahasiswa Ilmu Komputer"
+              title="Computer Science Student"
               subtitle="Universitas Putra Bangsa • Semester 4"
-              description="Mempelajari pengembangan web, struktur data, database, serta membangun aplikasi modern."
-              skills={["Pemrograman Web", "Database", "UI/UX"]}
+              description="Studying web development, data structures, databases, and building modern applications."
+              skills={["Web Development", "Database", "UI/UX"]}
               current
             />
 
@@ -121,7 +125,7 @@ export default function Experience() {
               icon={<Code />}
               title="Web Developer"
               subtitle="2024 - Present"
-              description="Membangun website modern dan Implementasi Sistem"
+              description="Building modern websites and implementing systems."
               skills={["Fullstack Developer", "React", "Tailwind"]}
             />
 

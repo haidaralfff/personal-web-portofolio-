@@ -140,15 +140,18 @@ export default function Contact() {
   };
 
   return (
-    <section ref={containerRef} className="min-h-screen text-slate-900 pt-28 pb-32 px-6 flex items-center relative">
+    <section ref={containerRef} className="min-h-screen bg-ivory-50 pt-28 pb-32 px-6 flex items-center relative">
       <div className="mx-auto w-full max-w-5xl relative z-10">
         
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="contact-header text-4xl font-bold md:text-5xl">
-            Contact<span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">.</span>
+          <p className="contact-header font-mono text-xs tracking-mega uppercase text-blue-400 mb-4">
+            Contact
+          </p>
+          <h1 className="contact-header font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 leading-[0.95] tracking-tight">
+            Get in Touch<span className="text-blue-500">.</span>
           </h1>
-          <p className="contact-header mt-4 text-slate-600 text-base max-w-md mx-auto">
+          <p className="contact-header mt-6 text-ivory-400 text-base max-w-md mx-auto">
             Have a project in mind, want to collaborate, or just say hello? Drop me a message!
           </p>
         </div>
@@ -158,9 +161,9 @@ export default function Contact() {
           
           {/* Left Column: Social Links */}
           <div className="contact-left lg:col-span-5 space-y-6">
-            <div className="rounded-2xl border border-slate-200 bg-white backdrop-blur-md p-6 shadow-sm">
-              <h2 className="text-xl font-bold mb-4 text-slate-900">Get in touch</h2>
-              <p className="text-slate-600 text-sm mb-6 leading-relaxed">
+            <div className="rounded-2xl border border-ivory-200 bg-white/60 backdrop-blur-md p-6">
+              <h2 className="font-display text-2xl font-normal text-ivory-800 mb-4">Get in touch</h2>
+              <p className="text-ivory-400 text-sm mb-6 leading-relaxed">
                 Connect with me on social platforms or send an email directly. I usually respond within 24 hours.
               </p>
               
@@ -172,13 +175,13 @@ export default function Contact() {
                     target="_blank"
                     rel="noreferrer"
                     whileHover={{ x: 6 }}
-                    className="contact-item flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 hover:border-blue-200 hover:bg-slate-100 hover:shadow-sm transition-all duration-300"
+                    className="contact-item flex items-center justify-between rounded-xl border border-ivory-200 bg-ivory-100/50 px-4 py-3 hover:border-blue-200 hover:bg-ivory-100 transition-all duration-300"
                   >
                     <div className="flex items-center gap-3">
                       <Icon size={18} className="text-blue-500" />
-                      <span className="text-sm font-medium text-slate-800">{label}</span>
+                      <span className="text-sm font-medium text-ivory-700">{label}</span>
                     </div>
-                    <span className="text-xs text-slate-500 font-mono">{value}</span>
+                    <span className="text-xs text-ivory-400 font-mono">{value}</span>
                   </motion.a>
                 ))}
               </div>
@@ -187,8 +190,8 @@ export default function Contact() {
 
           {/* Right Column: Contact Form */}
           <div className="contact-right lg:col-span-7">
-            <div className="rounded-2xl border border-slate-200 bg-white backdrop-blur-xl p-6 md:p-8 shadow-lg">
-              <h2 className="text-xl font-bold mb-6 text-slate-900">Send Message</h2>
+            <div className="rounded-2xl border border-ivory-200 bg-white/60 backdrop-blur-xl p-6 md:p-8">
+              <h2 className="font-display text-2xl font-normal text-ivory-800 mb-6">Send Message</h2>
               
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Alert Status */}
@@ -196,8 +199,8 @@ export default function Contact() {
                   <div
                     className={`p-4 rounded-xl border backdrop-blur-md flex gap-3 ${
                       status.type === "success"
-                        ? "bg-green-500/20 border-green-500/30 text-green-300 shadow-[0_0_15px_rgba(34,197,94,0.2)]"
-                        : "bg-red-500/20 border-red-500/30 text-red-300 shadow-[0_0_15px_rgba(239,68,68,0.2)]"
+                        ? "bg-green-500/10 border-green-500/20 text-green-700"
+                        : "bg-red-500/10 border-red-500/20 text-red-700"
                     }`}
                   >
                     {status.type === "success" ? (
@@ -212,7 +215,7 @@ export default function Contact() {
                 {/* Name & Email Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
+                    <label className="block font-mono text-xs tracking-wider text-ivory-400 uppercase mb-2">
                       Name <span className="text-blue-500">*</span>
                     </label>
                     <input
@@ -221,12 +224,12 @@ export default function Contact() {
                       value={form.name}
                       onChange={handleChange}
                       placeholder="Your Name"
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white transition-all duration-300"
+                      className="w-full px-4 py-3 bg-ivory-100/50 border border-ivory-200 rounded-xl text-sm text-ivory-800 placeholder-ivory-300 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white/80 transition-all duration-300"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
+                    <label className="block font-mono text-xs tracking-wider text-ivory-400 uppercase mb-2">
                       Email <span className="text-blue-500">*</span>
                     </label>
                     <input
@@ -235,7 +238,7 @@ export default function Contact() {
                       value={form.email}
                       onChange={handleChange}
                       placeholder="name@example.com"
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white transition-all duration-300"
+                      className="w-full px-4 py-3 bg-ivory-100/50 border border-ivory-200 rounded-xl text-sm text-ivory-800 placeholder-ivory-300 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white/80 transition-all duration-300"
                       required
                     />
                   </div>
@@ -243,7 +246,7 @@ export default function Contact() {
 
                 {/* Subject */}
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
+                  <label className="block font-mono text-xs tracking-wider text-ivory-400 uppercase mb-2">
                     Subject
                   </label>
                   <input
@@ -252,13 +255,13 @@ export default function Contact() {
                     value={form.subject}
                     onChange={handleChange}
                     placeholder="Feedback / Collaboration / Hello"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white transition-all duration-300"
+                    className="w-full px-4 py-3 bg-ivory-100/50 border border-ivory-200 rounded-xl text-sm text-ivory-800 placeholder-ivory-300 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white/80 transition-all duration-300"
                   />
                 </div>
 
                 {/* Message */}
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
+                  <label className="block font-mono text-xs tracking-wider text-ivory-400 uppercase mb-2">
                     Message <span className="text-blue-500">*</span>
                   </label>
                   <textarea
@@ -267,7 +270,7 @@ export default function Contact() {
                     onChange={handleChange}
                     rows="5"
                     placeholder="Tell me more about your thoughts..."
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white transition-all duration-300 resize-none"
+                    className="w-full px-4 py-3 bg-ivory-100/50 border border-ivory-200 rounded-xl text-sm text-ivory-800 placeholder-ivory-300 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white/80 transition-all duration-300 resize-none"
                     required
                   />
                 </div>
@@ -276,7 +279,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full mt-2 flex items-center justify-center gap-2 rounded-xl bg-blue-600/80 backdrop-blur-md px-5 py-3 text-sm font-semibold hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] disabled:bg-white/10 disabled:text-zinc-500 disabled:cursor-not-allowed transition-all duration-300 border border-blue-500/50 text-white"
+                  className="w-full mt-2 flex items-center justify-center gap-2 rounded-lg bg-blue-500 px-5 py-3.5 text-sm font-semibold text-white hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center gap-2">

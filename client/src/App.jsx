@@ -17,6 +17,7 @@ const Experience = lazy(() => import("./pages/Experience"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Services = lazy(() => import("./pages/Services"));
 const Certifications = lazy(() => import("./pages/Certifications"));
+const Prompts = lazy(() => import("./pages/Prompts"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 
 function LandingPage() {
@@ -33,6 +34,7 @@ function LandingPage() {
         <section id="experience"><Experience /></section>
         <section id="certifications"><Certifications /></section>
         <section id="projects"><Project /></section>
+        <section id="prompts"><Prompts /></section>
         <section id="faq"><FAQ /></section>
         <section id="contact"><Contact /></section>
       </Suspense>

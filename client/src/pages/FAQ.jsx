@@ -46,7 +46,7 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="min-h-screen text-slate-900 pt-28 pb-32 px-6 flex items-center relative">
+    <section className="min-h-screen bg-ivory-50 pt-28 pb-32 px-6 flex items-center relative">
       <motion.div 
         className="mx-auto w-full max-w-3xl relative z-10"
         variants={containerVariants}
@@ -57,10 +57,13 @@ export default function FAQ() {
         
         {/* Header */}
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <h1 className="text-4xl font-bold md:text-5xl">
-            F.A.Q<span className="text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]">.</span>
+          <p className="font-mono text-xs tracking-mega uppercase text-blue-400 mb-4">
+            FAQ
+          </p>
+          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 leading-[0.95] tracking-tight">
+            F.A.Q<span className="text-blue-500">.</span>
           </h1>
-          <p className="mt-4 text-slate-600 text-base max-w-md mx-auto">
+          <p className="mt-6 text-ivory-400 text-base max-w-md mx-auto">
             Frequently Asked Questions
           </p>
         </motion.div>
@@ -74,14 +77,14 @@ export default function FAQ() {
                 variants={itemVariants}
                 key={index} 
                 className={`rounded-2xl border transition-all duration-300 ${
-                  isActive ? 'bg-white border-blue-200 shadow-sm' : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
+                  isActive ? 'bg-white/80 border-blue-200 shadow-sm' : 'bg-ivory-100 border-ivory-200 hover:bg-ivory-200/50'
                 } backdrop-blur-md overflow-hidden`}
               >
                 <button
                   onClick={() => setActiveIndex(isActive ? null : index)}
                   className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
                 >
-                  <span className="text-lg font-semibold text-slate-800">{faq.question}</span>
+                  <span className="text-lg font-semibold text-ivory-800">{faq.question}</span>
                   <motion.div
                     animate={{ rotate: isActive ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
@@ -99,7 +102,7 @@ export default function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <div className="px-6 pb-6 text-slate-600 leading-relaxed font-light">
+                      <div className="px-6 pb-6 text-ivory-500 leading-relaxed">
                         {faq.answer}
                       </div>
                     </motion.div>
