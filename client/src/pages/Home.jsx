@@ -3,6 +3,7 @@ import { Mail, GraduationCap, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
+import CVDownload from "../components/CVDownload";
 
 const Lanyard = lazy(() => import("../components/reactbits/LanyardCard.jsx"));
 import DotGridBackground from "../components/DotGridBackground.jsx";
@@ -100,13 +101,7 @@ export default function Home() {
               </motion.div>
 
               <motion.div className="hero-btn" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                <a
-                  href="#about"
-                  className="inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-lg border border-ivory-200 bg-white/60 backdrop-blur-sm px-7 py-3.5 text-sm font-semibold text-ivory-700 hover:bg-white hover:border-ivory-300 transition-all duration-200"
-                >
-                  Learn More
-                  <ArrowRight size={16} />
-                </a>
+                <CVDownload />
               </motion.div>
             </div>
           </div>
