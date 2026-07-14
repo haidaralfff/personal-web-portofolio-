@@ -1,12 +1,5 @@
 import { motion } from "framer-motion";
 import Techstack from "../components/Techstack";
-import CVDownload from "../components/CVDownload";
-
-const stats = [
-  { value: "4", label: "Semesters" },
-  { value: "2", label: "Shipped Projects" },
-  { value: "React +", label: "Tailwind" },
-];
 
 export default function About() {
   const containerVariants = {
@@ -48,33 +41,27 @@ export default function About() {
         </motion.p>
 
         {/* Title */}
-        <motion.div variants={itemVariants} className="mb-16">
+        <motion.div variants={itemVariants} className="mb-12">
           <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 leading-[0.95] tracking-tight">
             About Me
           </h1>
           <div className="w-12 h-[2px] bg-blue-500 mt-6" />
         </motion.div>
 
-        {/* Quick Stats */}
+        {/* Bio */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-wrap items-center justify-center md:justify-start gap-8 md:gap-12"
+          className="max-w-2xl space-y-6 text-ivory-500 text-base sm:text-lg leading-relaxed"
         >
-          {stats.map((stat, i) => (
-            <div key={i} className="flex items-baseline gap-2">
-              <span className="font-display text-4xl sm:text-5xl text-ivory-800">
-                {stat.value}
-              </span>
-              <span className="font-mono text-xs uppercase tracking-wider text-ivory-400">
-                {stat.label}
-              </span>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Download CV */}
-        <motion.div variants={itemVariants} className="mt-10">
-          <CVDownload />
+          <p>
+            I am a fourth-semester Computer Science student at Universitas Putra Bangsa with a strong passion for software development and digital creativity. I focus on building modern web applications using React and Tailwind CSS, emphasizing clean, maintainable code and user-friendly design.
+          </p>
+          <p>
+            I am deeply interested in understanding system logic, software architecture, and how technology works behind the scenes to create efficient and scalable solutions. Outside of programming, I also enjoy video editing and digital content creation, where I combine creativity and technical skills to produce engaging visual stories.
+          </p>
+          <p>
+            I am continuously learning, building real-world projects, and seeking opportunities to grow as a Web Developer who can bridge logic and creativity to create impactful digital solutions.
+          </p>
         </motion.div>
 
         {/* Techstack */}
