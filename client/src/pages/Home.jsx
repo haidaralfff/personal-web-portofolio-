@@ -51,7 +51,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-ivory-50">
+    <main className="relative min-h-screen overflow-x-hidden bg-ivory-50 dark:bg-ivory-900 transition-colors duration-500">
       <DotGridBackground />
 
       <section
@@ -68,11 +68,11 @@ export default function Home() {
 
             <div className="hero-line w-12 h-[2px] bg-blue-500 mb-6 mx-auto lg:mx-0" />
 
-            <h1 className="hero-name font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-ivory-800 leading-[0.95] tracking-tight">
+            <h1 className="hero-name font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-ivory-800 dark:text-ivory-100 leading-[0.95] tracking-tight transition-colors duration-500">
               Haidar
               <br />
               <span className="text-blue-500">Habibi</span>
-              <span className="text-black-400 gap-2">Al Farisi</span>
+              <span className="text-black-400 dark:text-ivory-300 gap-2 transition-colors duration-500">Al Farisi</span>
             </h1>
 
             <p className="hero-subtitle mt-6 text-base sm:text-lg text-blue-400 max-w-md mx-auto lg:mx-0 leading-relaxed">
@@ -80,10 +80,10 @@ export default function Home() {
             </p>
 
             {/* BADGE */}
-            <div className="hero-badge mt-8 flex items-center justify-center lg:justify-start gap-2.5 text-sm text-ivory-400">
+            <div className="hero-badge mt-8 flex items-center justify-center lg:justify-start gap-2.5 text-sm text-ivory-400 dark:text-ivory-500">
               <GraduationCap size={16} className="text-blue-500" />
               <span>Informatics Student at</span>
-              <span className="font-semibold text-ivory-700">
+              <span className="font-semibold text-ivory-700 dark:text-ivory-200">
                 Universitas Putra Bangsa
               </span>
             </div>
@@ -110,7 +110,7 @@ export default function Home() {
           <div className="hero-profile order-1 lg:order-2 flex justify-center items-center relative w-full h-[320px] sm:h-[400px] lg:h-[560px]">
             <Suspense
               fallback={
-                <div className="w-56 h-72 sm:w-64 sm:h-80 lg:w-72 lg:h-[26rem] rounded-2xl bg-ivory-100 border border-ivory-200 animate-pulse" />
+                <div className="w-56 h-72 sm:w-64 sm:h-80 lg:w-72 lg:h-[26rem] rounded-2xl bg-ivory-100 dark:bg-ivory-800 border border-ivory-200 dark:border-ivory-700 animate-pulse" />
               }
             >
               <Lanyard position={[0, 0, 13]} fov={25} />

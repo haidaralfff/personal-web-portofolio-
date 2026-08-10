@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import TimelineItem from "../components/TimelineItem";
 import { GraduationCap, Code, Wrench } from "lucide-react";
 import gsap from "gsap";
@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Experience() {
   const containerRef = useRef(null);
-  const [progressText, setProgressText] = useState("0%");
+  const progressRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -25,11 +25,11 @@ export default function Experience() {
         ease: "power3.out"
       });
 
-      // 2. Scroll Progress Line & Text
-      gsap.fromTo(".timeline-line-progress", 
+      // 2. Scroll Progress Line & Text (direct DOM update, no React state)
+      gsap.fromTo(".timeline-line-progress",
         { scaleY: 0 },
-        { 
-          scaleY: 1, 
+        {
+          scaleY: 1,
           ease: "none",
           scrollTrigger: {
             trigger: containerRef.current,
@@ -37,7 +37,9 @@ export default function Experience() {
             end: "bottom 20%",
             scrub: true,
             onUpdate: (self) => {
-              setProgressText(Math.round(self.progress * 100) + "%");
+              if (progressRef.current) {
+                progressRef.current.textContent = Math.round(self.progress * 100) + "%";
+              }
             }
           }
         }
@@ -65,7 +67,7 @@ export default function Experience() {
   return (
     <section
       ref={containerRef}
-      className="min-h-screen bg-ivory-50 pt-24 px-6 relative"
+      className="min-h-screen bg-ivory-50 dark:bg-ivory-900 pt-24 px-6 relative transition-colors duration-500"
     >
       <div className="max-w-6xl mx-auto">
 
@@ -74,23 +76,23 @@ export default function Experience() {
           <p className="font-mono text-xs tracking-mega uppercase text-blue-400 mb-4">
             Journey
           </p>
-          <h1 className="exp-title font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 leading-[0.95] tracking-tight">
+          <h1 className="exp-title font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 dark:text-ivory-100 leading-[0.95] tracking-tight">
             Experience<span className="text-blue-500">.</span>
           </h1>
         </div>
 
         {/* SCROLL PROGRESS */}
-        <div className="fixed right-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-2 text-xs text-ivory-300">
+        <div className="fixed right-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-2 text-xs text-ivory-300 dark:text-ivory-600">
           <span>Scroll</span>
-          <span className="text-blue-500 font-medium">
-            {progressText}
+          <span ref={progressRef} className="text-blue-500 font-medium">
+            0%
           </span>
         </div>
 
         <div className="relative">
 
           {/* TIMELINE LINE */}
-          <div className="absolute left-3 md:left-1/2 top-0 -translate-x-1/2 h-full w-[2px] bg-ivory-200 overflow-hidden">
+          <div className="absolute left-3 md:left-1/2 top-0 -translate-x-1/2 h-full w-[2px] bg-ivory-200 dark:bg-ivory-700 overflow-hidden">
             <div
               className="timeline-line-progress w-full h-full bg-blue-500 origin-top"
             />

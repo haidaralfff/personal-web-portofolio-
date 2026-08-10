@@ -9,8 +9,6 @@ dist/
 build/
 .next/
 
-
-
 # IDE
 .vscode/
 .idea/

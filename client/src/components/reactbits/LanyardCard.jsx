@@ -25,7 +25,7 @@ export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], 
     <div className="relative z-0 w-full h-full flex justify-center items-center transform scale-100 origin-center">
       <Canvas
         camera={{ position: position, fov: fov }}
-        dpr={[1, isMobile ? 1.5 : 2]}
+        dpr={[1, isMobile ? 1 : 1.5]}
         gl={{ alpha: transparent }}
         onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
       >
@@ -37,23 +37,9 @@ export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], 
           <ContactShadows position={[0, -8, 0]} opacity={0.4} scale={50} blur={2.5} far={15} color="#000000" />
           <Environment blur={0.75}>
             <Lightformer
-              intensity={2}
+              intensity={3}
               color="white"
               position={[0, -1, 5]}
-              rotation={[0, 0, Math.PI / 3]}
-              scale={[100, 0.1, 1]}
-            />
-            <Lightformer
-              intensity={3}
-              color="white"
-              position={[-1, -1, 1]}
-              rotation={[0, 0, Math.PI / 3]}
-              scale={[100, 0.1, 1]}
-            />
-            <Lightformer
-              intensity={3}
-              color="white"
-              position={[1, 1, 1]}
               rotation={[0, 0, Math.PI / 3]}
               scale={[100, 0.1, 1]}
             />
@@ -129,7 +115,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
       curve.points[1].copy(j2.current.lerped);
       curve.points[2].copy(j1.current.lerped);
       curve.points[3].copy(fixed.current.translation());
-      band.current.geometry.setPoints(curve.getPoints(isMobile ? 16 : 32));
+      band.current.geometry.setPoints(curve.getPoints(isMobile ? 10 : 20));
       ang.copy(card.current.angvel());
       rot.copy(card.current.rotation());
       card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z });

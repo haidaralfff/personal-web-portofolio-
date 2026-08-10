@@ -24,7 +24,7 @@ export default function About() {
   };
 
   return (
-    <main className="min-h-screen bg-ivory-50 px-6 py-28 relative overflow-hidden flex flex-col justify-center">
+    <main className="min-h-screen bg-ivory-50 dark:bg-ivory-900 px-6 py-28 relative overflow-hidden flex flex-col justify-center transition-colors duration-500">
       <motion.div
         className="mx-auto max-w-4xl w-full relative z-10"
         variants={containerVariants}
@@ -42,7 +42,7 @@ export default function About() {
 
         {/* Title */}
         <motion.div variants={itemVariants} className="mb-12">
-          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 leading-[0.95] tracking-tight">
+          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 dark:text-ivory-100 leading-[0.95] tracking-tight">
             About Me
           </h1>
           <div className="w-12 h-[2px] bg-blue-500 mt-6" />
@@ -51,7 +51,7 @@ export default function About() {
         {/* Bio */}
         <motion.div
           variants={itemVariants}
-          className="max-w-2xl space-y-6 text-ivory-500 text-base sm:text-lg leading-relaxed"
+          className="max-w-2xl space-y-6 text-ivory-500 dark:text-ivory-400 text-base sm:text-lg leading-relaxed"
         >
           <p>
             I am a fourth-semester Computer Science student at Universitas Putra Bangsa with a strong passion for software development and digital creativity. I focus on building modern web applications using React and Tailwind CSS, emphasizing clean, maintainable code and user-friendly design.

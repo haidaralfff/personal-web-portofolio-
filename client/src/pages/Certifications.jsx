@@ -63,7 +63,7 @@ export default function Certifications() {
   }, []);
 
   return (
-    <section ref={containerRef} className="min-h-screen bg-ivory-50 pt-24 pb-20 px-4 sm:px-6 relative overflow-hidden">
+    <section ref={containerRef} className="min-h-screen bg-ivory-50 dark:bg-ivory-900 pt-24 pb-20 px-4 sm:px-6 relative overflow-hidden transition-colors duration-500">
       <div className="mx-auto w-full max-w-5xl relative z-10">
 
         {/* Header */}
@@ -72,11 +72,11 @@ export default function Certifications() {
             Certifications
           </p>
           <h1
-            className="cert-header font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 leading-[0.95] tracking-tight text-center"
+            className="cert-header font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 dark:text-ivory-100 leading-[0.95] tracking-tight text-center"
           >
             Achievements<span className="text-blue-500">.</span>
           </h1>
-          <p className="cert-header mt-6 text-ivory-400 text-center max-w-lg">
+          <p className="cert-header mt-6 text-ivory-400 dark:text-ivory-500 text-center max-w-lg">
             Professional achievements and courses completed to enhance my technical skills.
           </p>
         </div>
@@ -87,14 +87,14 @@ export default function Certifications() {
             <motion.div
               key={cert.id}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="cert-card relative group flex flex-col rounded-3xl bg-white/60 border border-ivory-200 overflow-hidden"
+              className="cert-card relative group flex flex-col rounded-3xl bg-white/60 dark:bg-ivory-800/60 border border-ivory-200 dark:border-ivory-700 overflow-hidden"
             >
               {/* Glowing Top Border */}
               <div className={`h-1.5 w-full bg-gradient-to-r ${cert.color} opacity-80 group-hover:opacity-100 transition-opacity duration-300`} />
 
               <div className="p-5 md:p-6 flex flex-col flex-grow relative z-10">
                 {/* PDF Viewer / Thumbnail container */}
-                <div className="w-full h-48 md:h-56 bg-ivory-100 rounded-xl mb-5 overflow-hidden border border-ivory-200 relative group/pdf">
+                <div className="w-full h-48 md:h-56 bg-ivory-100 dark:bg-ivory-800 rounded-xl mb-5 overflow-hidden border border-ivory-200 dark:border-ivory-700 relative group/pdf">
                   {cert.file ? (
                     <>
                       <iframe
@@ -115,31 +115,31 @@ export default function Certifications() {
                   )}
                 </div>
 
-                <div className="flex items-center gap-2 text-sm text-ivory-400 font-mono mb-4">
-                  <span className="bg-ivory-100 px-2 py-1 rounded-md border border-ivory-200">{cert.date}</span>
+                <div className="flex items-center gap-2 text-sm text-ivory-400 dark:text-ivory-500 font-mono mb-4">
+                  <span className="bg-ivory-100 dark:bg-ivory-800 px-2 py-1 rounded-md border border-ivory-200 dark:border-ivory-700">{cert.date}</span>
                 </div>
 
-                <h3 className="font-display text-xl md:text-2xl font-normal text-ivory-800 mb-2 leading-tight group-hover:text-blue-600 transition-colors duration-300">
+                <h3 className="font-display text-xl md:text-2xl font-normal text-ivory-800 dark:text-ivory-100 mb-2 leading-tight group-hover:text-blue-600 transition-colors duration-300">
                   {cert.title}
                 </h3>
 
-                <p className="text-sm text-ivory-400 mb-6">
+                <p className="text-sm text-ivory-400 dark:text-ivory-500 mb-6">
                   {cert.issuer}
                 </p>
 
-                <div className="mt-auto pt-6 border-t border-ivory-200 border-dashed flex items-center justify-between">
+                <div className="mt-auto pt-6 border-t border-ivory-200 dark:border-ivory-700 border-dashed flex items-center justify-between">
                   <div className="flex flex-col">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-ivory-400 mb-1">Credential ID</span>
-                    <span className="text-xs text-ivory-600 font-mono">{cert.credentialId}</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-ivory-400 dark:text-ivory-500 mb-1">Credential ID</span>
+                    <span className="text-xs text-ivory-600 dark:text-ivory-400 font-mono">{cert.credentialId}</span>
                   </div>
 
                   <a
                     href={cert.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-center p-3 rounded-full bg-ivory-100 hover:bg-blue-50 hover:text-blue-600 border border-ivory-200 hover:border-blue-300 transition-all duration-300 group/btn z-30"
+                    className="flex items-center justify-center p-3 rounded-full bg-ivory-100 dark:bg-ivory-800 hover:bg-blue-50 dark:hover:bg-ivory-700 hover:text-blue-600 border border-ivory-200 dark:border-ivory-700 hover:border-blue-300 transition-all duration-300 group/btn z-30"
                   >
-                    <ExternalLink size={18} className="text-ivory-400 group-hover/btn:text-blue-600 transition-colors" />
+                    <ExternalLink size={18} className="text-ivory-400 dark:text-ivory-500 group-hover/btn:text-blue-600 transition-colors" />
                   </a>
                 </div>
               </div>

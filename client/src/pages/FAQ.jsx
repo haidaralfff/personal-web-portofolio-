@@ -46,7 +46,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="min-h-screen bg-ivory-50 pt-28 pb-32 px-6 flex items-center relative">
+    <section className="min-h-screen bg-ivory-50 dark:bg-ivory-900 pt-28 pb-20 sm:pb-32 px-6 flex items-center relative transition-colors duration-500">
       <motion.div 
         className="mx-auto w-full max-w-3xl relative z-10"
         variants={containerVariants}
@@ -60,10 +60,10 @@ export default function FAQ() {
           <p className="font-mono text-xs tracking-mega uppercase text-blue-400 mb-4">
             FAQ
           </p>
-          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 leading-[0.95] tracking-tight">
+          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 dark:text-ivory-100 leading-[0.95] tracking-tight">
             F.A.Q<span className="text-blue-500">.</span>
           </h1>
-          <p className="mt-6 text-ivory-400 text-base max-w-md mx-auto">
+          <p className="mt-6 text-ivory-400 dark:text-ivory-500 text-base max-w-md mx-auto">
             Frequently Asked Questions
           </p>
         </motion.div>
@@ -77,14 +77,14 @@ export default function FAQ() {
                 variants={itemVariants}
                 key={index} 
                 className={`rounded-2xl border transition-all duration-300 ${
-                  isActive ? 'bg-white/80 border-blue-200 shadow-sm' : 'bg-ivory-100 border-ivory-200 hover:bg-ivory-200/50'
-                } backdrop-blur-md overflow-hidden`}
+                  isActive ? 'bg-white/80 dark:bg-ivory-800/60 border-blue-200 dark:border-blue-700 shadow-sm' : 'bg-ivory-100 dark:bg-ivory-800 border-ivory-200 dark:border-ivory-700 hover:bg-ivory-200/50 dark:hover:bg-ivory-700/50'
+                } backdrop-blur-sm overflow-hidden`}
               >
                 <button
                   onClick={() => setActiveIndex(isActive ? null : index)}
                   className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
                 >
-                  <span className="text-lg font-semibold text-ivory-800">{faq.question}</span>
+                  <span className="text-lg font-semibold text-ivory-800 dark:text-ivory-100">{faq.question}</span>
                   <motion.div
                     animate={{ rotate: isActive ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
@@ -102,7 +102,7 @@ export default function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <div className="px-6 pb-6 text-ivory-500 leading-relaxed">
+                      <div className="px-6 pb-6 text-ivory-500 dark:text-ivory-400 leading-relaxed">
                         {faq.answer}
                       </div>
                     </motion.div>

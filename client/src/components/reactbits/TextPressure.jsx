@@ -132,51 +132,74 @@ const TextPressure = ({
     return () => window.removeEventListener('resize', setSize);
   }, [setSize]);
 
+  // Cache bounding rects to avoid getBoundingClientRect per frame
+  const spanRectsRef = useRef([]);
+  const titleWidthRef = useRef(0);
+
+  const cacheRects = useCallback(() => {
+    if (titleRef.current) {
+      titleWidthRef.current = titleRef.current.getBoundingClientRect().width / 2;
+    }
+    spanRectsRef.current = spansRef.current.map((span) => {
+      if (!span) return null;
+      const rect = span.getBoundingClientRect();
+      return { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 };
+    });
+  }, []);
+
   useEffect(() => {
     if (!fontLoaded) return;
 
     let rafId;
+    let frameCount = 0;
+
+    // Cache rects on mount and resize
+    cacheRects();
+    window.addEventListener('resize', cacheRects);
+
     const animate = () => {
+      // Run at ~30fps (skip every other frame)
+      frameCount++;
+      if (frameCount % 2 !== 0) {
+        rafId = requestAnimationFrame(animate);
+        return;
+      }
+
       mouseRef.current.x += (cursorRef.current.x - mouseRef.current.x) / 15;
       mouseRef.current.y += (cursorRef.current.y - mouseRef.current.y) / 15;
 
-      if (titleRef.current) {
-        const titleRect = titleRef.current.getBoundingClientRect();
-        const maxDist = titleRect.width / 2;
+      const maxDist = titleWidthRef.current;
 
-        spansRef.current.forEach((span) => {
-          if (!span) return;
+      spansRef.current.forEach((span, i) => {
+        if (!span || !spanRectsRef.current[i]) return;
 
-          const rect = span.getBoundingClientRect();
-          const charCenter = {
-            x: rect.x + rect.width / 2,
-            y: rect.y + rect.height / 2
-          };
+        const charCenter = spanRectsRef.current[i];
+        const d = dist(mouseRef.current, charCenter);
 
-          const d = dist(mouseRef.current, charCenter);
+        const wdth = width ? Math.floor(getAttr(d, maxDist, 5, 200)) : 100;
+        const wght = weight ? Math.floor(getAttr(d, maxDist, 100, 900)) : 400;
+        const italVal = italic ? getAttr(d, maxDist, 0, 1).toFixed(2) : 0;
+        const alphaVal = alpha ? getAttr(d, maxDist, 0, 1).toFixed(2) : 1;
 
-          const wdth = width ? Math.floor(getAttr(d, maxDist, 5, 200)) : 100;
-          const wght = weight ? Math.floor(getAttr(d, maxDist, 100, 900)) : 400;
-          const italVal = italic ? getAttr(d, maxDist, 0, 1).toFixed(2) : 0;
-          const alphaVal = alpha ? getAttr(d, maxDist, 0, 1).toFixed(2) : 1;
+        const newSettings = `'wght' ${wght}, 'wdth' ${wdth}, 'ital' ${italVal}`;
 
-          const newSettings = `'wght' ${wght}, 'wdth' ${wdth}, 'ital' ${italVal}`;
-
-          if (span.style.fontVariationSettings !== newSettings) {
-            span.style.fontVariationSettings = newSettings;
-          }
-          if (alpha && span.style.opacity !== alphaVal) {
-            span.style.opacity = alphaVal;
-          }
-        });
-      }
+        if (span.style.fontVariationSettings !== newSettings) {
+          span.style.fontVariationSettings = newSettings;
+        }
+        if (alpha && span.style.opacity !== alphaVal) {
+          span.style.opacity = alphaVal;
+        }
+      });
 
       rafId = requestAnimationFrame(animate);
     };
 
-    animate();
-    return () => cancelAnimationFrame(rafId);
-  }, [fontLoaded, width, weight, italic, alpha]);
+    rafId = requestAnimationFrame(animate);
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('resize', cacheRects);
+    };
+  }, [fontLoaded, width, weight, italic, alpha, cacheRects]);
 
   const styleElement = useMemo(() => {
     return (

@@ -1,8 +1,8 @@
 import React, { Suspense, lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import AuroraBackground from "./components/reactbits/AuroraBackground";
-import CustomCursor from "./components/CustomCursor";
 import SplashScreen from "./components/SplashScreen";
+import ThemeToggle from "./components/ThemeToggle";
 
 import Navbar from "./components/layouts/Navbar";
 import Footer from "./components/Footer";
@@ -12,12 +12,12 @@ import Home from "./pages/Home";
 
 // Lazy load sections below the fold to reduce initial bundle size
 const About = lazy(() => import("./pages/About"));
+const Photos = lazy(() => import("./pages/Photos"));
 const Project = lazy(() => import("./pages/Project"));
 const Experience = lazy(() => import("./pages/Experience"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Services = lazy(() => import("./pages/Services"));
 const Certifications = lazy(() => import("./pages/Certifications"));
-const Prompts = lazy(() => import("./pages/Prompts"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 
 function LandingPage() {
@@ -30,11 +30,11 @@ function LandingPage() {
       {/* Fallback blocks space while JS chunks download in background */}
       <Suspense fallback={<div className="min-h-screen bg-transparent" />}>
         <section id="about"><About /></section>
+        <section id="photos"><Photos /></section>
         <section id="services"><Services /></section>
         <section id="experience"><Experience /></section>
         <section id="certifications"><Certifications /></section>
         <section id="projects"><Project /></section>
-        <section id="prompts"><Prompts /></section>
         <section id="faq"><FAQ /></section>
         <section id="contact"><Contact /></section>
       </Suspense>
@@ -48,7 +48,7 @@ function App() {
   return (
     <>
       <SplashScreen />
-      <CustomCursor />
+      <ThemeToggle />
       <AuroraBackground>
         <Routes>
           {/* Public Landing Page */}

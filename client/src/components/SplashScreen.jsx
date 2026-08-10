@@ -31,10 +31,10 @@ export default function SplashScreen({ onComplete }) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, y: "-100%" }}
           transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[10000] bg-slate-50 flex flex-col items-center justify-center"
+          className="fixed inset-0 z-[10000] bg-slate-50 dark:bg-ivory-900 flex flex-col items-center justify-center transition-colors duration-500"
         >
           <motion.div
-            initial={{ scale: 0.9, opacity: 0, filter: "blur(10px)" }}
+            initial={{ scale: 0.9, opacity: 0, filter: "blur(6px)" }}
             animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="flex flex-col items-center relative z-10"
@@ -43,11 +43,11 @@ export default function SplashScreen({ onComplete }) {
             <motion.div 
               animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.9, 1.2, 0.9] }}
               transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="absolute w-64 h-64 bg-blue-500/20 rounded-full blur-[60px] pointer-events-none"
+              className="absolute w-64 h-64 bg-blue-500/20 rounded-full blur-[40px] pointer-events-none"
             />
             
             <div className="relative h-20 w-48 sm:h-24 sm:w-64 md:h-32 md:w-80">
-              <TextPressure text="Darz." flex={false} stroke={false} textColor="#0f172a" />
+              <TextPressure text="Darz." flex={false} stroke={false} textColor={document.documentElement.classList.contains('dark') ? '#f0eeeb' : '#0f172a'} />
             </div>
 
             <motion.div 
