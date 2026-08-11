@@ -58,7 +58,7 @@ export default function Navbar() {
               animate={{ y: 0, opacity: 1, scale: 1, filter: "blur(0px)" }}
               exit={{ y: -20, opacity: 0, scale: 0.9, filter: "blur(6px)" }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="flex items-center gap-0.5 sm:gap-1 md:gap-1.5 px-1.5 sm:px-2 py-2 rounded-full bg-white/80 dark:bg-ivory-800/80 backdrop-blur-md border border-ivory-200 dark:border-ivory-700 shadow-lg overflow-x-auto max-w-[95vw]"
+              className="flex items-center gap-0.5 sm:gap-1 md:gap-1.5 px-1.5 sm:px-2 py-2 rounded-full bg-white/80 dark:bg-ivory-800/80 backdrop-blur-md border border-ivory-200 dark:border-ivory-700 shadow-lg"
             >
               {navItems.map((item, index) => {
                 const Icon = item.icon;
