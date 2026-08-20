@@ -13,26 +13,35 @@ import lanyardSVG from '../../assets/lanyard.svg';
 extend({ MeshLineGeometry, MeshLineMaterial });
 
 export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], fov = 20, transparent = true }) {
-  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+  const [viewport, setViewport] = useState(() => ({
+    width: typeof window !== 'undefined' ? window.innerWidth : 1024,
+  }));
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setViewport({ width: window.innerWidth });
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const isMobile = viewport.width < 640;
+  const isTablet = viewport.width >= 640 && viewport.width < 1024;
+  const dpr = Math.min(typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1, 2);
+
   return (
-    <div className="relative z-0 w-full h-full flex justify-center items-center transform scale-100 origin-center">
+    <div
+      className="relative z-0 w-full h-full flex justify-center items-center transform scale-100 origin-center"
+      style={{ touchAction: 'manipulation', overscrollBehavior: 'contain' }}
+    >
       <Canvas
         camera={{ position: position, fov: fov }}
-        dpr={[1, isMobile ? 1 : 1.5]}
+        dpr={[1, isMobile ? 1 : dpr]}
         gl={{ alpha: transparent }}
         onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
       >
         <ambientLight intensity={Math.PI} />
         <React.Suspense fallback={null}>
           <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
-            <Band isMobile={isMobile} />
+            <Band isMobile={isMobile} isTablet={isTablet} viewportWidth={viewport.width} />
           </Physics>
           <ContactShadows position={[0, -8, 0]} opacity={0.4} scale={50} blur={2.5} far={15} color="#000000" />
           <Environment blur={0.75}>
@@ -56,7 +65,7 @@ export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], 
     </div>
   );
 }
-function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
+function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, isTablet = false, viewportWidth = 1024 }) {
   const band = useRef(),
     fixed = useRef(),
     j1 = useRef(),
@@ -88,7 +97,8 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
   ]);
 
   useEffect(() => {
-    if (hovered) {
+    const prefersReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (hovered && !prefersReduced) {
       document.body.style.cursor = dragged ? 'grabbing' : 'grab';
       return () => void (document.body.style.cursor = 'auto');
     }
@@ -115,7 +125,8 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
       curve.points[1].copy(j2.current.lerped);
       curve.points[2].copy(j1.current.lerped);
       curve.points[3].copy(fixed.current.translation());
-      band.current.geometry.setPoints(curve.getPoints(isMobile ? 10 : 20));
+      const bandPoints = viewportWidth < 640 ? 10 : viewportWidth < 1024 ? 15 : 20;
+      band.current.geometry.setPoints(curve.getPoints(bandPoints));
       ang.copy(card.current.angvel());
       rot.copy(card.current.rotation());
       card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z });
@@ -208,8 +219,8 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
           repeat={[30, 1]}
           color="white"
           depthTest={false}
-          resolution={isMobile ? [1000, 2000] : [1000, 1000]}
-          lineWidth={1.0}
+          resolution={isMobile ? [viewportWidth * 0.8, viewportWidth * 1.6] : isTablet ? [1000, 1000] : [1000, 1000]}
+          lineWidth={isMobile ? 0.8 : isTablet ? 0.9 : 1.0}
         />
       </mesh>
     </>
