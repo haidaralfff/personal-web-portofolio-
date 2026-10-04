@@ -22,11 +22,6 @@ export default function Home() {
         ease: "back.out(1.2)",
       })
         .from(
-          ".hero-line",
-          { width: 0, duration: 0.6 },
-          "-=0.6"
-        )
-        .from(
           ".hero-name",
           { y: 40, opacity: 0, duration: 0.8 },
           "-=0.3"
@@ -62,12 +57,6 @@ export default function Home() {
 
           {/* TEXT */}
           <div className="order-2 lg:order-1 text-center lg:text-left">
-            <p className="hero-subtitle font-mono text-xs sm:text-sm tracking-mega uppercase text-blue-400 mb-4">
-              Frontend Developer
-            </p>
-
-            <div className="hero-line w-12 h-[2px] bg-blue-500 mb-6 mx-auto lg:mx-0" />
-
             <h1 className="hero-name font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-ivory-800 dark:text-ivory-100 leading-[0.95] tracking-tight transition-colors duration-500">
               Haidar
               <br />
@@ -75,17 +64,9 @@ export default function Home() {
               <span className="text-black-400 dark:text-ivory-300 gap-2 transition-colors duration-500">Al Farisi</span>
             </h1>
 
-            <p className="hero-subtitle mt-6 text-base sm:text-lg text-blue-400 max-w-md mx-auto lg:mx-0 leading-relaxed">
-              Building fast, accessible interfaces for modern web applications.
-            </p>
-
             {/* BADGE */}
-            <div className="hero-badge mt-8 flex items-center justify-center lg:justify-start gap-2.5 text-sm text-ivory-400 dark:text-ivory-500">
-              <GraduationCap size={16} className="text-blue-500" />
-              <span>Informatics Student at</span>
-              <span className="font-semibold text-ivory-700 dark:text-ivory-200">
-                Universitas Putra Bangsa
-              </span>
+            <div className="hero-badge mt-8 flex items-center justify-center lg:justify-start gap-2.5 text-2xl sm:text-3xl font-normal text-ivory-800 dark:text-ivory-100 transition-colors duration-500">
+              <span className="font-['Fjalla_One']">Fullstack Developer</span>
             </div>
 
             {/* BUTTONS */}

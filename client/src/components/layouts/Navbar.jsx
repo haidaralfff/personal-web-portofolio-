@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Home, User, Image, Briefcase, Folder, HelpCircle, Phone, Layers } from "lucide-react";
+import { Menu, X, Home, User, Image, Briefcase, Folder, Phone, Layers } from "lucide-react";
+import ThemeToggle from "../ThemeToggle";
 
 const navItems = [
   { icon: Home, label: "Home", href: "#home" },
@@ -9,7 +10,6 @@ const navItems = [
   { icon: Layers, label: "Services", href: "#services" },
   { icon: Briefcase, label: "Experience", href: "#experience" },
   { icon: Folder, label: "Projects", href: "#projects" },
-  { icon: HelpCircle, label: "FAQ", href: "#faq" },
   { icon: Phone, label: "Contact", href: "#contact" },
 ];
 
@@ -40,30 +40,35 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            return (
-              <a
-                key={item.label}
-                href={item.href}
-                className="flex items-center gap-2 text-sm font-sans font-medium text-ivory-600 dark:text-ivory-400 hover:text-ivory-900 dark:hover:text-ivory-100 transition-colors duration-200"
-              >
-                <Icon size={16} strokeWidth={2} />
-                {item.label}
-              </a>
-            );
-          })}
-        </div>
+        <div className="flex items-center gap-6 md:gap-8">
+          <div className="hidden md:flex items-center gap-8">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="flex items-center gap-2 text-sm font-sans font-medium text-ivory-600 dark:text-ivory-400 hover:text-ivory-900 dark:hover:text-ivory-100 transition-colors duration-200"
+                >
+                  <Icon size={16} strokeWidth={2} />
+                  {item.label}
+                </a>
+              );
+            })}
+          </div>
 
-        {/* Mobile Toggle */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 text-ivory-600 dark:text-ivory-400 hover:text-ivory-900 dark:hover:text-ivory-100 transition-colors"
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {/* Theme toggle */}
+          <ThemeToggle />
+
+          {/* Mobile Toggle */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2 -mr-2 text-ivory-600 dark:text-ivory-400 hover:text-ivory-900 dark:hover:text-ivory-100 transition-colors"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}

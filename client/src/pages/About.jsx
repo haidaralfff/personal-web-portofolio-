@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import Techstack from "../components/Techstack";
+import { useAbout } from "../hooks/useAbout";
 
 export default function About() {
+  const { about, loading } = useAbout();
+
   const containerVariants = {
     hidden: {},
     visible: {
@@ -22,6 +25,24 @@ export default function About() {
       },
     },
   };
+
+  if (loading) {
+    return (
+      <main className="min-h-screen bg-ivory-50 dark:bg-ivory-900 px-6 py-28 relative overflow-hidden flex flex-col justify-center transition-colors duration-500">
+        <div className="mx-auto max-w-4xl w-full relative z-10">
+          <div className="animate-pulse space-y-6">
+            <div className="h-4 bg-ivory-200 dark:bg-ivory-700 rounded w-20"></div>
+            <div className="h-12 bg-ivory-200 dark:bg-ivory-700 rounded w-64"></div>
+            <div className="space-y-4">
+              <div className="h-4 bg-ivory-200 dark:bg-ivory-700 rounded"></div>
+              <div className="h-4 bg-ivory-200 dark:bg-ivory-700 rounded"></div>
+              <div className="h-4 bg-ivory-200 dark:bg-ivory-700 rounded w-3/4"></div>
+            </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-ivory-50 dark:bg-ivory-900 px-6 py-28 relative overflow-hidden flex flex-col justify-center transition-colors duration-500">
@@ -53,15 +74,9 @@ export default function About() {
           variants={itemVariants}
           className="max-w-2xl space-y-6 text-ivory-500 dark:text-ivory-400 text-base sm:text-lg leading-relaxed"
         >
-          <p>
-            I am a fourth-semester Computer Science student at Universitas Putra Bangsa with a strong passion for software development and digital creativity. I focus on building modern web applications using React and Tailwind CSS, emphasizing clean, maintainable code and user-friendly design.
-          </p>
-          <p>
-            I am deeply interested in understanding system logic, software architecture, and how technology works behind the scenes to create efficient and scalable solutions. Outside of programming, I also enjoy video editing and digital content creation, where I combine creativity and technical skills to produce engaging visual stories.
-          </p>
-          <p>
-            I am continuously learning, building real-world projects, and seeking opportunities to grow as a Web Developer who can bridge logic and creativity to create impactful digital solutions.
-          </p>
+          {about?.bio_paragraph_1 && <p>{about.bio_paragraph_1}</p>}
+          {about?.bio_paragraph_2 && <p>{about.bio_paragraph_2}</p>}
+          {about?.bio_paragraph_3 && <p>{about.bio_paragraph_3}</p>}
         </motion.div>
 
         {/* Techstack */}

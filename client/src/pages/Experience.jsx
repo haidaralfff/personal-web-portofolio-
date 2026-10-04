@@ -3,14 +3,23 @@ import TimelineItem from "../components/TimelineItem";
 import { GraduationCap, Code, Wrench } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useExperiences } from "../hooks/useExperiences";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const iconMap = {
+  education: <GraduationCap />,
+  work: <Code />,
+};
 
 export default function Experience() {
   const containerRef = useRef(null);
   const progressRef = useRef(null);
+  const { experiences, loading } = useExperiences();
 
   useEffect(() => {
+    if (loading) return;
+
     const ctx = gsap.context(() => {
       // 1. Entrance Title
       gsap.from(".exp-title", {
@@ -62,7 +71,25 @@ export default function Experience() {
 
     }, containerRef);
     return () => ctx.revert();
-  }, []);
+  }, [loading, experiences]);
+
+  if (loading) {
+    return (
+      <section className="min-h-screen bg-ivory-50 dark:bg-ivory-900 pt-24 px-6 relative transition-colors duration-500">
+        <div className="max-w-6xl mx-auto">
+          <div className="animate-pulse space-y-6">
+            <div className="h-4 bg-ivory-200 dark:bg-ivory-700 rounded w-20"></div>
+            <div className="h-12 bg-ivory-200 dark:bg-ivory-700 rounded w-64"></div>
+            <div className="space-y-8 mt-12">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="h-32 bg-ivory-200 dark:bg-ivory-700 rounded-xl"></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section
@@ -99,38 +126,18 @@ export default function Experience() {
           </div>
 
           <div className="space-y-16">
-
-            {/* SMK */}
-            <TimelineItem
-              align="left"
-              icon={<Wrench />}
-              title="SMK Maarif 9 Kebumen"
-              subtitle="Light Vehicle Engineering • 2021 – 2024"
-              description="Studied vehicle systems, mechanics, automotive electronics, and engine diagnostics."
-              skills={["Mechanical", "Engine", "Diagnostics"]}
-            />
-
-            {/* KULIAH */}
-            <TimelineItem
-              align="right"
-              icon={<GraduationCap />}
-              title="Computer Science Student"
-              subtitle="Universitas Putra Bangsa • Semester 4"
-              description="Studying web development, data structures, databases, and building modern applications."
-              skills={["Web Development", "Database", "UI/UX"]}
-              current
-            />
-
-            {/* FREELANCE */}
-            <TimelineItem
-              align="left"
-              icon={<Code />}
-              title="Web Developer"
-              subtitle="2024 - Present"
-              description="Building modern websites and implementing systems."
-              skills={["Fullstack Developer", "React", "Tailwind"]}
-            />
-
+            {experiences.map((exp, index) => (
+              <TimelineItem
+                key={exp.id}
+                align={index % 2 === 0 ? "left" : "right"}
+                icon={iconMap[exp.type] || <Wrench />}
+                title={exp.title}
+                subtitle={`${exp.organization || ''} ${exp.organization && exp.period ? '•' : ''} ${exp.period || ''}`}
+                description={exp.description}
+                skills={exp.skills || []}
+                current={exp.is_current}
+              />
+            ))}
           </div>
         </div>
       </div>

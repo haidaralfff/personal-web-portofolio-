@@ -49,27 +49,27 @@ export const cvData = {
     {
       title: "Burp Suite for Beginner",
       issuer: "Cyber Academy Indonesia",
-      date: "2022",
+      date: "2025",
     },
     {
       title: "Introduction to Information Security",
       issuer: "Cyber Academy Indonesia",
-      date: "2022",
+      date: "2025",
     },
   ],
 
   projects: [
     {
       title: "SIPBANSOS",
-      tech: ["React", "Tailwind CSS", "PostgreSQL"],
+      tech: ["React.js", "Tailwind CSS", "PostgreSQL,Golang"],
       description:
-        "Social assistance information system for managing data, streamlining the process from application to distribution.",
+        "a web application micro erp for managing social assistance data, including user management, data entry, and reporting features.",
     },
     {
-      title: "Brew & Bean",
-      tech: ["Next.js", "Node.js", "MongoDB"],
+      title: "Simple Coffee Shop Website",
+      tech: ["HTML", "CSS", "JavaScript"],
       description:
-        "Digital menu and POS system for a modern coffee shop with an intuitive browsing and checkout experience.",
+        "simple coffee shop website user interface with a modern design",
     },
   ],
 };

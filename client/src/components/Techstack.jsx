@@ -10,7 +10,7 @@ import {
   SiGit,
   SiFigma,
 } from "react-icons/si";
-import LogoLoop from "./reactbits/Logo Loop";
+import { useRef } from "react";
 
 const stacks = [
   { name: "React", icon: SiReact, color: "#61DAFB" },
@@ -42,6 +42,33 @@ const renderTechItem = (tech) => {
 };
 
 export default function Techstack() {
+  const scrollRef = useRef(null);
+  const dragState = useRef({ active: false, startX: 0, startScrollLeft: 0 });
+
+  const startDrag = (e) => {
+    if (e.pointerType !== "mouse") return;
+    const el = scrollRef.current;
+    if (!el) return;
+    dragState.current = {
+      active: true,
+      startX: e.clientX,
+      startScrollLeft: el.scrollLeft,
+    };
+    el.setPointerCapture?.(e.pointerId);
+  };
+
+  const onDrag = (e) => {
+    const el = scrollRef.current;
+    if (!el || !dragState.current.active) return;
+    el.scrollLeft =
+      dragState.current.startScrollLeft - (e.clientX - dragState.current.startX);
+  };
+
+  const endDrag = (e) => {
+    dragState.current.active = false;
+    scrollRef.current?.releasePointerCapture?.(e.pointerId);
+  };
+
   return (
     <section className="min-h-screen bg-ivory-50 dark:bg-ivory-900 pt-24 px-4 sm:px-6 flex items-center transition-colors duration-500">
       <div className="mx-auto max-w-5xl w-full text-center">
@@ -54,19 +81,21 @@ export default function Techstack() {
           Technologies I have worked with
         </p>
 
-        {/* Logo Loop Carousel */}
-        <div className="mt-10">
-          <LogoLoop
-            logos={stacks}
-            speed={80}
-            direction="left"
-            logoHeight={80}
-            gap={56}
-            pauseOnHover={true}
-            scaleOnHover={true}
-            renderItem={renderTechItem}
-            ariaLabel="Technology stack carousel"
-          />
+        {/* Draggable tech strip */}
+        <div
+          ref={scrollRef}
+          className="mt-10 overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing select-none"
+          onPointerDown={startDrag}
+          onPointerMove={onDrag}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
+          onDragStart={(e) => e.preventDefault()}
+        >
+          <div className="flex items-start justify-start gap-14 w-max py-2">
+            {stacks.map((tech) => (
+              <div key={tech.name}>{renderTechItem(tech)}</div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

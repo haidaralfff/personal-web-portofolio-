@@ -2,7 +2,6 @@ import React, { Suspense, lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import AuroraBackground from "./components/reactbits/AuroraBackground";
 import SplashScreen from "./components/SplashScreen";
-import ThemeToggle from "./components/ThemeToggle";
 
 import Navbar from "./components/layouts/Navbar";
 import Footer from "./components/Footer";
@@ -18,7 +17,6 @@ const Experience = lazy(() => import("./pages/Experience"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Services = lazy(() => import("./pages/Services"));
 const Certifications = lazy(() => import("./pages/Certifications"));
-const FAQ = lazy(() => import("./pages/FAQ"));
 
 function LandingPage() {
   return (
@@ -35,7 +33,6 @@ function LandingPage() {
         <section id="experience"><Experience /></section>
         <section id="certifications"><Certifications /></section>
         <section id="projects"><Project /></section>
-        <section id="faq"><FAQ /></section>
         <section id="contact"><Contact /></section>
       </Suspense>
 
@@ -48,7 +45,6 @@ function App() {
   return (
     <>
       <SplashScreen />
-      <ThemeToggle />
       <AuroraBackground>
         <Routes>
           {/* Public Landing Page */}

@@ -3,50 +3,18 @@ import { ExternalLink, Github, X, ArrowUpRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import CoffeImg from "../portofolio/coffe.png";
-import SipbansosImg from "../portofolio/sipbansos.png";
+import { useProjects } from "../hooks/useProjects"; 
 
 gsap.registerPlugin(ScrollTrigger);
-
-const projects = [
-  {
-    id: 1,
-    title: "SIPBANSOS",
-    category: "Social Assistance",
-    tech: ["Reactjs", "Tailwind CSS", "Go", "PostgreSQL"],
-    status: "Completed",
-    image: SipbansosImg,
-    description:
-      "Sistem Informasi Bantuan Sosial — a platform for managing social assistance data, streamlining the process from application to distribution with a clean, accessible interface.",
-    features: [
-      "Data Management",
-      "Application Tracking",
-      "Secure Auth",
-      "Responsive Design",
-    ],
-    github: "https://github.com/haidaralfff/SIPBANSOS",
-    live: "https://sipbansos.vercel.app/",
-  },
-  {
-    id: 2,
-    title: "Simple Coffee Landing Page",
-    category: "Landing Page",
-    tech: ["HTML", "CSS", "JavaScript", "AOS Library"],
-    status: "Completed",
-    image: CoffeImg,
-    description:
-      "Digital menu and POS system for a modern coffee shop. Built to handle the flow from browsing to checkout with an interface that feels as warm as the coffee it serves.",
-    features: ["Navigation", "Section", "Responsive Design", "Animations"],
-    github: "https://github.com/haidaralfff/simple-coffeshop",
-    live: "https://simple-coffeshop.vercel.app/",
-  },
-];
 
 export default function Project() {
   const [selectedProject, setSelectedProject] = useState(null);
   const containerRef = useRef(null);
+  const { projects, loading } = useProjects();
 
   useEffect(() => {
+    if (loading) return;
+
     const ctx = gsap.context(() => {
       gsap.from(".proj-header", {
         scrollTrigger: {
@@ -88,7 +56,7 @@ export default function Project() {
       });
     }, containerRef);
     return () => ctx.revert();
-  }, []);
+  }, [loading, projects]);
 
   useEffect(() => {
     if (selectedProject) {
@@ -100,6 +68,31 @@ export default function Project() {
       document.body.style.overflow = "unset";
     };
   }, [selectedProject]);
+
+  const hideBrokenImage = (e) => {
+    e.currentTarget.style.display = 'none';
+  };
+
+  if (loading) {
+    return (
+      <section className="bg-ivory-50 dark:bg-ivory-900 text-ivory-800 dark:text-ivory-100 pt-32 pb-24 relative transition-colors duration-500">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="animate-pulse space-y-8">
+            <div className="h-4 bg-ivory-200 dark:bg-ivory-700 rounded w-32"></div>
+            <div className="h-16 bg-ivory-200 dark:bg-ivory-700 rounded w-48"></div>
+            <div className="space-y-32">
+              {[1, 2].map((i) => (
+                <div key={i} className="space-y-6">
+                  <div className="h-64 bg-ivory-200 dark:bg-ivory-700 rounded-2xl"></div>
+                  <div className="h-4 bg-ivory-200 dark:bg-ivory-700 rounded w-3/4"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section
@@ -142,11 +135,14 @@ export default function Project() {
                 className="proj-image relative w-full aspect-[16/9] rounded-2xl overflow-hidden cursor-pointer mb-8 md:mb-12 border border-ivory-200 dark:border-ivory-700"
                 onClick={() => setSelectedProject(project)}
               >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                />
+                {project.image && (
+                  <img
+                    src={project.image}
+                    onError={hideBrokenImage}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                )}
                 <div className="absolute inset-0 bg-ivory-800/0 group-hover:bg-ivory-800/10 dark:group-hover:bg-white/5 transition-colors duration-500" />
 
                 {/* View overlay */}
@@ -168,7 +164,7 @@ export default function Project() {
                 <div className="md:col-span-5 flex flex-col gap-6">
                   {/* Tech stack */}
                   <div className="flex flex-wrap gap-2">
-                    {project.tech.map((t, i) => (
+                    {(project.tech_stack || []).map((t, i) => (
                       <span
                         key={i}
                         className="font-mono text-xs tracking-wider text-amber-700 dark:text-amber-400 bg-amber-700/10 dark:bg-amber-400/10 px-3 py-1.5 rounded-md border border-amber-700/20 dark:border-amber-400/20 transition-colors duration-500"
@@ -180,20 +176,24 @@ export default function Project() {
 
                   {/* Links */}
                   <div className="flex items-center gap-6">
-                    <a
-                      href={project.github}
-                      className="flex items-center gap-2 font-mono text-sm text-ivory-400 dark:text-ivory-500 hover:text-ivory-800 dark:hover:text-ivory-100 transition-colors"
-                    >
-                      <Github size={16} />
-                      Code
-                    </a>
-                    <a
-                      href={project.live}
-                      className="flex items-center gap-2 font-mono text-sm text-ivory-400 dark:text-ivory-500 hover:text-ivory-800 dark:hover:text-ivory-100 transition-colors"
-                    >
-                      <ExternalLink size={16} />
-                      Live
-                    </a>
+                    {project.github_url && (
+                      <a
+                        href={project.github_url}
+                        className="flex items-center gap-2 font-mono text-sm text-ivory-400 dark:text-ivory-500 hover:text-ivory-800 dark:hover:text-ivory-100 transition-colors"
+                      >
+                        <Github size={16} />
+                        Code
+                      </a>
+                    )}
+                    {project.live_url && (
+                      <a
+                        href={project.live_url}
+                        className="flex items-center gap-2 font-mono text-sm text-ivory-400 dark:text-ivory-500 hover:text-ivory-800 dark:hover:text-ivory-100 transition-colors"
+                      >
+                        <ExternalLink size={16} />
+                        Live
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -236,17 +236,20 @@ export default function Project() {
 
               {/* Banner */}
               <div className="relative w-full aspect-video">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="w-full h-full object-cover"
-                />
+                {selectedProject.image && (
+                  <img
+                    src={selectedProject.image}
+                    onError={hideBrokenImage}
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover"
+                  />
+                )}
               </div>
 
               {/* Content */}
               <div className="p-5 sm:p-8 md:p-10">
                 <span className="inline-block font-mono text-xs tracking-mega text-amber-700 dark:text-amber-400 uppercase mb-4 transition-colors duration-500">
-                  {selectedProject.status}
+                  {selectedProject.category}
                 </span>
 
                 <h2 className="font-display text-4xl md:text-5xl leading-[0.95] tracking-tight text-ivory-800 dark:text-ivory-100 mb-6">
@@ -258,7 +261,7 @@ export default function Project() {
                 </p>
 
                 {/* Features */}
-                {selectedProject.features && (
+                {selectedProject.features && selectedProject.features.length > 0 && (
                   <div className="mb-10">
                     <h4 className="font-mono text-xs tracking-mega text-ivory-400 dark:text-ivory-500 uppercase mb-4">
                       What it does
@@ -283,7 +286,7 @@ export default function Project() {
                     Built with
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {selectedProject.tech.map((t, i) => (
+                    {(selectedProject.tech_stack || []).map((t, i) => (
                       <span
                         key={i}
                         className="font-mono text-xs tracking-wider text-amber-700 dark:text-amber-400 bg-amber-700/10 dark:bg-amber-400/10 px-3 py-1.5 rounded-md border border-amber-700/20 dark:border-amber-400/20 transition-colors duration-500"
@@ -296,22 +299,26 @@ export default function Project() {
 
                 {/* Links */}
                 <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-ivory-200 dark:border-ivory-700">
-                  <a
-                    href={selectedProject.live}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center justify-center gap-2 flex-1 px-6 py-3 bg-ivory-800 dark:bg-ivory-100 text-ivory-50 dark:text-ivory-900 font-mono text-sm tracking-wide rounded-lg hover:bg-ivory-700 dark:hover:bg-ivory-200 transition-colors"
-                  >
-                    Visit Live <ExternalLink size={16} />
-                  </a>
-                  <a
-                    href={selectedProject.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center justify-center gap-2 flex-1 px-6 py-3 border border-ivory-200 dark:border-ivory-700 text-ivory-600 dark:text-ivory-400 font-mono text-sm tracking-wide rounded-lg hover:border-ivory-400 dark:hover:border-ivory-500 transition-colors"
-                  >
-                    Source Code <Github size={16} />
-                  </a>
+                  {selectedProject.live_url && (
+                    <a
+                      href={selectedProject.live_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center justify-center gap-2 flex-1 px-6 py-3 bg-ivory-800 dark:bg-ivory-100 text-ivory-50 dark:text-ivory-900 font-mono text-sm tracking-wide rounded-lg hover:bg-ivory-700 dark:hover:bg-ivory-200 transition-colors"
+                    >
+                      Visit Live <ExternalLink size={16} />
+                    </a>
+                  )}
+                  {selectedProject.github_url && (
+                    <a
+                      href={selectedProject.github_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center justify-center gap-2 flex-1 px-6 py-3 border border-ivory-200 dark:border-ivory-700 text-ivory-600 dark:text-ivory-400 font-mono text-sm tracking-wide rounded-lg hover:border-ivory-400 dark:hover:border-ivory-500 transition-colors"
+                    >
+                      Source Code <Github size={16} />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>
