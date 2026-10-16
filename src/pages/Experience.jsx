@@ -69,7 +69,7 @@ export default function Experience() {
 
   if (loading) {
     return (
-      <section className="min-h-screen bg-ivory-50 pt-24 px-6 relative transition-colors duration-500">
+      <section className="bg-ivory-50 pt-20 px-6 relative transition-colors duration-500">
         <div className="max-w-6xl mx-auto">
           <div className="animate-pulse space-y-6">
             <div className="h-4 bg-ivory-200 rounded w-20"></div>
@@ -88,7 +88,7 @@ export default function Experience() {
   return (
     <section
       ref={containerRef}
-      className="min-h-screen bg-ivory-50 pt-24 px-6 relative transition-colors duration-500"
+      className="bg-ivory-50 pt-20 px-6 relative transition-colors duration-500"
     >
       <div className="max-w-6xl mx-auto">
 

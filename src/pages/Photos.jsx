@@ -75,11 +75,11 @@ export default function Photos() {
   return (
     <section
       ref={containerRef}
-      className="bg-ivory-50 pt-24 pb-20 px-4 sm:px-6 relative transition-colors duration-500"
+      className="bg-ivory-50 pt-20 pb-16 px-4 sm:px-6 relative transition-colors duration-500"
     >
       <div className="mx-auto max-w-5xl relative z-10">
         {/* Header */}
-        <div className="photo-header mb-16 md:mb-24">
+        <div className="photo-header mb-10 md:mb-14">
           <p className="font-mono text-xs tracking-mega uppercase text-blue-400 mb-4">
             Gallery
           </p>

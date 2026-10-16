@@ -28,7 +28,7 @@ export default function About() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-ivory-50 px-6 py-28 relative overflow-hidden flex flex-col justify-center transition-colors duration-500">
+      <main className="bg-ivory-50 px-6 py-20 relative overflow-hidden flex flex-col justify-center transition-colors duration-500">
         <div className="mx-auto max-w-4xl w-full relative z-10">
           <div className="animate-pulse space-y-6">
             <div className="h-4 bg-ivory-200 rounded w-20"></div>
@@ -45,7 +45,7 @@ export default function About() {
   }
 
   return (
-    <main className="min-h-screen bg-ivory-50 px-6 py-28 relative overflow-hidden flex flex-col justify-center transition-colors duration-500">
+    <main className="bg-ivory-50 px-6 py-20 relative overflow-hidden flex flex-col justify-center transition-colors duration-500">
       <motion.div
         className="mx-auto max-w-4xl w-full relative z-10"
         variants={containerVariants}

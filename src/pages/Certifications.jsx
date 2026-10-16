@@ -97,11 +97,11 @@ export default function Certifications() {
   }, []);
 
   return (
-    <section ref={containerRef} className="min-h-screen bg-ivory-50 pt-24 pb-20 px-4 sm:px-6 relative overflow-hidden transition-colors duration-500">
+    <section ref={containerRef} className="bg-ivory-50 pt-20 pb-16 px-4 sm:px-6 relative overflow-hidden transition-colors duration-500">
       <div className="mx-auto w-full max-w-5xl relative z-10">
 
         {/* Header */}
-        <div className="mb-16 md:mb-24 flex flex-col items-center">
+        <div className="mb-10 md:mb-14 flex flex-col items-center">
           <p className="cert-header font-mono text-xs tracking-mega uppercase text-blue-400 mb-4">
             Certifications
           </p>

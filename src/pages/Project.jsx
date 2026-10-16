@@ -75,7 +75,7 @@ export default function Project() {
 
   if (loading) {
     return (
-      <section className="bg-ivory-50 text-ivory-800 pt-32 pb-24 relative transition-colors duration-500">
+      <section className="bg-ivory-50 text-ivory-800 pt-20 pb-16 relative transition-colors duration-500">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="animate-pulse space-y-8">
             <div className="h-4 bg-ivory-200 rounded w-32"></div>
@@ -97,11 +97,11 @@ export default function Project() {
   return (
     <section
       ref={containerRef}
-      className="bg-ivory-50 text-ivory-800 pt-32 pb-24 relative transition-colors duration-500"
+      className="bg-ivory-50 text-ivory-800 pt-20 pb-16 relative transition-colors duration-500"
     >
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-20 md:mb-28">
+        <div className="mb-10 md:mb-14">
           <span className="proj-header font-mono text-xs tracking-mega text-amber-700 uppercase block mb-4 transition-colors duration-500">
             Selected Works
           </span>

@@ -140,11 +140,11 @@ export default function Contact() {
   };
 
   return (
-    <section ref={containerRef} className="min-h-screen bg-ivory-50 pt-28 pb-20 sm:pb-32 px-6 flex items-center relative transition-colors duration-500">
+    <section ref={containerRef} className="bg-ivory-50 pt-20 pb-16 px-6 flex items-center relative transition-colors duration-500">
       <div className="mx-auto w-full max-w-5xl relative z-10">
         
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <p className="contact-header font-mono text-xs tracking-mega uppercase text-blue-400 mb-4">
             Contact
           </p>
