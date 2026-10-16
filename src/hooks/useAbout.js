@@ -6,10 +6,6 @@ const ABOUT = {
 
   bio_paragraph_2:
     'Saya sangat tertarik untuk memahami logika sistem, arsitektur perangkat lunak, serta teknologi yang bekerja di balik aplikasi modern agar dapat membangun solusi yang efisien, skalabel, dan dapat diandalkan. Saya terus meningkatkan kemampuan melalui proyek-proyek nyata, mempelajari teknologi baru, dan menerapkan konsep pengembangan perangkat lunak untuk menyelesaikan permasalahan di dunia nyata.',
-
-  bio_paragraph_3:
-    'Di luar pemrograman, saya juga memiliki ketertarikan pada video editing dan digital content creation, di mana saya menggabungkan kemampuan teknis dan kreativitas untuk menghasilkan karya visual yang menarik.',
-
   tech_stack: [
     'React',
     'Tailwind CSS',

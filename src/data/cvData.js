@@ -71,6 +71,11 @@ export const cvData = {
       issuer: "Dicoding",
       date: "2026",
     },
+    {
+      title: "Belajar Dasar Pemrograman JavaScript",
+      issuer: "Dicoding",
+      date: "2026",
+    },
   ],
 
   projects: [

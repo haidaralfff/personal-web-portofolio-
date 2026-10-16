@@ -66,7 +66,7 @@ export default function Home() {
 
             {/* BADGE */}
             <div className="hero-badge mt-8 flex items-center justify-center lg:justify-start gap-2.5 text-2xl sm:text-3xl font-normal text-ivory-800 transition-colors duration-500">
-              <span className="font-['Fjalla_One']">Fullstack Developer</span>
+              <span className="font-['Fjalla_One']"> Junior Fullstack Developer</span>
             </div>
 
             {/* BUTTONS */}

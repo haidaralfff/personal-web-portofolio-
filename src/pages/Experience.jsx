@@ -14,7 +14,6 @@ const iconMap = {
 
 export default function Experience() {
   const containerRef = useRef(null);
-  const progressRef = useRef(null);
   const { experiences, loading } = useExperiences();
 
   useEffect(() => {
@@ -44,12 +43,7 @@ export default function Experience() {
             trigger: containerRef.current,
             start: "top 80%",
             end: "bottom 20%",
-            scrub: true,
-            onUpdate: (self) => {
-              if (progressRef.current) {
-                progressRef.current.textContent = Math.round(self.progress * 100) + "%";
-              }
-            }
+            scrub: true
           }
         }
       );
@@ -106,14 +100,6 @@ export default function Experience() {
           <h1 className="exp-title font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 leading-[0.95] tracking-tight">
             Experience<span className="text-blue-500">.</span>
           </h1>
-        </div>
-
-        {/* SCROLL PROGRESS */}
-        <div className="fixed right-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-2 text-xs text-ivory-300">
-          <span>Scroll</span>
-          <span ref={progressRef} className="text-blue-500 font-medium">
-            0%
-          </span>
         </div>
 
         <div className="relative">

@@ -7,7 +7,7 @@ import * as THREE from 'three';
 import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from '@react-three/rapier';
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 
-import profil from '../../assets/profil.jpeg';
+import profil from '../../assets/profil2.JPG';
 import lanyardSVG from '../../assets/lanyard.svg';
 
 extend({ MeshLineGeometry, MeshLineMaterial });
@@ -201,13 +201,13 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, isTablet = false,
           </Text>
           <Text
             position={[0, -0.98, 0.011]}
-            fontSize={0.08}
+            fontSize={0.07}
             color="#64748b"
             anchorX="center"
             anchorY="middle"
             letterSpacing={0.25}
           >
-            FRONTEND DEVELOPER
+            JUNIOR FULLSTACK DEVELOPER
           </Text>
         </RigidBody>
       </group>
