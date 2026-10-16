@@ -1,0 +1,103 @@
+import {
+  SiReact,
+  SiTailwindcss,
+  SiJavascript,
+  SiNodedotjs,
+  SiExpress,
+  SiPostgresql,
+  SiSupabase,
+  SiXampp,
+  SiGit,
+  SiFigma,
+} from "react-icons/si";
+import { useRef } from "react";
+
+const stacks = [
+  { name: "React", icon: SiReact, color: "#61DAFB" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+  { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+  { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
+  { name: "Express", icon: SiExpress, color: "#000000" },
+  { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+  { name: "Supabase", icon: SiSupabase, color: "#3ECF8E" },
+  { name: "XAMPP", icon: SiXampp, color: "#FB7A24" },
+  { name: "Git", icon: SiGit, color: "#F05032" },
+  { name: "Figma", icon: SiFigma, color: "#F24E1E" },
+];
+
+const renderTechItem = (tech) => {
+  const Icon = tech.icon;
+  return (
+    <div className="flex flex-col items-center gap-2 sm:gap-3 group cursor-pointer">
+      <Icon
+        size={40}
+        style={{ color: tech.color }}
+        className="opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 drop-shadow-[0_0_8px_rgba(255,255,255,0.1)] group-hover:drop-shadow-[0_0_12px_currentColor]"
+      />
+      <span className="text-xs sm:text-sm text-ivory-400 group-hover:text-ivory-800 font-medium transition-colors">
+        {tech.name}
+      </span>
+    </div>
+  );
+};
+
+export default function Techstack() {
+  const scrollRef = useRef(null);
+  const dragState = useRef({ active: false, startX: 0, startScrollLeft: 0 });
+
+  const startDrag = (e) => {
+    if (e.pointerType !== "mouse") return;
+    const el = scrollRef.current;
+    if (!el) return;
+    dragState.current = {
+      active: true,
+      startX: e.clientX,
+      startScrollLeft: el.scrollLeft,
+    };
+    el.setPointerCapture?.(e.pointerId);
+  };
+
+  const onDrag = (e) => {
+    const el = scrollRef.current;
+    if (!el || !dragState.current.active) return;
+    el.scrollLeft =
+      dragState.current.startScrollLeft - (e.clientX - dragState.current.startX);
+  };
+
+  const endDrag = (e) => {
+    dragState.current.active = false;
+    scrollRef.current?.releasePointerCapture?.(e.pointerId);
+  };
+
+  return (
+    <section className="min-h-screen bg-ivory-50 pt-24 px-4 sm:px-6 flex items-center transition-colors duration-500">
+      <div className="mx-auto max-w-5xl w-full text-center">
+        {/* Title */}
+        <h1 className="font-display text-4xl sm:text-5xl font-normal text-ivory-800 transition-colors duration-500">
+          Techstack<span className="text-blue-500">.</span>
+        </h1>
+
+        <p className="mt-4 font-mono text-xs sm:text-sm text-ivory-400 transition-colors duration-500">
+          Technologies I have worked with
+        </p>
+
+        {/* Draggable tech strip */}
+        <div
+          ref={scrollRef}
+          className="mt-10 overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing select-none"
+          onPointerDown={startDrag}
+          onPointerMove={onDrag}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
+          onDragStart={(e) => e.preventDefault()}
+        >
+          <div className="flex items-start justify-start gap-14 w-max py-2">
+            {stacks.map((tech) => (
+              <div key={tech.name}>{renderTechItem(tech)}</div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
