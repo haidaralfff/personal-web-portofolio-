@@ -11,7 +11,7 @@ const certifications = [
     id: 1,
     title: "Burp Suite for Beginner",
     issuer: "Cyber Academy Indonesia",
-    date: "2022",
+    date: "2025",
     link: "https://www.cyberacademy.id/certificate/BSFB01106252462",
     file: "/certif/Certificate-of-Completion-Burp-Suite-for-Beginner.pdf",
     color: "from-blue-600 to-blue-400"
@@ -20,7 +20,7 @@ const certifications = [
     id: 2,
     title: "Introduction to Information Security",
     issuer: "Cyber Academy Indonesia",
-    date: "2022",
+    date: "2025",
     link: "https://www.cyberacademy.id/certificate/PKMI01105251883",
     file: "/certif/Certificate-of-Completion-Introduction-to-Information-Security.pdf",
     color: "from-blue-500 to-blue-300"
