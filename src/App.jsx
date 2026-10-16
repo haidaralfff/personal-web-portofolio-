@@ -15,7 +15,6 @@ const Photos = lazy(() => import("./pages/Photos"));
 const Project = lazy(() => import("./pages/Project"));
 const Experience = lazy(() => import("./pages/Experience"));
 const Contact = lazy(() => import("./pages/Contact"));
-const Services = lazy(() => import("./pages/Services"));
 const Certifications = lazy(() => import("./pages/Certifications"));
 
 function LandingPage() {
@@ -29,7 +28,6 @@ function LandingPage() {
       <Suspense fallback={<div className="min-h-screen bg-transparent" />}>
         <section id="about"><About /></section>
         <section id="photos"><Photos /></section>
-        <section id="services"><Services /></section>
         <section id="experience"><Experience /></section>
         <section id="certifications"><Certifications /></section>
         <section id="projects"><Project /></section>

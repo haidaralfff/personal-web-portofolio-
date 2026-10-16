@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Home, User, Image, Briefcase, Folder, Phone, Layers } from "lucide-react";
+import { Menu, X, Home, User, Image, Briefcase, Folder, Phone } from "lucide-react";
 
 const navItems = [
   { icon: Home, label: "Home", href: "#home" },
   { icon: User, label: "About", href: "#about" },
   { icon: Image, label: "Gallery", href: "#photos" },
-  { icon: Layers, label: "Services", href: "#services" },
   { icon: Briefcase, label: "Experience", href: "#experience" },
   { icon: Folder, label: "Projects", href: "#projects" },
   { icon: Phone, label: "Contact", href: "#contact" },
