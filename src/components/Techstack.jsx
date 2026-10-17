@@ -78,7 +78,7 @@ export default function Techstack() {
         </h1>
 
         <p className="mt-4 font-mono text-xs sm:text-sm text-ivory-400 transition-colors duration-500">
-          Technologies I have worked with
+          Alat yang saya pakai buat bikin web dan aplikasi.
         </p>
 
         {/* Draggable tech strip */}

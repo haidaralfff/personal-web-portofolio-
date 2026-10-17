@@ -103,10 +103,10 @@ export default function Project() {
         {/* Header */}
         <div className="mb-10 md:mb-14">
           <span className="proj-header font-mono text-xs tracking-mega text-amber-700 uppercase block mb-4 transition-colors duration-500">
-            Selected Works
+            Karya Pilihan
           </span>
           <h2 className="proj-header font-display text-5xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tight text-ivory-800">
-            Work
+            Proyek
           </h2>
         </div>
 
@@ -148,7 +148,7 @@ export default function Project() {
                 {/* View overlay */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span className="flex items-center gap-2 bg-ivory-800 text-ivory-50 px-6 py-3 rounded-full font-mono text-sm tracking-wide transition-colors duration-500">
-                    View Project <ArrowUpRight size={16} />
+                    Lihat Proyek <ArrowUpRight size={16} />
                   </span>
                 </div>
               </div>
@@ -182,7 +182,7 @@ export default function Project() {
                         className="flex items-center gap-2 font-mono text-sm text-ivory-400 hover:text-ivory-800 transition-colors"
                       >
                         <Github size={16} />
-                        Code
+                        Kode
                       </a>
                     )}
                     {project.live_url && (
@@ -191,7 +191,7 @@ export default function Project() {
                         className="flex items-center gap-2 font-mono text-sm text-ivory-400 hover:text-ivory-800 transition-colors"
                       >
                         <ExternalLink size={16} />
-                        Live
+                        Situs
                       </a>
                     )}
                   </div>
@@ -224,7 +224,7 @@ export default function Project() {
               {/* Sticky header */}
               <div className="sticky top-0 z-10 flex items-center justify-between p-6 bg-ivory-50/90 backdrop-blur-sm border-b border-ivory-200">
                 <span className="font-mono text-xs tracking-mega text-ivory-400 uppercase">
-                  Project Detail
+                  Detail Proyek
                 </span>
                 <button
                   onClick={() => setSelectedProject(null)}
@@ -264,7 +264,7 @@ export default function Project() {
                 {selectedProject.features && selectedProject.features.length > 0 && (
                   <div className="mb-10">
                     <h4 className="font-mono text-xs tracking-mega text-ivory-400 uppercase mb-4">
-                      What it does
+                      Fiturnya
                     </h4>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {selectedProject.features.map((feature, i) => (
@@ -283,7 +283,7 @@ export default function Project() {
                 {/* Tech */}
                 <div className="mb-10">
                   <h4 className="font-mono text-xs tracking-mega text-ivory-400 uppercase mb-4">
-                    Built with
+                    Dibikin Pakai
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {(selectedProject.tech_stack || []).map((t, i) => (
@@ -306,7 +306,7 @@ export default function Project() {
                       rel="noreferrer"
                       className="flex items-center justify-center gap-2 flex-1 px-6 py-3 bg-ivory-800 text-ivory-50 font-mono text-sm tracking-wide rounded-lg hover:bg-ivory-700 transition-colors"
                     >
-                      Visit Live <ExternalLink size={16} />
+                      Kunjungi Situs <ExternalLink size={16} />
                     </a>
                   )}
                   {selectedProject.github_url && (
@@ -316,7 +316,7 @@ export default function Project() {
                       rel="noreferrer"
                       className="flex items-center justify-center gap-2 flex-1 px-6 py-3 border border-ivory-200 text-ivory-600 font-mono text-sm tracking-wide rounded-lg hover:border-ivory-400 transition-colors"
                     >
-                      Source Code <Github size={16} />
+                      Kode Sumber <Github size={16} />
                     </a>
                   )}
                 </div>

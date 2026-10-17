@@ -46,7 +46,7 @@ export default function TimelineItem({
             {/* CURRENT BADGE */}
             {current && (
               <span className="font-mono text-[10px] px-2 py-1 rounded-full bg-blue-50 text-blue-600 border border-blue-200 transition-colors duration-500">
-                Current
+                Sekarang
               </span>
             )}
           </div>

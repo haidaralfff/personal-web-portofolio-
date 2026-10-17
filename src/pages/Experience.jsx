@@ -95,10 +95,10 @@ export default function Experience() {
         {/* TITLE */}
         <div className="mb-10">
           <p className="font-mono text-xs tracking-mega uppercase text-blue-400 mb-4">
-            Journey
+            Pengalaman
           </p>
           <h1 className="exp-title font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 leading-[0.95] tracking-tight">
-            Experience<span className="text-blue-500">.</span>
+            Perjalanan<span className="text-blue-500">.</span>
           </h1>
         </div>
 

@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Home, User, Image, Briefcase, Folder, Phone } from "lucide-react";
 
 const navItems = [
-  { icon: Home, label: "Home", href: "#home" },
-  { icon: User, label: "About", href: "#about" },
-  { icon: Image, label: "Gallery", href: "#photos" },
-  { icon: Briefcase, label: "Experience", href: "#experience" },
-  { icon: Folder, label: "Projects", href: "#projects" },
-  { icon: Phone, label: "Contact", href: "#contact" },
+  { icon: Home, label: "Beranda", href: "#home" },
+  { icon: User, label: "Tentang", href: "#about" },
+  { icon: Image, label: "Galeri", href: "#photos" },
+  { icon: Briefcase, label: "Pengalaman", href: "#experience" },
+  { icon: Folder, label: "Proyek", href: "#projects" },
+  { icon: Phone, label: "Kontak", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -59,7 +59,7 @@ export default function Navbar() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 -mr-2 text-ivory-600 hover:text-ivory-900 transition-colors"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-label={isOpen ? "Tutup menu" : "Buka menu"}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

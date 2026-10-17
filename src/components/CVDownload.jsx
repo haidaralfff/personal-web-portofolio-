@@ -19,7 +19,7 @@ export default function CVDownload() {
       className="inline-flex items-center gap-2.5 rounded-lg border border-ivory-200 bg-white/60 px-6 py-3.5 text-sm font-semibold text-ivory-700 hover:bg-white hover:border-ivory-300 transition-all duration-200"
     >
       <Download size={16} />
-      Download CV
+      Unduh CV
     </motion.button>
   );
 }

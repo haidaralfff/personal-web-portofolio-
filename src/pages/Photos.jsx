@@ -23,7 +23,7 @@ const photos = [
     id: 3,
     src: "/photos/me3.png",
     alt: "Haidar portrait",
-    caption: "Me in Real Life",
+    caption: "Foto asli saya",
   },
 ];
 
@@ -81,14 +81,14 @@ export default function Photos() {
         {/* Header */}
         <div className="photo-header mb-10 md:mb-14">
           <p className="font-mono text-xs tracking-mega uppercase text-blue-400 mb-4">
-            Gallery
+            Galeri
           </p>
           <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 leading-[0.95] tracking-tight">
-            Personal<span className="text-blue-500">.</span>
+            Foto Saya<span className="text-blue-500">.</span>
           </h1>
           <div className="w-12 h-[2px] bg-blue-500 mt-6" />
           <p className="mt-6 text-ivory-400 text-base max-w-lg">
-            A collection of portraits and moments that capture a little more of who I am.
+            Beberapa foto dari momen saya, dari acara tech sampai keseharian.
           </p>
         </div>
 

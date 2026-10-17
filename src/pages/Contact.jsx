@@ -96,13 +96,13 @@ export default function Contact() {
       const now = new Date().getTime();
       const diffInMinutes = (now - parseInt(lastSent)) / (1000 * 60);
       if (diffInMinutes < 60) {
-        setStatus({ type: "error", message: `Please wait ${Math.ceil(60 - diffInMinutes)} minutes before sending another message.` });
+        setStatus({ type: "error", message: `Tunggu ${Math.ceil(60 - diffInMinutes)} menit lagi sebelum kirim pesan baru.` });
         return;
       }
     }
 
     if (!form.name || !form.email || !form.message) {
-      setStatus({ type: "error", message: "Please fill in all required fields." });
+      setStatus({ type: "error", message: "Isi dulu kolom yang wajib diisi ya." });
       return;
     }
 
@@ -124,7 +124,7 @@ export default function Contact() {
       
       setStatus({
         type: "success",
-        message: "Thank you! Your message has been sent successfully.",
+        message: "Makasih! Pesannya udah kekirim.",
       });
       setForm({ name: "", email: "", subject: "", message: "" });
       localStorage.setItem("lastEmailSent", new Date().getTime().toString());
@@ -132,7 +132,7 @@ export default function Contact() {
       console.error("EmailJS Error:", error);
       setStatus({
         type: "error",
-        message: "Failed to send message. Please try again or email me directly.",
+        message: "Pesan gagal terkirim. Coba lagi atau email langsung aja.",
       });
     } finally {
       setIsSubmitting(false);
@@ -146,13 +146,13 @@ export default function Contact() {
         {/* Header */}
         <div className="text-center mb-10">
           <p className="contact-header font-mono text-xs tracking-mega uppercase text-blue-400 mb-4">
-            Contact
+            Kontak
           </p>
           <h1 className="contact-header font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 leading-[0.95] tracking-tight">
-            Get in Touch<span className="text-blue-500">.</span>
+            Ngobrol Yuk<span className="text-blue-500">.</span>
           </h1>
           <p className="contact-header mt-6 text-ivory-400 text-base max-w-md mx-auto">
-            Have a project in mind, want to collaborate, or just say hello? Drop me a message!
+            Punya ide atau mau kerja bareng? Hubungi saya lewat email atau sosmed di bawah.
           </p>
         </div>
 
@@ -162,9 +162,9 @@ export default function Contact() {
           {/* Left Column: Social Links */}
           <div className="contact-left lg:col-span-5 space-y-6">
             <div className="rounded-2xl border border-ivory-200 bg-white/60 backdrop-blur-sm p-6">
-              <h2 className="font-display text-2xl font-normal text-ivory-800 mb-4">Get in touch</h2>
+              <h2 className="font-display text-2xl font-normal text-ivory-800 mb-4">Ngobrol Sama Saya</h2>
               <p className="text-ivory-400 text-sm mb-6 leading-relaxed">
-                Connect with me on social platforms or send an email directly. I usually respond within 24 hours.
+                Ngobrol, diskusi, atau bikin sesuatu bareng yang bisa ngefek ke banyak orang.
               </p>
               
               <div className="space-y-3">
@@ -191,7 +191,7 @@ export default function Contact() {
           {/* Right Column: Contact Form */}
           <div className="contact-right lg:col-span-7">
             <div className="rounded-2xl border border-ivory-200 bg-white/60 backdrop-blur-md p-6 md:p-8">
-              <h2 className="font-display text-2xl font-normal text-ivory-800 mb-6">Send Message</h2>
+              <h2 className="font-display text-2xl font-normal text-ivory-800 mb-6">Kirim Pesan</h2>
               
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Alert Status */}
@@ -216,14 +216,14 @@ export default function Contact() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block font-mono text-xs tracking-wider text-ivory-400 uppercase mb-2">
-                      Name <span className="text-blue-500">*</span>
+                      Nama <span className="text-blue-500">*</span>
                     </label>
                     <input
                       type="text"
                       name="name"
                       value={form.name}
                       onChange={handleChange}
-                      placeholder="Your Name"
+                      placeholder="Nama kamu"
                       className="w-full px-4 py-3 bg-ivory-100/50 border border-ivory-200 rounded-xl text-sm text-ivory-800 placeholder-ivory-300 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white/80 transition-all duration-300"
                       required
                     />
@@ -237,7 +237,7 @@ export default function Contact() {
                       name="email"
                       value={form.email}
                       onChange={handleChange}
-                      placeholder="name@example.com"
+                      placeholder="nama@email.com"
                       className="w-full px-4 py-3 bg-ivory-100/50 border border-ivory-200 rounded-xl text-sm text-ivory-800 placeholder-ivory-300 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white/80 transition-all duration-300"
                       required
                     />
@@ -247,14 +247,14 @@ export default function Contact() {
                 {/* Subject */}
                 <div>
                   <label className="block font-mono text-xs tracking-wider text-ivory-400 uppercase mb-2">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    name="subject"
-                    value={form.subject}
-                    onChange={handleChange}
-                    placeholder="Feedback / Collaboration / Hello"
+                      Subjek
+                    </label>
+                    <input
+                      type="text"
+                      name="subject"
+                      value={form.subject}
+                      onChange={handleChange}
+                      placeholder="Saran / Kolaborasi / Halo"
                     className="w-full px-4 py-3 bg-ivory-100/50 border border-ivory-200 rounded-xl text-sm text-ivory-800 placeholder-ivory-300 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white/80 transition-all duration-300"
                   />
                 </div>
@@ -262,14 +262,14 @@ export default function Contact() {
                 {/* Message */}
                 <div>
                   <label className="block font-mono text-xs tracking-wider text-ivory-400 uppercase mb-2">
-                    Message <span className="text-blue-500">*</span>
-                  </label>
-                  <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    rows="5"
-                    placeholder="Tell me more about your thoughts..."
+                      Pesan <span className="text-blue-500">*</span>
+                    </label>
+                    <textarea
+                      name="message"
+                      value={form.message}
+                      onChange={handleChange}
+                      rows="5"
+                      placeholder="Ceritain idemu di sini..."
                     className="w-full px-4 py-3 bg-ivory-100/50 border border-ivory-200 rounded-xl text-sm text-ivory-800 placeholder-ivory-300 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white/80 transition-all duration-300 resize-none"
                     required
                   />
@@ -284,12 +284,12 @@ export default function Contact() {
                   {isSubmitting ? (
                     <span className="flex items-center gap-2">
                       <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Sending...
+                      Mengirim...
                     </span>
                   ) : (
                     <>
                       <Send size={16} />
-                      Send Message
+                      Kirim Pesan
                     </>
                   )}
                 </button>

@@ -58,13 +58,13 @@ export default function About() {
           variants={itemVariants}
           className="font-mono text-xs tracking-mega uppercase text-blue-400 mb-4"
         >
-          About
+          Tentang
         </motion.p>
 
         {/* Title */}
         <motion.div variants={itemVariants} className="mb-12">
           <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 leading-[0.95] tracking-tight">
-            About Me
+            Tentang Saya
           </h1>
           <div className="w-12 h-[2px] bg-blue-500 mt-6" />
         </motion.div>

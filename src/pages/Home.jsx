@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
 import CVDownload from "../components/CVDownload";
+import backgroundImg from "../assets/backgroundnew.jpeg";
 
 const Lanyard = lazy(() => import("../components/reactbits/LanyardCard.jsx"));
-import DotGridBackground from "../components/DotGridBackground.jsx";
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -47,7 +47,10 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-ivory-50 transition-colors duration-500">
-      <DotGridBackground />
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${backgroundImg})` }}
+      />
 
       <section
         ref={containerRef}
@@ -60,8 +63,8 @@ export default function Home() {
             <h1 className="hero-name font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-ivory-800 leading-[0.95] tracking-tight transition-colors duration-500">
               Haidar
               <br />
-              <span className="text-blue-500">Habibi</span>
-              <span className="text-black-400 gap-2 transition-colors duration-500">Al Farisi</span>
+              <span className="text-blue-500">Habibi</span>{" "}
+              <span className="text-black-400 transition-colors duration-500">Al Farisi</span>
             </h1>
 
             {/* BADGE */}
@@ -76,7 +79,7 @@ export default function Home() {
                   to="mailto:haidarhabibi178@gmail.com"
                   className="inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-lg bg-blue-500 px-7 py-3.5 text-sm font-semibold text-white hover:bg-blue-600 transition-colors duration-200"
                 >
-                  Get in Touch
+                  Ngobrol Yuk
                   <Mail size={16} />
                 </Link>
               </motion.div>

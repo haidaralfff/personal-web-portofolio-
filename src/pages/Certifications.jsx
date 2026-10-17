@@ -103,15 +103,15 @@ export default function Certifications() {
         {/* Header */}
         <div className="mb-10 md:mb-14 flex flex-col items-center">
           <p className="cert-header font-mono text-xs tracking-mega uppercase text-blue-400 mb-4">
-            Certifications
+            Sertifikat
           </p>
           <h1
             className="cert-header font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ivory-800 leading-[0.95] tracking-tight text-center"
           >
-            Achievements & Certification<span className="text-blue-500">.</span>
+            Sertifikat<span className="text-blue-500">.</span>
           </h1>
           <p className="cert-header mt-6 text-ivory-400 text-center max-w-lg">
-            Professional achievements and courses completed to enhance my technical skills.
+            Sertifikat dari kursus online yang pernah saya ikuti.
           </p>
         </div>
 
@@ -138,7 +138,7 @@ export default function Certifications() {
                       />
                       <a href={cert.link} target="_blank" rel="noreferrer" className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover/pdf:opacity-100 bg-black/40 backdrop-blur-sm transition-all duration-300">
                         <span className="bg-blue-600 text-white px-4 py-2 rounded-full font-medium shadow-lg flex items-center gap-2">
-                          <ExternalLink size={16} /> View Certificate
+                          <ExternalLink size={16} /> Lihat Sertifikat
                         </span>
                       </a>
                     </>
